@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>apozdn · личный сайт</title>
+<meta name="description" content="Личный сайт Анны Поздняк — родословное древо и семейные проекты.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://apozdn.vercel.app/">
+<meta property="og:title" content="apozdn · личный сайт">
+<meta property="og:description" content="Личный сайт Анны Поздняк — родословное древо и семейные проекты.">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="apozdn · личный сайт">
+<meta name="twitter:description" content="Личный сайт Анны Поздняк — родословное древо и семейные проекты.">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #1a1814 0%, #2d2820 100%);
+    color: #e8dcc4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .container {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .ornament {
+    color: #8a7256;
+    margin-bottom: 24px;
+    letter-spacing: 16px;
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: normal;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+    text-transform: lowercase;
+    color: #f4e4c1;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: #8a7c63;
+    margin-bottom: 60px;
+    font-size: 1.0rem;
+    letter-spacing: 1px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .link {
+    display: block;
+    padding: 18px 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(184, 151, 92, 0.3);
+    border-radius: 6px;
+    color: #e8dcc4;
+    text-decoration: none;
+    font-size: 1.0rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+  }
+
+  .link:hover {
+    background: rgba(184, 151, 92, 0.15);
+    border-color: #b8975c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    color: #f4e4c1;
+  }
+
+  .link.disabled {
+    color: #5a5347;
+    cursor: not-allowed;
+    border-color: rgba(90, 83, 71, 0.2);
+  }
+
+  .link.disabled:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: none;
+    box-shadow: none;
+    color: #5a5347;
+  }
+
+  .footer {
+    margin-top: 80px;
+    color: #5a5347;
+    font-size: 0.78rem;
+    font-style: italic;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>apozdn</h1>
+
+  <div class="links">
+    <a href="/family-tree" class="link">✦ родословное древо</a>
+    <a href="https://vgd.ru" target="_blank" rel="noopener" class="link">✦ генеалогический поиск</a>
+    <!-- TODO: замени # на URL LinkedIn Павла -->
+    <a href="#" class="link disabled">✦ павел поздняк</a>
+  </div>
+
+  <div class="footer">© 2026</div>
+
+</div>
+</body>
+</html>

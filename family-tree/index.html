@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Родословное древо · apozdn</title>
+<meta name="description" content="8 поколений семьи Анны Поздняк: Поздняки, Ковалёвы, Пацало, Гирля, Красильщиковы, Жуковы.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://apozdn.vercel.app/family-tree">
+<meta property="og:title" content="Родословное древо · apozdn">
+<meta property="og:description" content="8 поколений семьи Анны Поздняк: Поздняки, Ковалёвы, Пацало, Гирля, Красильщиковы, Жуковы.">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Родословное древо · apozdn">
+<meta name="twitter:description" content="8 поколений семьи Анны Поздняк: Поздняки, Ковалёвы, Пацало, Гирля, Красильщиковы, Жуковы.">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #f7f3eb;
+    --paper-dark: #ede5d2;
+    --ink: #2d2a26;
+    --line: #8a7256;
+    --pat: #4a6b8a;       /* paternal blue */
+    --mat: #9a4f5e;       /* maternal red */
+    --pat-bg: #e8eff5;
+    --mat-bg: #f5e8eb;
+    --unknown: #b8a988;
+  }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.6), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(218,193,150,0.3), transparent 40%),
+      linear-gradient(135deg, var(--paper) 0%, var(--paper-dark) 100%);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .container { max-width: 1800px; margin: 0 auto; }
+
+  h1 {
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: normal;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #3d342a;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--line);
+    margin-bottom: 6px;
+    letter-spacing: 12px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-style: italic;
+    color: #786a55;
+    margin-bottom: 60px;
+    font-size: 1.05rem;
+  }
+
+  /* ---------- PERSON CARD ---------- */
+  .person {
+    background: #fff;
+    border: 1px solid #d4c4a8;
+    border-radius: 6px;
+    padding: 12px 16px;
+    width: 230px;
+    box-shadow: 0 2px 6px rgba(94, 79, 56, 0.10);
+    position: relative;
+    z-index: 2;
+    transition: all 0.25s ease;
+  }
+
+  .person:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(94, 79, 56, 0.20);
+    z-index: 10;
+  }
+
+  .person.paternal {
+    border-left: 4px solid var(--pat);
+    background: linear-gradient(180deg, #fff 0%, var(--pat-bg) 100%);
+  }
+
+  .person.maternal {
+    border-left: 4px solid var(--mat);
+    background: linear-gradient(180deg, #fff 0%, var(--mat-bg) 100%);
+  }
+
+  .person.center {
+    background: linear-gradient(135deg, #f4e4c1 0%, #e9d4a0 100%);
+    border: 2px solid #b8975c;
+    width: 250px;
+    box-shadow: 0 4px 16px rgba(184, 151, 92, 0.4);
+  }
+
+  .person.unknown {
+    background: #f8f5ef;
+    border-style: dashed;
+    border-color: var(--unknown);
+    color: #8a7c63;
+    font-style: italic;
+  }
+
+  .person.unknown .name { color: #8a7c63; }
+
+  .relation {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    color: #b09a78;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    font-style: normal;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+
+  .name-extra {
+    font-size: 0.78rem;
+    color: #786a55;
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .dates {
+    font-size: 0.8rem;
+    color: #5d5347;
+    margin-bottom: 4px;
+  }
+
+  .place {
+    font-size: 0.74rem;
+    color: #786a55;
+    font-style: italic;
+    line-height: 1.35;
+  }
+
+  .note {
+    font-size: 0.7rem;
+    color: #8a7c63;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dotted #d4c4a8;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* ---------- BIG TREE LAYOUT ---------- */
+  .megatree {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .half-title {
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--ink);
+    padding: 8px 24px;
+    border: 2px solid currentColor;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    background: #fff;
+  }
+
+  .half.paternal .half-title { color: var(--pat); }
+  .half.maternal .half-title { color: var(--mat); }
+
+  .level {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    position: relative;
+  }
+
+  .subfam {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .subfam-couple {
+    display: flex;
+    gap: 14px;
+    position: relative;
+  }
+
+  .subfam-couple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 2px;
+    background: var(--line);
+    z-index: 1;
+  }
+
+  .v-line {
+    width: 2px;
+    height: 30px;
+    background: var(--line);
+  }
+
+  .merge-line {
+    height: 2px;
+    background: var(--line);
+    position: relative;
+  }
+
+  .merge-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 30px;
+    background: var(--line);
+    transform: translateY(100%);
+  }
+
+  .joiner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -2px;
+  }
+
+  .joiner-bar {
+    width: 60%;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+  }
+  .joiner-bar::before, .joiner-bar::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    width: 2px;
+    height: 30px;
+    background: var(--line);
+  }
+  .joiner-bar::before { left: 0; }
+  .joiner-bar::after { right: 0; }
+
+  .joiner-down {
+    width: 2px;
+    height: 30px;
+    background: var(--line);
+  }
+
+  .siblings {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sibling {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 16px;
+    color: #786a55;
+  }
+
+  .legend {
+    margin-top: 60px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+    box-shadow: 0 2px 8px rgba(94, 79, 56, 0.08);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .legend-color {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #8a7c63;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 1300px) {
+    .megatree { grid-template-columns: 1fr; gap: 50px; }
+    .person { width: 200px; }
+  }
+
+  /* ---------- CLICKABLE CARD ---------- */
+  .person.clickable {
+    cursor: pointer;
+    border-style: solid;
+    background: linear-gradient(180deg, #fff8e7 0%, var(--mat-bg) 100%);
+  }
+  .person.clickable:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(154, 79, 94, 0.3);
+    border-color: var(--mat);
+  }
+  .person.clickable .note strong {
+    color: var(--mat);
+  }
+
+  /* ---------- MODAL ---------- */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal.open { display: flex; }
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(45, 42, 38, 0.7);
+    backdrop-filter: blur(4px);
+  }
+  .modal-content {
+    position: relative;
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #786a55;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 10px;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+  .modal-close:hover {
+    background: rgba(154, 79, 94, 0.15);
+    color: var(--mat);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="ornament">❦ ❦ ❦</div>
+  <h1>Родословное древо</h1>
+  <p class="subtitle">Анна Поздняк · по прямой линии предков</p>
+
+  <!-- ============ ДРЕВО ============ -->
+  <div class="megatree">
+
+    <!-- ====== ОТЦОВСКАЯ ПОЛОВИНА ====== -->
+    <div class="half paternal">
+      <div class="half-title">отцовская линия</div>
+
+      <!-- Уровень V: прапрадеды по этой ветке -->
+      <div class="level" style="margin-bottom: 0;">
+        <div class="subfam">
+          <div class="subfam-couple no-link">
+            <div class="person paternal">
+              <div class="relation">Прапрадед</div>
+              <div class="name">Юлиан Жуков</div>
+              <div class="note">отец Юзефы и Антона</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subfam">
+          <div class="subfam-couple no-link">
+            <div class="person paternal">
+              <div class="relation">Прапрабабка</div>
+              <div class="name">Мария</div>
+              <div class="dates">10 детей</div>
+              <div class="note">по линии Любови Красильщиковой</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-line"></div>
+
+      <!-- Уровень IV: прабабушки/прадеды -->
+      <div class="level">
+        <div class="subfam">
+          <div class="subfam-couple">
+            <div class="person paternal">
+              <div class="relation">Прадед</div>
+              <div class="name">Аркадий Поздняк</div>
+              <div class="note">отец Владислава и Бронислава</div>
+            </div>
+            <div class="person paternal">
+              <div class="relation">Прабабушка</div>
+              <div class="name">Юзефа Юлиановна Поздняк</div>
+              <div class="name-extra">девичья: Жукова</div>
+              <div class="note">Брат — Антон Юлианович Жуков</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
+        </div>
+
+        <div class="subfam">
+          <div class="subfam-couple no-link">
+            <div class="person paternal">
+              <div class="relation">Прадед</div>
+              <div class="name">Фёдор Красильщиков</div>
+              <div class="place">переселенцы из Тамбовской губ.<br>в дер. Тамбовка Амурской обл.</div>
+              <div class="note">отчество уточняется</div>
+            </div>
+            <div class="person paternal unknown">
+              <div class="relation">Прабабушка</div>
+              <div class="name">— уточнить —</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
+        </div>
+      </div>
+
+      <!-- Уровень III: дед и бабушка -->
+      <div class="level">
+        <div class="person paternal">
+          <div class="relation">Дед</div>
+          <div class="name">Владислав Аркадьевич Поздняк</div>
+          <div class="dates">1925 — нач. 1960-х</div>
+          <div class="place">род. Лудзенский уезд, Латвия<br>(д. Ромашенки, Посинская вол.)</div>
+          <div class="note">«Назвал себя белорусом». Ремонтировал часы. В войну угнан в Германию к фермеру. После — Рига, з-д гидрометприборов. Брат — Бронислав.</div>
+        </div>
+
+        <div class="person paternal">
+          <div class="relation">Бабушка</div>
+          <div class="name">Любовь Фёдоровна Поздняк</div>
+          <div class="name-extra">девичья: Красильщикова</div>
+          <div class="dates">1922 — 1992</div>
+          <div class="place">род. дер. Тамбовка Амурской обл.</div>
+          <div class="note">1939–44 училась в Иркутском университете. Работала учителем биологии под Владивостоком. 1-й муж — моряк. 2-й — Владислав.</div>
+        </div>
+      </div>
+
+      <div class="merge-line" style="width: 280px; margin-top: 10px;"></div>
+      <div class="v-line"></div>
+
+      <!-- Уровень II: отец + сестра -->
+      <div class="level">
+        <div class="person paternal">
+          <div class="relation">Отец</div>
+          <div class="name">Леонид Владиславович Поздняк</div>
+          <div class="dates">1957 — 2006</div>
+          <div class="place">род. г. Рига</div>
+          <div class="note">Был женат трижды (мать Анны — 3-й брак, познакомились в Ленске). Дети от 1-го: Дмитрий ✝. От 2-го: Павел (Новая Зеландия) и ещё сын ✝.</div>
+        </div>
+
+        <div class="person paternal">
+          <div class="relation">Тётя (сестра отца)</div>
+          <div class="name">Елена Владиславовна Желтикова</div>
+          <div class="name-extra">девичья: Поздняк</div>
+          <div class="dates">род. 1958</div>
+          <div class="note">Сыновья: Никита Желтиков (1987) и Игнат Желтиков (1991) — двоюродные братья Анны</div>
+        </div>
+      </div>
+
+      <div class="v-line"></div>
+
+    </div>
+
+    <!-- ====== МАТЕРИНСКАЯ ПОЛОВИНА ====== -->
+    <div class="half maternal">
+      <div class="half-title">материнская линия</div>
+
+      <!-- Глубина по Пацало - кратко -->
+      <div class="level" style="margin-bottom: 0;">
+        <div class="subfam">
+          <div class="subfam-couple no-link">
+            <div class="person maternal clickable" onclick="document.getElementById('pacalo-modal').classList.add('open')">
+              <div class="relation">8 поколений ↑</div>
+              <div class="name">Линия Пацало<br>(с. Скаковка, Волынская губ.)</div>
+              <div class="note">От Осипа Демьяновича Пацалука (1765) — через Наума, Феодосия, Маркела — до Надежды. <strong>Кликни, чтобы раскрыть →</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subfam">
+          <div class="subfam-couple no-link">
+            <div class="person maternal unknown">
+              <div class="relation">Прапрадеды</div>
+              <div class="name">— по Ковалёвым —</div>
+              <div class="note">данные уточнить</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="v-line"></div>
+
+      <!-- Уровень IV -->
+      <div class="level">
+        <div class="subfam">
+          <div class="subfam-couple">
+            <div class="person maternal">
+              <div class="relation">Прадед</div>
+              <div class="name">Филипп Васильевич Гирля</div>
+              <div class="dates">1906 — 05.02.1944 ✝</div>
+              <div class="place">с. Новокуровка,<br>Кур-Урмийский р-н, Хаб. кр.</div>
+              <div class="note">Отец — Василий Гирля (по отчеству). Грек или молдаванин (по семейному преданию, точно неизвестно). Погиб на фронте ВОВ</div>
+            </div>
+            <div class="person maternal">
+              <div class="relation">Прабабушка</div>
+              <div class="name">Надежда Маркеловна Лученко</div>
+              <div class="name-extra">девичья: Пацало</div>
+              <div class="place">с. Скаковка, Волынская губ.<br>→ ДВ 1908–11</div>
+              <div class="note">«Крестьянка из Украины, по реформе Столыпина поехала на ДВ». 1-й муж — Лученко: сыновья Толя и Владимир. 2-й — Гирля.</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
+        </div>
+
+        <div class="subfam">
+          <div class="subfam-couple">
+            <div class="person maternal">
+              <div class="relation">Прадед</div>
+              <div class="name">Павел Ковалёв</div>
+              <div class="place">Омск ~ Тара<br>(Омская обл.)</div>
+            </div>
+            <div class="person maternal">
+              <div class="relation">Прабабушка</div>
+              <div class="name">Мария Ковалёва</div>
+              <div class="place">жена Павла</div>
+              <div class="note">фамилия девичья уточнить</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
+        </div>
+      </div>
+
+      <!-- Уровень III: дед и бабушка -->
+      <div class="level">
+        <div class="person maternal">
+          <div class="relation">Бабушка</div>
+          <div class="name">Нина Филипповна Ковалёва</div>
+          <div class="name-extra">девичья: Гирля</div>
+          <div class="dates">1940 — 2007</div>
+          <div class="note">Училась в Биробиджане. С Василием познакомились на танцах, пока он служил в армии. Жили в Омской обл., потом переехали в Наб. Челны строить КамАЗ (~1972)</div>
+        </div>
+
+        <div class="person maternal">
+          <div class="relation">Дед</div>
+          <div class="name">Василий Павлович Ковалёв</div>
+          <div class="dates">1939 — 2016</div>
+          <div class="note">С Ниной познакомились на танцах во время его службы в армии</div>
+        </div>
+      </div>
+
+      <div class="merge-line" style="width: 280px; margin-top: 10px;"></div>
+      <div class="v-line"></div>
+
+      <!-- Уровень II: мать + дядя -->
+      <div class="level">
+        <div class="person maternal">
+          <div class="relation">Мать</div>
+          <div class="name">Елена Васильевна Ковалёва</div>
+          <div class="dates">род. 1966</div>
+          <div class="place">с. Красный Октябрь,<br>Черлакский р-н, Омская обл.</div>
+          <div class="note">В ~1972 семья переехала в Наб. Челны на стройку КамАЗа. С Леонидом познакомились в Ленске</div>
+        </div>
+
+        <div class="person maternal">
+          <div class="relation">Дядя (брат матери)</div>
+          <div class="name">Олег Васильевич Ковалёв</div>
+          <div class="dates">1963 — 2016</div>
+        </div>
+      </div>
+
+      <div class="v-line"></div>
+
+    </div>
+
+  </div>
+
+  <!-- Объединитель двух половин → Анна -->
+  <div class="joiner">
+    <div class="joiner-bar" style="width: 50%;"></div>
+    <div class="joiner-down"></div>
+    <div class="person center">
+      <div class="relation">Это я</div>
+      <div class="name" style="font-size: 1.15rem;">Анна Поздняк</div>
+      <div class="dates">род. 1998</div>
+      <div class="place">Санкт-Петербург<br>(род. Наб. Челны)</div>
+    </div>
+
+    <!-- Братья/сестры -->
+    <div class="siblings">
+      <div class="sibling">Родной брат: Евгений Поздняк (1992, Наб. Челны)</div>
+      <div class="sibling">Сводный брат: Дмитрий ✝ (от 1-го брака отца)</div>
+      <div class="sibling">Сводный брат: Павел (Новая Зеландия, от 2-го)</div>
+      <div class="sibling">Сводный брат: имя? ✝ (от 2-го)</div>
+    </div>
+  </div>
+
+  <!-- ============ МОДАЛЬНОЕ ОКНО ПАЦАЛО ============ -->
+  <div id="pacalo-modal" class="modal">
+    <div class="modal-overlay" onclick="document.getElementById('pacalo-modal').classList.remove('open')"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('pacalo-modal').classList.remove('open')">×</button>
+      <h2 style="text-align: center; font-weight: normal; letter-spacing: 3px; margin-bottom: 8px; color: var(--mat); font-size: 1.6rem;">Линия Пацало · 8 поколений</h2>
+      <p style="text-align: center; font-style: italic; color: #786a55; margin-bottom: 30px;">с. Скаковка, Солотвинская волость, Житомирский уезд, Волынская губерния (1765 → 1923)</p>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">VIII поколение</div>
+            <div class="name">Осип Демьянович Пацалук</div>
+            <div class="name-extra">Pacaluk — исходная форма</div>
+            <div class="dates">1765 — 1822, с. Скаковка</div>
+          </div>
+          <div class="person maternal">
+            <div class="relation">VIII поколение</div>
+            <div class="name">Ефросинья Семёновна</div>
+            <div class="dates">род. 1775 · брак с 1791</div>
+          </div>
+        </div>
+        <div class="v-line"></div>
+
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">VII поколение</div>
+            <div class="name">Наум Осипович Пацала</div>
+            <div class="dates">1792 — 27.01.1859</div>
+          </div>
+          <div class="person maternal">
+            <div class="relation">VII поколение</div>
+            <div class="name">Лукерья Саввовна</div>
+            <div class="dates">брак с 1820–21</div>
+          </div>
+        </div>
+        <div class="v-line"></div>
+
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">VI поколение</div>
+            <div class="name">Феодосий Наумович Пацало</div>
+            <div class="dates">род. 11.01.1836</div>
+          </div>
+          <div class="person maternal">
+            <div class="relation">VI поколение</div>
+            <div class="name">Варвара Онисимовна Преверенда</div>
+            <div class="dates">1843 — 10.01.1901</div>
+            <div class="place">д. Хмелищ · брак 14.05.1861</div>
+          </div>
+        </div>
+        <div class="v-line"></div>
+
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">V поколение · прапрадед</div>
+            <div class="name">Маркел Феодосьевич Пацало</div>
+            <div class="dates">1863 — 1923</div>
+            <div class="place">род. с. Скаковка → <br>ум. с. Новокуровка, Хаб. кр.</div>
+          </div>
+          <div class="person maternal">
+            <div class="relation">V поколение · прапрабабка</div>
+            <div class="name">Кириакия Фёдоровна Пацало</div>
+            <div class="name-extra">девичья: предп. Щербакова</div>
+            <div class="dates">1861 — 22.01.1943</div>
+            <div class="place">ум. с. Новокуровка · брак 1885</div>
+          </div>
+        </div>
+        <div class="v-line"></div>
+
+        <div class="person maternal" style="width: 280px;">
+          <div class="relation">IV поколение · прабабушка</div>
+          <div class="name">Надежда Маркеловна Пацало</div>
+          <div class="place">в браках: Лученко → Гирля</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ЛЕГЕНДА ============ -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-color" style="background: var(--pat);"></div>
+      <span>отцовская линия — Поздняк, Жуковы, Красильщиковы</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: var(--mat);"></div>
+      <span>материнская линия — Ковалёвы, Гирля, Пацало</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: #f8f5ef; border: 1px dashed var(--unknown);"></div>
+      <span>требует уточнения</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    Древо · 2026 · по мере находок будет дополняться
+  </div>
+
+</div>
+</body>
+</html>
