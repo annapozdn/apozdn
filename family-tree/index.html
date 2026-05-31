@@ -78,8 +78,8 @@
     background: #fff;
     border: 1px solid #d4c4a8;
     border-radius: 6px;
-    padding: 12px 16px;
-    width: 230px;
+    padding: 10px 12px;
+    width: 180px;
     box-shadow: 0 2px 6px rgba(94, 79, 56, 0.10);
     position: relative;
     z-index: 2;
@@ -170,7 +170,7 @@
   .megatree {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    gap: 80px;
     width: 100%;
     margin-bottom: 30px;
   }
@@ -222,16 +222,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 18px;
+    width: 40px;
     height: 2px;
     background: var(--line);
     z-index: 1;
+  }
+
+  /* широкий коннектор для пар-дедушек/бабушек (180px карточки + 14px gap = 194px) */
+  .subfam-couple.wide-link::before {
+    width: 194px;
   }
 
   .v-line {
     width: 2px;
     height: 30px;
     background: var(--line);
+  }
+
+  /* линия, растягивающаяся до общего низа половины */
+  .v-line.grow {
+    flex: 1 1 auto;
+    min-height: 30px;
   }
 
   .merge-line {
@@ -265,16 +276,7 @@
     background: var(--line);
     position: relative;
   }
-  .joiner-bar::before, .joiner-bar::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    width: 2px;
-    height: 30px;
-    background: var(--line);
-  }
-  .joiner-bar::before { left: 0; }
-  .joiner-bar::after { right: 0; }
+  /* усики не нужны — линии половин дотягиваются до бара (.v-line.grow) */
 
   .joiner-down {
     width: 2px;
@@ -285,8 +287,9 @@
   .siblings {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 14px;
+    max-width: 900px;
+    margin: 30px auto 0;
     flex-wrap: wrap;
   }
 
@@ -296,6 +299,17 @@
     background: rgba(255,255,255,0.6);
     border-radius: 16px;
     color: #786a55;
+  }
+
+  .sibling.clickable {
+    cursor: pointer;
+    border: 1px solid rgba(74, 107, 138, 0.35);
+    color: var(--pat);
+    transition: all 0.2s ease;
+  }
+  .sibling.clickable:hover {
+    background: rgba(74, 107, 138, 0.1);
+    border-color: var(--pat);
   }
 
   .legend {
@@ -331,9 +345,10 @@
     font-style: italic;
   }
 
-  @media (max-width: 1300px) {
-    .megatree { grid-template-columns: 1fr; gap: 50px; }
+  @media (max-width: 900px) {
+    .megatree { grid-template-columns: 1fr; gap: 40px; }
     .person { width: 200px; }
+    h1 { font-size: 1.8rem; }
   }
 
   /* ---------- CLICKABLE CARD ---------- */
@@ -439,63 +454,62 @@
       <div class="v-line"></div>
 
       <!-- Уровень IV: прабабушки/прадеды -->
-      <div class="level">
-        <div class="subfam">
-          <div class="subfam-couple">
-            <div class="person paternal">
-              <div class="relation">Прадед</div>
-              <div class="name">Аркадий Поздняк</div>
-              <div class="note">отец Владислава и Бронислава</div>
-            </div>
-            <div class="person paternal">
-              <div class="relation">Прабабушка</div>
-              <div class="name">Юзефа Юлиановна Поздняк</div>
-              <div class="name-extra">девичья: Жукова</div>
-              <div class="note">Брат — Антон Юлианович Жуков</div>
-            </div>
+      <div class="subfam">
+        <div class="subfam-couple">
+          <div class="person paternal">
+            <div class="relation">Прадед</div>
+            <div class="name">Аркадий Поздняк</div>
+            <div class="note">отец Владислава и Бронислава</div>
           </div>
-          <div class="v-line"></div>
+          <div class="person paternal">
+            <div class="relation">Прабабушка</div>
+            <div class="name">Юзефа Юлиановна Поздняк</div>
+            <div class="name-extra">девичья: Жукова</div>
+            <div class="note">Брат — Антон Юлианович Жуков</div>
+          </div>
         </div>
+        <div class="v-line"></div>
+      </div>
 
-        <div class="subfam">
-          <div class="subfam-couple no-link">
-            <div class="person paternal">
-              <div class="relation">Прадед</div>
-              <div class="name">Фёдор Красильников</div>
-              <div class="place">переселенцы из Тамбовской губ.<br>в дер. Тамбовка Амурской обл.</div>
-              <div class="note">отчество уточняется</div>
-            </div>
-            <div class="person paternal unknown">
-              <div class="relation">Прабабушка</div>
-              <div class="name">— уточнить —</div>
-            </div>
+      <div class="subfam">
+        <div class="subfam-couple no-link">
+          <div class="person paternal">
+            <div class="relation">Прадед</div>
+            <div class="name">Фёдор Красильников</div>
+            <div class="place">переселенцы из Тамбовской губ.<br>в дер. Тамбовка Амурской обл.</div>
+            <div class="note">отчество уточняется</div>
           </div>
-          <div class="v-line"></div>
+          <div class="person paternal unknown">
+            <div class="relation">Прабабушка</div>
+            <div class="name">— уточнить —</div>
+          </div>
         </div>
+        <div class="v-line"></div>
       </div>
 
       <!-- Уровень III: дед и бабушка -->
       <div class="level">
-        <div class="person paternal">
-          <div class="relation">Дед</div>
-          <div class="name">Владислав Аркадьевич Поздняк</div>
-          <div class="dates">1925 — нач. 1960-х</div>
-          <div class="place">род. Лудзенский уезд, Латвия<br>(д. Ромашенки, Посинская вол.)</div>
-          <div class="note">«Назвал себя белорусом». Ремонтировал часы. В войну угнан в Германию к фермеру. После — Рига, з-д гидрометприборов. Брат — Бронислав.</div>
-        </div>
-
-        <div class="person paternal">
-          <div class="relation">Бабушка</div>
-          <div class="name">Любовь Фёдоровна Поздняк</div>
-          <div class="name-extra">девичья: Красильникова</div>
-          <div class="dates">1922 — 1992</div>
-          <div class="place">род. дер. Тамбовка Амурской обл.</div>
-          <div class="note">1939–44 училась в Иркутском университете. Работала учителем биологии под Владивостоком. 1-й муж — моряк. 2-й — Владислав.</div>
+        <div class="subfam">
+          <div class="subfam-couple wide-link">
+            <div class="person paternal">
+              <div class="relation">Дед</div>
+              <div class="name">Владислав Аркадьевич Поздняк</div>
+              <div class="dates">1925 — нач. 1960-х</div>
+              <div class="place">род. Лудзенский уезд, Латвия<br>(д. Ромашенки, Посинская вол.)</div>
+              <div class="note">«Назвал себя белорусом». Ремонтировал часы. В войну угнан в Германию к фермеру. После — Рига, з-д гидрометприборов. Брат — Бронислав.</div>
+            </div>
+            <div class="person paternal">
+              <div class="relation">Бабушка</div>
+              <div class="name">Любовь Фёдоровна Поздняк</div>
+              <div class="name-extra">девичья: Красильникова</div>
+              <div class="dates">1922 — 1992</div>
+              <div class="place">род. дер. Тамбовка Амурской обл.</div>
+              <div class="note">1939–44 училась в Иркутском университете. Работала учителем биологии под Владивостоком. 1-й муж — моряк. 2-й — Владислав.</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
         </div>
       </div>
-
-      <div class="merge-line" style="width: 280px; margin-top: 10px;"></div>
-      <div class="v-line"></div>
 
       <!-- Уровень II: отец + сестра -->
       <div class="level">
@@ -516,7 +530,7 @@
         </div>
       </div>
 
-      <div class="v-line"></div>
+      <div class="v-line grow"></div>
 
     </div>
 
@@ -550,65 +564,64 @@
       <div class="v-line"></div>
 
       <!-- Уровень IV -->
-      <div class="level">
-        <div class="subfam">
-          <div class="subfam-couple">
-            <div class="person maternal">
-              <div class="relation">Прадед</div>
-              <div class="name">Филипп Васильевич Гирля</div>
-              <div class="dates">1906 — 05.02.1944 ✝</div>
-              <div class="place">с. Новокуровка,<br>Кур-Урмийский р-н, Хаб. кр.</div>
-              <div class="note">Отец — Василий Гирля (по отчеству). Грек или молдаванин (по семейному преданию, точно неизвестно). Погиб на фронте ВОВ</div>
-            </div>
-            <div class="person maternal">
-              <div class="relation">Прабабушка</div>
-              <div class="name">Надежда Маркеловна Лученко (1905)</div>
-              <div class="name-extra">девичья: Пацало</div>
-              <div class="place">с. Скаковка, Волынская губ.<br>→ ДВ 1908–11</div>
-              <div class="note">«Крестьянка из Украины, по реформе Столыпина поехала на ДВ». 1-й муж — Лученко: сыновья Толя и Владимир. 2-й — Гирля.</div>
-            </div>
+      <div class="subfam">
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">Прадед</div>
+            <div class="name">Филипп Васильевич Гирля</div>
+            <div class="dates">1906 — 05.02.1944 ✝</div>
+            <div class="place">с. Новокуровка,<br>Кур-Урмийский р-н, Хаб. кр.</div>
+            <div class="note">Отец — Василий Гирля (по отчеству). Грек или молдаванин (по семейному преданию, точно неизвестно). Погиб на фронте ВОВ</div>
           </div>
-          <div class="v-line"></div>
+          <div class="person maternal">
+            <div class="relation">Прабабушка</div>
+            <div class="name">Надежда Маркеловна Лученко (1905)</div>
+            <div class="name-extra">девичья: Пацало</div>
+            <div class="place">с. Скаковка, Волынская губ.<br>→ ДВ 1908–11</div>
+            <div class="note">«Крестьянка из Украины, по реформе Столыпина поехала на ДВ». 1-й муж — Лученко: сыновья Толя и Владимир. 2-й — Гирля.</div>
+          </div>
         </div>
+        <div class="v-line"></div>
+      </div>
 
-        <div class="subfam">
-          <div class="subfam-couple">
-            <div class="person maternal">
-              <div class="relation">Прадед</div>
-              <div class="name">Павел Ковалёв</div>
-              <div class="place">Омск ~ Тара<br>(Омская обл.)</div>
-            </div>
-            <div class="person maternal">
-              <div class="relation">Прабабушка</div>
-              <div class="name">Мария Ковалёва</div>
-              <div class="place">жена Павла</div>
-              <div class="note">фамилия девичья уточнить</div>
-            </div>
+      <div class="subfam">
+        <div class="subfam-couple">
+          <div class="person maternal">
+            <div class="relation">Прадед</div>
+            <div class="name">Павел Ковалёв</div>
+            <div class="place">Омск ~ Тара<br>(Омская обл.)</div>
           </div>
-          <div class="v-line"></div>
+          <div class="person maternal">
+            <div class="relation">Прабабушка</div>
+            <div class="name">Мария Ковалёва</div>
+            <div class="place">жена Павла</div>
+            <div class="note">фамилия девичья уточнить</div>
+          </div>
         </div>
+        <div class="v-line"></div>
       </div>
 
       <!-- Уровень III: дед и бабушка -->
       <div class="level">
-        <div class="person maternal">
-          <div class="relation">Бабушка</div>
-          <div class="name">Нина Филипповна Ковалёва</div>
-          <div class="name-extra">девичья: Гирля</div>
-          <div class="dates">1940 — 2007</div>
-          <div class="note">Училась в Биробиджане. С Василием познакомились на танцах, пока он служил в армии. Жили в Омской обл., потом переехали в Наб. Челны строить КамАЗ (~1972)</div>
-        </div>
-
-        <div class="person maternal">
-          <div class="relation">Дед</div>
-          <div class="name">Василий Павлович Ковалёв</div>
-          <div class="dates">1939 — 2016</div>
-          <div class="note">С Ниной познакомились на танцах во время его службы в армии</div>
+        <div class="subfam">
+          <div class="subfam-couple wide-link">
+            <div class="person maternal">
+              <div class="relation">Бабушка</div>
+              <div class="name">Нина Филипповна Ковалёва</div>
+              <div class="name-extra">девичья: Гирля</div>
+              <div class="dates">1940 — 2007</div>
+              <div class="note">Училась в Биробиджане. С Василием познакомились на танцах, пока он служил в армии. Жили в Омской обл., потом переехали в Наб. Челны строить КамАЗ (~1972)</div>
+            </div>
+            <div class="person maternal">
+              <div class="relation">Дед</div>
+              <div class="name">Василий Павлович Ковалёв</div>
+              <div class="dates">1939 — 2016</div>
+              <div class="note">С Ниной познакомились на танцах во время его службы в армии</div>
+            </div>
+          </div>
+          <div class="v-line"></div>
         </div>
       </div>
-
-      <div class="merge-line" style="width: 280px; margin-top: 10px;"></div>
-      <div class="v-line"></div>
 
       <!-- Уровень II: мать + дядя -->
       <div class="level">
@@ -627,7 +640,7 @@
         </div>
       </div>
 
-      <div class="v-line"></div>
+      <div class="v-line grow"></div>
 
     </div>
 
@@ -635,7 +648,7 @@
 
   <!-- Объединитель двух половин → Анна -->
   <div class="joiner">
-    <div class="joiner-bar" style="width: 50%;"></div>
+    <div class="joiner-bar" style="width: calc(50% + 40px);"></div>
     <div class="joiner-down"></div>
     <div class="person center">
       <div class="relation">Это я</div>
@@ -647,7 +660,7 @@
     <!-- Братья/сестры -->
     <div class="siblings">
       <div class="sibling">Родной брат: Евгений Поздняк (1992, Наб. Челны)</div>
-      <div class="sibling">Сводный брат: Дмитрий ✝ (от 1-го брака отца)</div>
+      <div class="sibling clickable" onclick="document.getElementById('dmitry-modal').classList.add('open')">Сводный брат: Дмитрий Леонидович ✝ (от 1-го брака отца) ↗</div>
       <div class="sibling">Сводный брат: Павел (Новая Зеландия, от 2-го)</div>
       <div class="sibling">Сводный брат: имя? ✝ (от 2-го)</div>
     </div>
@@ -732,6 +745,44 @@
     </div>
   </div>
 
+  <!-- ============ МОДАЛЬНОЕ ОКНО ДМИТРИЙ ПОЗДНЯК ============ -->
+  <div id="dmitry-modal" class="modal">
+    <div class="modal-overlay" onclick="document.getElementById('dmitry-modal').classList.remove('open')"></div>
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close" onclick="document.getElementById('dmitry-modal').classList.remove('open')">×</button>
+      <h2 style="text-align: center; font-weight: normal; letter-spacing: 3px; margin-bottom: 6px; color: var(--pat); font-size: 1.5rem;">Дмитрий Леонидович Поздняк</h2>
+      <p style="text-align: center; font-style: italic; color: #786a55; margin-bottom: 24px; font-size: 0.9rem;">Сводный брат Анны · сын Леонида от 1-го брака</p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.92rem; line-height: 1.6; color: var(--ink);">
+
+        <div style="background: rgba(74,107,138,0.07); border-left: 3px solid var(--pat); padding: 12px 16px; border-radius: 0 6px 6px 0;">
+          <strong>Последнее известное место:</strong> Уссурийск, Приморский край<br>
+          <strong>Официальная дата смерти:</strong> 26 ноября 2014
+        </div>
+
+        <div>
+          <p>По свидетельству соседки, в декабре 2014 года двое мужчин вывели Дмитрия из подъезда и посадили в такси — больше его никто не видел. Жил один, без родственников рядом.</p>
+        </div>
+
+        <div>
+          <p>Позднее обнаружилась попытка перерегистрации его квартиры. Следствие установило преступный умысел — перепродажа жилья. К делу предположительно причастны люди из Хабаровского края.</p>
+        </div>
+
+        <div style="background: rgba(74,107,138,0.05); border: 1px solid rgba(74,107,138,0.25); padding: 10px 14px; border-radius: 6px; font-size: 0.87rem;">
+          <strong>Наследственное дело:</strong> №2028775-22/2016<br>
+          <strong>Нотариус:</strong> Романенко Елена Викторовна<br>
+          <span style="color: #786a55; font-size: 0.82rem;">Уссурийск, ул. Фрунзе 42 · +7 (4234) 32-88-32</span>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.8); border: 1px solid #d4c4a8; padding: 10px 14px; border-radius: 6px; font-size: 0.82rem; color: #786a55;">
+          Заявка на поиск подана соседкой через программу «Жди меня» · 24 июня 2015 года.<br>
+          <a href="https://poisk.vid.ru/?p=letters&id=2477709" target="_blank" rel="noopener" style="color: var(--pat);">↗ Заявка на poisk.vid.ru</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- ============ ЛЕГЕНДА ============ -->
   <div class="legend">
     <div class="legend-item">
@@ -753,5 +804,6 @@
   </div>
 
 </div>
+
 </body>
 </html>
