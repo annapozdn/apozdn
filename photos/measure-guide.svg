@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" font-family="Arial, sans-serif">
+  <style>
+    .lbl { font-size: 16px; fill: #24211d; font-weight: 700 }
+    .lblm { font-size: 14px; fill: #6f7f61; font-weight: 700 }
+    .desc { font-size: 13px; fill: #756b60 }
+    .title { font-size: 22px; fill: #24211d; font-weight: 700 }
+    .arr { stroke: #b9816d; stroke-width: 2; fill: none }
+    .dim { stroke: #6f7f61; stroke-width: 2; fill: none; stroke-dasharray: 6,4 }
+    .wall { stroke: #756b60; stroke-width: 3; fill: #f0e5d4 }
+    .glaze { stroke: #4a6575; stroke-width: 3; fill: #dfeaf0 }
+  </style>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" class="title">Замеры лоджии — что мерить</text>
+
+  <!-- TOP VIEW BLOCK -->
+  <text x="450" y="90" text-anchor="middle" class="title" font-size="18">1. Вид сверху (на полу)</text>
+
+  <!-- Loggia rectangle top view -->
+  <rect x="80" y="130" width="740" height="200" class="wall"/>
+  <!-- Glazing (top - outer) -->
+  <rect x="80" y="130" width="740" height="22" class="glaze"/>
+  <!-- Inner wall (bottom) -->
+  <rect x="80" y="308" width="740" height="22" fill="#e8dac0" stroke="#756b60" stroke-width="3"/>
+
+  <!-- Cabinet zone (left) -->
+  <rect x="90" y="160" width="90" height="140" fill="rgba(111,127,97,.18)" stroke="#6f7f61" stroke-width="2" stroke-dasharray="5,4"/>
+  <text x="135" y="235" text-anchor="middle" class="desc">шкаф</text>
+
+  <!-- Shelf zone (right) -->
+  <rect x="720" y="160" width="90" height="140" fill="rgba(190,180,168,.4)" stroke="#9a9690" stroke-width="2" stroke-dasharray="5,4"/>
+  <text x="765" y="235" text-anchor="middle" class="desc">полка</text>
+
+  <!-- Dimension lines on top view -->
+  <!-- A: length along glazing -->
+  <line x1="80" y1="110" x2="820" y2="110" class="dim"/>
+  <line x1="80" y1="105" x2="80" y2="125" class="dim"/>
+  <line x1="820" y1="105" x2="820" y2="125" class="dim"/>
+  <text x="450" y="100" text-anchor="middle" class="lblm">A — длина по остеклению</text>
+
+  <!-- C: length along inner wall -->
+  <line x1="80" y1="360" x2="820" y2="360" class="dim"/>
+  <line x1="80" y1="355" x2="80" y2="375" class="dim"/>
+  <line x1="820" y1="355" x2="820" y2="375" class="dim"/>
+  <text x="450" y="380" text-anchor="middle" class="lblm">C — длина по квартирной стене</text>
+
+  <!-- D: width left -->
+  <line x1="50" y1="130" x2="50" y2="330" class="dim"/>
+  <line x1="45" y1="130" x2="65" y2="130" class="dim"/>
+  <line x1="45" y1="330" x2="65" y2="330" class="dim"/>
+  <text x="40" y="230" text-anchor="middle" class="lblm" transform="rotate(-90 40 230)">D — ширина слева</text>
+
+  <!-- B: width right -->
+  <line x1="850" y1="130" x2="850" y2="330" class="dim"/>
+  <line x1="845" y1="130" x2="865" y2="130" class="dim"/>
+  <line x1="845" y1="330" x2="865" y2="330" class="dim"/>
+  <text x="860" y="230" text-anchor="middle" class="lblm" transform="rotate(90 860 230)">B — ширина справа</text>
+
+  <!-- Kitchen arrow -->
+  <text x="450" y="430" text-anchor="middle" class="desc">↑ вход из кухни (справа)</text>
+
+  <!-- Note about rectangle vs trapezoid -->
+  <text x="450" y="460" text-anchor="middle" class="desc">Если A ≠ C или D ≠ B — лоджия не прямоугольная.</text>
+
+  <!-- SIDE VIEW BLOCK -->
+  <text x="450" y="520" text-anchor="middle" class="title" font-size="18">2. Вид сбоку (вертикально)</text>
+
+  <!-- Side view rectangle -->
+  <rect x="300" y="560" width="300" height="380" fill="#f0e5d4" stroke="#756b60" stroke-width="3"/>
+  <!-- Glazing -->
+  <rect x="305" y="660" width="290" height="230" fill="#dfeaf0" stroke="#4a6575" stroke-width="2"/>
+  <text x="450" y="780" text-anchor="middle" class="desc">остекление</text>
+  <!-- Parapet -->
+  <rect x="305" y="890" width="290" height="48" fill="#e8dac0" stroke="#756b60" stroke-width="2"/>
+  <text x="450" y="920" text-anchor="middle" class="desc">парапет</text>
+
+  <!-- Floor and ceiling lines -->
+  <line x1="280" y1="560" x2="620" y2="560" class="dim" stroke="#24211d"/>
+  <text x="450" y="555" text-anchor="middle" class="desc">потолок</text>
+  <line x1="280" y1="938" x2="620" y2="938" class="dim" stroke="#24211d"/>
+  <text x="450" y="958" text-anchor="middle" class="desc">пол</text>
+
+  <!-- H1: floor to sill -->
+  <line x1="660" y1="890" x2="660" y2="938" class="dim"/>
+  <line x1="655" y1="890" x2="665" y2="890" class="dim"/>
+  <line x1="655" y1="938" x2="665" y2="938" class="dim"/>
+  <text x="690" y="918" class="lblm">H1 — пол → подоконник</text>
+
+  <!-- H2: sill to top of glazing -->
+  <line x1="660" y1="660" x2="660" y2="890" class="dim"/>
+  <line x1="655" y1="660" x2="665" y2="660" class="dim"/>
+  <line x1="655" y1="890" x2="665" y2="890" class="dim"/>
+  <text x="690" y="775" class="lblm">H2 — подоконник → верх стекла</text>
+
+  <!-- H3: total -->
+  <line x1="240" y1="560" x2="240" y2="938" class="dim"/>
+  <line x1="235" y1="560" x2="245" y2="560" class="dim"/>
+  <line x1="235" y1="938" x2="245" y2="938" class="dim"/>
+  <text x="230" y="750" text-anchor="middle" class="lblm" transform="rotate(-90 230 750)">H3 — пол → потолок</text>
+
+  <!-- Door width -->
+  <text x="450" y="1020" text-anchor="middle" class="title" font-size="18">3. Проём двери из кухни</text>
+  <text x="450" y="1045" text-anchor="middle" class="desc">W — ширина проёма (пройдёт ли диван 190 см?)</text>
+  <text x="450" y="1065" text-anchor="middle" class="desc">мерить рулеткой по горизонтали внутри проёма</text>
+</svg>
