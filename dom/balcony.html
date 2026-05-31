@@ -167,7 +167,7 @@ ul { margin: 0; padding-left: 18px }
 .palette-desc { font-size: 12.5px; color: var(--muted); margin: 0 }
 
 /* MOOD SLIDER */
-.mood-wrap { position: relative }
+.mood-wrap { position: relative; overflow: hidden }
 .mood-slider {
   display: flex;
   overflow-x: scroll;
@@ -177,10 +177,13 @@ ul { margin: 0; padding-left: 18px }
   border-radius: 16px;
   scrollbar-width: none;
   gap: 0;
+  width: 100%;
+  max-width: 100%;
 }
 .mood-slider::-webkit-scrollbar { display: none }
 .mood-slide {
   flex: 0 0 100%;
+  min-width: 100%;
   scroll-snap-align: start;
   margin: 0; padding: 0;
   position: relative;
