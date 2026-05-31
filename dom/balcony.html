@@ -246,7 +246,7 @@ td.total.price { color: var(--green) }
 <!-- 3. СХЕМА -->
 <h2>Схема</h2>
 <div class="plan-wrap">
-  <p class="plan-desc">Вид сверху. Лоджия 690 × 105 см. Наружная стена (остекление) — сверху, внутренняя (квартира) — снизу. Вход из кухни — правый торец. Левый торец подходит для размещения нового шкафа.</p>
+  <p class="plan-desc">Вид сверху. Лоджия 690 × 105 см. Наружная стена (остекление) — сверху, внутренняя (квартира) — снизу. Вход из кухни — в стене на уровне окна комнаты. Левый торец подходит для размещения нового шкафа.</p>
 
   <svg viewBox="0 0 910 218" xmlns="http://www.w3.org/2000/svg"
        style="width:100%;height:auto;display:block"
@@ -304,11 +304,10 @@ td.total.price { color: var(--green) }
     <text x="253" y="168" text-anchor="middle" font-size="7.5" fill="#7a9aaa"
           font-family="Inter, Arial, sans-serif">без выхода</text>
 
-    <!-- Вход из кухни — правый торец -->
-    <rect x="854" y="74" width="10" height="60" fill="#fffdf8"/>
-    <path d="M860,74 L860,134 A60,60 0 0,0 800,74 Z" fill="rgba(227,238,216,0.45)" stroke="#6f7f61" stroke-width="1.1" stroke-dasharray="4,3"/>
-    <text x="830" y="104" text-anchor="middle" font-size="8" fill="#3e5a2e" font-weight="700"
-          font-family="Inter, Arial, sans-serif" transform="rotate(90,830,104)">ВХОД ИЗ КУХНИ</text>
+    <!-- Вход из кухни — в стене (уровень окна комнаты) -->
+    <rect x="75" y="144" width="50" height="28" fill="#fffdf8" stroke="#6f7f61" stroke-width="1.5" stroke-dasharray="4,3" rx="3"/>
+    <text x="100" y="162" text-anchor="middle" font-size="7" fill="#3e5a2e" font-weight="700"
+          font-family="Inter, Arial, sans-serif">ВХОД</text>
 
     <!-- Новый шкаф — левый торец -->
     <rect x="21" y="63" width="104" height="80" fill="rgba(111,127,97,0.14)"
