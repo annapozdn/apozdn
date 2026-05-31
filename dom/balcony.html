@@ -228,7 +228,7 @@ td.total.price { color: var(--green) }
     </figure>
     <figure class="photo">
       <img src="/photos/balcony-real-02.jpg" alt="Вид от входа вдоль лоджии" loading="lazy">
-      <figcaption>Левый торец — прямо напротив входа из кухни</figcaption>
+      <figcaption>Левый торец с входом из кухни и открытым хранением</figcaption>
     </figure>
     <figure class="photo">
       <img src="/photos/balcony-real-04.jpg" alt="Вдоль лоджии, вся длина" loading="lazy">
@@ -246,7 +246,7 @@ td.total.price { color: var(--green) }
 <!-- 3. СХЕМА -->
 <h2>Схема</h2>
 <div class="plan-wrap">
-  <p class="plan-desc">Вид сверху. Лоджия 690 × 105 см. Наружная стена (остекление) — сверху, внутренняя (квартира) — снизу. Вход из кухни — правый торец. Левый торец находится прямо напротив входа и подходит для размещения шкафа.</p>
+  <p class="plan-desc">Вид сверху. Лоджия 690 × 105 см. Наружная стена (остекление) — сверху, внутренняя (квартира) — снизу. Вход из кухни — левый торец, на уровне окна комнаты. Правый торец подходит для размещения шкафа.</p>
 
   <svg viewBox="0 0 910 218" xmlns="http://www.w3.org/2000/svg"
        style="width:100%;height:auto;display:block"
@@ -304,32 +304,30 @@ td.total.price { color: var(--green) }
     <text x="253" y="168" text-anchor="middle" font-size="7.5" fill="#7a9aaa"
           font-family="Inter, Arial, sans-serif">без выхода</text>
 
-    <!-- Вход из кухни — правый торец -->
-    <rect x="854" y="74" width="10" height="60" fill="#fffdf8"/>
-    <path d="M860,74 L860,134 A60,60 0 0,0 800,74 Z" fill="rgba(227,238,216,0.45)" stroke="#6f7f61" stroke-width="1.1" stroke-dasharray="4,3"/>
-    <text x="830" y="104" text-anchor="middle" font-size="8" fill="#3e5a2e" font-weight="700"
-          font-family="Inter, Arial, sans-serif" transform="rotate(90,830,104)">ВХОД ИЗ КУХНИ</text>
+    <!-- Вход из кухни — левый торец (на уровне окна) -->
+    <rect x="20" y="144" width="10" height="28" fill="#fffdf8"/>
+    <path d="M20,158 L20,144 A14,14 0 0,1 34,158 Z" fill="rgba(227,238,216,0.45)" stroke="#6f7f61" stroke-width="1.1" stroke-dasharray="4,3"/>
+    <text x="27" y="157" text-anchor="middle" font-size="7" fill="#3e5a2e" font-weight="700"
+          font-family="Inter, Arial, sans-serif">ВХОД</text>
 
-    <!-- Новый шкаф — левый торец -->
-    <rect x="21" y="63" width="104" height="80" fill="rgba(111,127,97,0.14)"
+    <!-- Новый шкаф — правый торец -->
+    <rect x="756" y="63" width="104" height="80" fill="rgba(111,127,97,0.14)"
           stroke="#6f7f61" stroke-width="1.8" stroke-dasharray="7,4" rx="5"/>
-    <text x="73" y="90" text-anchor="middle" font-size="10" fill="#3e5a2e" font-weight="700"
+    <text x="808" y="90" text-anchor="middle" font-size="10" fill="#3e5a2e" font-weight="700"
           font-family="Inter, Arial, sans-serif">НОВЫЙ</text>
-    <text x="73" y="103" text-anchor="middle" font-size="10" fill="#3e5a2e" font-weight="700"
+    <text x="808" y="103" text-anchor="middle" font-size="10" fill="#3e5a2e" font-weight="700"
           font-family="Inter, Arial, sans-serif">ШКАФ</text>
-    <text x="73" y="116" text-anchor="middle" font-size="8" fill="#7f8b73"
+    <text x="808" y="116" text-anchor="middle" font-size="8" fill="#7f8b73"
           font-family="Inter, Arial, sans-serif">ш до 105 см</text>
-    <text x="73" y="128" text-anchor="middle" font-size="8" fill="#7f8b73"
+    <text x="808" y="128" text-anchor="middle" font-size="8" fill="#7f8b73"
           font-family="Inter, Arial, sans-serif">гл 45–60 см</text>
 
-    <!-- Существующее хранение — правый торец -->
-    <rect x="731" y="63" width="128" height="80" fill="url(#storePat)" stroke="#9a9690"
-          stroke-width="1.5" stroke-dasharray="4,4" rx="5"/>
-    <rect x="731" y="63" width="128" height="80" fill="rgba(190,180,168,0.2)" rx="5"/>
-    <text x="755" y="98" text-anchor="middle" font-size="10" fill="#514840" font-weight="700"
-          font-family="Inter, Arial, sans-serif">ХРАНЕНИЕ</text>
-    <text x="755" y="111" text-anchor="middle" font-size="8.5" fill="#706860"
-          font-family="Inter, Arial, sans-serif">открытое сейчас</text>
+    <!-- Существующее хранение — левый торец (рядом с входом) -->
+    <rect x="36" y="144" width="110" height="28" fill="url(#storePat)" stroke="#9a9690"
+          stroke-width="1.5" stroke-dasharray="4,4" rx="3"/>
+    <rect x="36" y="144" width="110" height="28" fill="rgba(190,180,168,0.2)" rx="3"/>
+    <text x="91" y="160" text-anchor="middle" font-size="8" fill="#514840" font-weight="600"
+          font-family="Inter, Arial, sans-serif">хранение</text>
 
     <!-- Дорожка внутри прохода -->
     <rect x="186" y="88" width="422" height="24" fill="rgba(212,190,152,0.6)" rx="8"/>
