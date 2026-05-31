@@ -166,10 +166,51 @@ ul { margin: 0; padding-left: 18px }
 .sw { height: 44px; border-radius: 10px; flex: 1; border: 1px solid rgba(0,0,0,.09) }
 .palette-desc { font-size: 12.5px; color: var(--muted); margin: 0 }
 
-/* MOOD */
-.mood-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 20px; align-items: start }
-.mood-img { border-radius: 22px; overflow: hidden; border: 1px solid var(--line) }
-.mood-img img { width: 100%; height: 340px; object-fit: cover; display: block }
+/* MOOD SLIDER */
+.mood-wrap { position: relative }
+.mood-slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 16px;
+  scrollbar-width: none;
+  gap: 0;
+}
+.mood-slider::-webkit-scrollbar { display: none }
+.mood-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0; padding: 0;
+  position: relative;
+}
+.mood-slide img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+}
+.mood-slide figcaption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.52));
+  color: #fff;
+  padding: 28px 20px 16px;
+  font-size: 13.5px;
+  letter-spacing: .01em;
+  border-radius: 0 0 16px 16px;
+}
+.mood-dots {
+  display: flex; gap: 7px; justify-content: center; margin-top: 12px;
+}
+.mood-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--line); cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.mood-dot.active { background: var(--green); transform: scale(1.3) }
+.mood-text { display: flex; flex-direction: column; gap: 14px; margin-top: 18px }
 
 /* TABLES */
 table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,.84); border: 1px solid var(--line); border-radius: 22px; overflow: hidden }
@@ -200,7 +241,7 @@ td.total.price { color: var(--green) }
   h2 { font-size: 24px; margin-top: 40px }
   .photo img { height: 230px }
   .gal-btn { display: none }
-  .mood-img img { height: 260px }
+  .mood-slide img { aspect-ratio: 4/3 }
   .plan-wrap { padding: 16px }
 }
 </style>
@@ -463,26 +504,67 @@ td.total.price { color: var(--green) }
 
 <!-- 6. НАСТРОЕНИЕ -->
 <h2>Настроение</h2>
-<div class="mood-grid">
-  <div class="mood-img">
-    <img src="/photos/balcony-concept.png" alt="Концепция: уютная светлая лоджия" loading="lazy">
+<div class="mood-wrap">
+  <button class="gal-btn prev" aria-label="Назад" onclick="moodSlide(-1)">‹</button>
+  <div class="mood-slider" id="moodSlider">
+
+    <figure class="mood-slide">
+      <img src="/photos/balcony-concept.png" alt="Вариант 1: Светлая лоджия" loading="lazy">
+      <figcaption>Вариант 1 · Светлая и прохладная лоджия</figcaption>
+    </figure>
+
+    <!-- Добавь следующие варианты сюда:
+    <figure class="mood-slide">
+      <img src="/photos/mood-2.jpg" alt="Вариант 2: Балкон-кафе">
+      <figcaption>Вариант 2 · Балкон-кафе</figcaption>
+    </figure>
+    <figure class="mood-slide">
+      <img src="/photos/mood-3.jpg" alt="Вариант 3: Хранение + отдых">
+      <figcaption>Вариант 3 · Хранение + место посидеть</figcaption>
+    </figure>
+    -->
+
   </div>
-  <div style="display:flex;flex-direction:column;gap:16px">
-    <div class="card">
-      <h3>Ориентир</h3>
-      <p>Светлое, не перегруженное пространство. Натуральные оттенки, закрытое хранение, минимум открытых вещей. Вечером — удобно посидеть с чашкой без ощущения склада за спиной.</p>
-    </div>
-    <div class="card">
-      <h3>Что задаёт тон</h3>
-      <ul style="font-size:13.5px;color:var(--muted)">
-        <li>Рулонные шторы молочного или льняного цвета</li>
-        <li>Шкаф белый или светло-серый, без ручек или с тонкими</li>
-        <li>Дорожка однотонная, светлая или натуральная</li>
-        <li>Никакого пёстрого принта</li>
-      </ul>
-    </div>
+  <button class="gal-btn next" aria-label="Вперёд" onclick="moodSlide(1)">›</button>
+</div>
+
+<div class="mood-dots" id="moodDots">
+  <span class="mood-dot active" onclick="moodTo(0)"></span>
+</div>
+
+<div class="mood-text">
+  <div class="card">
+    <h3>Ориентир</h3>
+    <p>Светлое, не перегруженное пространство. Натуральные оттенки, закрытое хранение, минимум открытых вещей. Вечером — удобно посидеть с чашкой без ощущения склада за спиной.</p>
+  </div>
+  <div class="card">
+    <h3>Что задаёт тон</h3>
+    <ul style="font-size:13.5px;color:var(--muted)">
+      <li>Рулонные шторы молочного или льняного цвета</li>
+      <li>Шкаф белый или светло-серый, без ручек или с тонкими</li>
+      <li>Дорожка однотонная, светлая или натуральная</li>
+      <li>Никакого пёстрого принта</li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function(){
+  var s = document.getElementById('moodSlider');
+  var dotsEl = document.getElementById('moodDots');
+  function dots(){ return dotsEl.querySelectorAll('.mood-dot'); }
+  window.moodSlide = function(dir){
+    s.scrollBy({left: dir * s.offsetWidth, behavior:'smooth'});
+  };
+  window.moodTo = function(i){
+    s.scrollTo({left: i * s.offsetWidth, behavior:'smooth'});
+  };
+  s.addEventListener('scroll', function(){
+    var idx = Math.round(s.scrollLeft / s.offsetWidth);
+    dots().forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  }, {passive:true});
+})();
+</script>
 
 <!-- 7. ВАРИАНТЫ ПАЛИТРЫ -->
 <h2>Варианты палитры</h2>
