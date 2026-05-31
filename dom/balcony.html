@@ -169,43 +169,40 @@ ul { margin: 0; padding-left: 18px }
 .palette-desc { font-size: 12.5px; color: var(--muted); margin: 0 }
 
 /* MOOD SLIDER */
-.mood-wrap { position: relative }
-.mood-slider {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 16px;
-  scrollbar-width: none;
-  gap: 0;
-  width: 100%;
-  max-width: 100%;
-}
-.mood-slider::-webkit-scrollbar { display: none }
+.mood-wrap { position: relative; border-radius: 16px; overflow: hidden }
+.mood-slider { position: relative }
 .mood-slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  scroll-snap-align: start;
+  display: none;
   margin: 0; padding: 0;
   position: relative;
 }
+.mood-slide.active { display: block }
 .mood-slide img {
   width: 100%;
   aspect-ratio: 3/2;
   object-fit: cover;
   display: block;
-  border-radius: 16px;
 }
 .mood-slide figcaption {
   position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,.52));
+  background: linear-gradient(transparent, rgba(0,0,0,.55));
   color: #fff;
   padding: 28px 20px 16px;
   font-size: 13.5px;
   letter-spacing: .01em;
-  border-radius: 0 0 16px 16px;
 }
+.mood-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 2; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,.88); border: none; cursor: pointer;
+  font-size: 22px; line-height: 1; color: #3d3832;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  transition: box-shadow .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.mood-btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,.26) }
+.mood-btn.prev { left: 12px }
+.mood-btn.next { right: 12px }
 .mood-dots {
   display: flex; gap: 7px; justify-content: center; margin-top: 12px;
 }
@@ -510,10 +507,9 @@ td.total.price { color: var(--green) }
 <!-- 6. НАСТРОЕНИЕ -->
 <h2>Настроение</h2>
 <div class="mood-wrap">
-  <button class="gal-btn prev" aria-label="Назад" onclick="moodSlide(-1)">‹</button>
   <div class="mood-slider" id="moodSlider">
 
-    <figure class="mood-slide">
+    <figure class="mood-slide active">
       <img src="/photos/balcony-concept.png" alt="Светлая лоджия" loading="lazy">
       <figcaption>Светлая и прохладная лоджия</figcaption>
     </figure>
@@ -549,7 +545,8 @@ td.total.price { color: var(--green) }
     </figure>
 
   </div>
-  <button class="gal-btn next" aria-label="Вперёд" onclick="moodSlide(1)">›</button>
+  <button class="mood-btn prev" aria-label="Назад" onclick="moodGo(-1)">‹</button>
+  <button class="mood-btn next" aria-label="Вперёд" onclick="moodGo(1)">›</button>
 </div>
 
 <div class="mood-dots" id="moodDots">
@@ -580,19 +577,22 @@ td.total.price { color: var(--green) }
 
 <script>
 (function(){
-  var s = document.getElementById('moodSlider');
-  var dotsEl = document.getElementById('moodDots');
-  function dots(){ return dotsEl.querySelectorAll('.mood-dot'); }
-  window.moodSlide = function(dir){
-    s.scrollBy({left: dir * s.offsetWidth, behavior:'smooth'});
-  };
-  window.moodTo = function(i){
-    s.scrollTo({left: i * s.offsetWidth, behavior:'smooth'});
-  };
-  s.addEventListener('scroll', function(){
-    var idx = Math.round(s.scrollLeft / s.offsetWidth);
-    dots().forEach(function(d,i){ d.classList.toggle('active', i===idx); });
-  }, {passive:true});
+  var cur = 0;
+  var slides, dots;
+  function init(){
+    slides = document.querySelectorAll('#moodSlider .mood-slide');
+    dots = document.querySelectorAll('#moodDots .mood-dot');
+  }
+  function show(i){
+    init();
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  window.moodGo = function(dir){ show(cur + dir); };
+  window.moodTo = function(i){ show(i); };
 })();
 </script>
 
