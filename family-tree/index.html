@@ -351,6 +351,29 @@
     h1 { font-size: 1.8rem; }
   }
 
+  /* ---- ТЕЛЕФОНЫ: пары стекаются вертикально, нет горизонтального скролла ---- */
+  @media (max-width: 560px) {
+    .person { width: min(78vw, 260px); }
+
+    /* пары супругов — вертикально, коннектор убран (блок объединяет пару визуально) */
+    .subfam-couple {
+      flex-direction: column;
+      gap: 8px;
+    }
+    .subfam-couple::before,
+    .subfam-couple.wide-link::before { display: none; }
+
+    /* уровни с двумя персонами бок о бок → тоже вертикально */
+    .level { flex-direction: column; gap: 0; align-items: center; }
+
+    /* убираем горизонтальный бар-джойнер (он для двух колонок, на телефоне одна) */
+    .joiner-bar { display: none; }
+    .joiner-down { height: 20px; }
+
+    /* grow-линии на телефоне не нужны */
+    .v-line.grow { flex: 0; min-height: 26px; height: 26px; }
+  }
+
   /* ---------- CLICKABLE CARD ---------- */
   .person.clickable {
     cursor: pointer;
