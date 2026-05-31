@@ -175,15 +175,27 @@ ul { margin: 0; padding-left: 18px }
   display: none;
   margin: 0; padding: 0;
   position: relative;
+  overflow: hidden;
 }
 .mood-slide.active { display: block }
+.mood-slide::before {
+  content: '';
+  position: absolute;
+  inset: -10%;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(.85);
+  z-index: 0;
+}
 .mood-slide img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   aspect-ratio: 3/2;
   max-height: 480px;
   object-fit: contain;
   display: block;
-  background: #f0ece4;
 }
 .mood-slide figcaption {
   position: absolute; bottom: 0; left: 0; right: 0;
@@ -511,37 +523,37 @@ td.total.price { color: var(--green) }
 <div class="mood-wrap">
   <div class="mood-slider" id="moodSlider">
 
-    <figure class="mood-slide active">
+    <figure class="mood-slide active" style="--bg:url(/photos/balcony-concept.png)">
       <img src="/photos/balcony-concept.png" alt="Светлая лоджия" loading="lazy">
       <figcaption>Светлая и прохладная лоджия</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-1.jpg)">
       <img src="/photos/mood-1.jpg" alt="Japandi: скамья и фикус" loading="lazy">
       <figcaption>Japandi · скамья, фикус, тёплая подсветка</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-2.jpg)">
       <img src="/photos/mood-2.jpg" alt="Кафе: столик и гирлянда" loading="lazy">
       <figcaption>Кафе · складной столик, табуреты, гирлянда</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-3.jpg)">
       <img src="/photos/mood-3.jpg" alt="Вечернее кафе" loading="lazy">
       <figcaption>Вечернее кафе · мраморный столик, бра, потос</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-4.jpg)">
       <img src="/photos/mood-4.jpg" alt="Барная стойка у окна" loading="lazy">
       <figcaption>Барная стойка · стул у окна, подсветка снизу</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-5.jpg)">
       <img src="/photos/mood-5.jpg" alt="Дейбед с лампой" loading="lazy">
       <figcaption>Кушетка · узкая, с лампой-грибом и пледом</figcaption>
     </figure>
 
-    <figure class="mood-slide">
+    <figure class="mood-slide" style="--bg:url(/photos/mood-6.jpg)">
       <img src="/photos/mood-6.jpg" alt="Тахта с пледом" loading="lazy">
       <figcaption>Тахта · высокая кушетка, бра, подушки</figcaption>
     </figure>
