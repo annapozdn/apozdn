@@ -120,6 +120,8 @@ ul { margin: 0; padding-left: 18px }
 .gal-btn:hover { box-shadow: 0 6px 20px rgba(0,0,0,.16) }
 .gal-btn.prev { left: -20px }
 .gal-btn.next { right: -20px }
+.mood-wrap .gal-btn.prev { left: 10px }
+.mood-wrap .gal-btn.next { right: 10px }
 .photo {
   flex: 0 0 calc(33.33% - 10px); min-width: 290px;
   scroll-snap-align: start; margin: 0;
@@ -167,7 +169,7 @@ ul { margin: 0; padding-left: 18px }
 .palette-desc { font-size: 12.5px; color: var(--muted); margin: 0 }
 
 /* MOOD SLIDER */
-.mood-wrap { position: relative; overflow: hidden }
+.mood-wrap { position: relative }
 .mood-slider {
   display: flex;
   overflow-x: scroll;
