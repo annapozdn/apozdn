@@ -166,6 +166,34 @@
     font-style: italic;
   }
 
+  .sources {
+    margin-top: 6px;
+    padding-top: 5px;
+    border-top: 1px dotted #d4c4a8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .sources a {
+    font-size: 0.64rem;
+    font-style: normal;
+    color: #4a6b8a;
+    text-decoration: none;
+    padding: 2px 6px;
+    background: rgba(74, 107, 138, 0.09);
+    border: 1px solid rgba(74, 107, 138, 0.2);
+    border-radius: 3px;
+    white-space: nowrap;
+    line-height: 1.5;
+    transition: background 0.15s;
+  }
+
+  .sources a:hover {
+    background: rgba(74, 107, 138, 0.2);
+    text-decoration: underline;
+  }
+
   /* ---------- BIG TREE LAYOUT ---------- */
   .megatree {
     display: grid;
@@ -195,6 +223,42 @@
 
   .half.paternal .half-title { color: var(--pat); }
   .half.maternal .half-title { color: var(--mat); }
+
+  .ancestor-branches {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+    gap: 48px;
+    width: 100%;
+    align-items: start;
+  }
+
+  .ancestor-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .branch-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #9a4f5e;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    border: 1px solid rgba(154, 79, 94, 0.25);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.55);
+  }
+
+  .branch-note {
+    max-width: 230px;
+    margin-top: 8px;
+    font-size: 0.66rem;
+    line-height: 1.35;
+    text-align: center;
+    color: #8a7c63;
+    font-style: italic;
+  }
 
   .level {
     display: flex;
@@ -365,6 +429,11 @@
 
     /* уровни с двумя персонами бок о бок → тоже вертикально */
     .level { flex-direction: column; gap: 0; align-items: center; }
+    .ancestor-branches { grid-template-columns: 1fr; gap: 24px; }
+    .ancestor-branch + .ancestor-branch {
+      padding-top: 18px;
+      border-top: 1px dotted #d4c4a8;
+    }
 
     /* убираем горизонтальный бар-джойнер (он для двух колонок, на телефоне одна) */
     .joiner-bar { display: none; }
@@ -441,9 +510,8 @@
 
   <div class="ornament">❦ ❦ ❦</div>
   <h1>Родословное древо</h1>
-  <p class="subtitle">Анна Поздняк · по прямой линии предков</p>
+  <div class="subtitle">Анна Поздняк · по прямой линии предков</div>
 
-  <!-- ============ ДРЕВО ============ -->
   <div class="megatree">
 
     <!-- ====== ОТЦОВСКАЯ ПОЛОВИНА ====== -->
@@ -561,70 +629,84 @@
     <div class="half maternal">
       <div class="half-title">материнская линия</div>
 
-      <!-- Глубина по Пацало - кратко -->
-      <div class="level" style="margin-bottom: 0;">
-        <div class="subfam">
-          <div class="subfam-couple no-link">
-            <div class="person maternal clickable" onclick="document.getElementById('pacalo-modal').classList.add('open')">
-              <div class="relation">8 поколений ↑</div>
-              <div class="name">Линия Пацало<br>(с. Скаковка, Волынская губ.)</div>
-              <div class="note">От Осипа Демьяновича Пацалука (1765) — через Наума, Феодосия, Маркела — до Надежды. <strong>Кликни, чтобы раскрыть →</strong></div>
+      <!-- Уровень IV–III: две независимые ветки родителей Нины и Василия -->
+      <div class="ancestor-branches">
+        <div class="ancestor-branch">
+          <div class="branch-label">родители Нины</div>
+
+          <div class="subfam">
+            <div class="subfam-couple no-link">
+              <div class="person maternal clickable" onclick="document.getElementById('pacalo-modal').classList.add('open')">
+                <div class="relation">8 поколений ↑</div>
+                <div class="name">Линия Пацало<br>(с. Скаковка, Волынская губ.)</div>
+                <div class="note">От Осипа Демьяновича Пацалука (1765) — через Наума, Феодосия, Маркела — до Надежды. <strong>Кликни, чтобы раскрыть →</strong></div>
+              </div>
             </div>
+            <div class="v-line"></div>
+          </div>
+
+          <div class="subfam">
+            <div class="subfam-couple">
+              <div class="person maternal">
+                <div class="relation">Прадед</div>
+                <div class="name">Филипп Васильевич Гирля</div>
+                <div class="dates">1906? — 05.02.1944 ✝</div>
+                <div class="place">с. Новокуровка,<br>Кур-Урмийский р-н, Хаб. кр.</div>
+                <div class="note">Дата рождения требует проверки: в военных документах стоит 1906, а запись о браке с Анной Михайловой Кузиной указывает возраст 23 года. Происхождение: с. Припичена-Разем, Оргеевский у., Бессарабская губ. Призван из Новокуровки, погиб 05.02.1944.</div>
+                <div class="sources">
+                  <a href="https://obd-memorial.ru/html/search.htm?n=%D0%93%D0%B8%D1%80%D0%BB%D1%8F&np=%D0%A4%D0%B8%D0%BB%D0%B8%D0%BF%D0%BF&pbeg=0" target="_blank" rel="noopener noreferrer">ОБД Мемориал</a>
+                  <a href="https://pamyat-naroda.ru/heroes/?name=%D0%93%D0%B8%D1%80%D0%BB%D1%8F+%D0%A4%D0%B8%D0%BB%D0%B8%D0%BF%D0%BF+%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D1%8C%D0%B5%D0%B2%D0%B8%D1%87" target="_blank" rel="noopener noreferrer">Память народа</a>
+                  <a href="https://ya.ru/archive/catalog/bb3377ba-41c0-4ff4-81f1-ca5ed69995a1/29" target="_blank" rel="noopener noreferrer">ЦГАМО · свадьба</a>
+                </div>
+              </div>
+              <div class="person maternal">
+                <div class="relation">Прабабушка</div>
+                <div class="name">Надежда Маркеловна Лученко (1905)</div>
+                <div class="name-extra">девичья: Пацало</div>
+                <div class="place">с. Скаковка, Волынская губ.<br>→ ДВ 1908–11</div>
+                <div class="note">«Крестьянка из Украины, по реформе Столыпина поехала на ДВ». 1-й муж — Лученко: сыновья Толя и Владимир. 2-й — Гирля.</div>
+              </div>
+            </div>
+            <div class="v-line"></div>
           </div>
         </div>
 
-        <div class="subfam">
-          <div class="subfam-couple no-link">
-            <div class="person maternal unknown">
-              <div class="relation">Прапрадеды</div>
-              <div class="name">— по Ковалёвым —</div>
-              <div class="note">данные уточнить</div>
+        <div class="ancestor-branch">
+          <div class="branch-label">родители Василия</div>
+
+          <div class="subfam">
+            <div class="subfam-couple no-link">
+              <div class="person maternal unknown">
+                <div class="relation">Прапрадеды</div>
+                <div class="name">— по Ковалёвым —</div>
+                <div class="note">данные уточнить</div>
+              </div>
             </div>
+            <div class="v-line"></div>
+          </div>
+
+          <div class="subfam">
+            <div class="subfam-couple">
+              <div class="person maternal">
+                <div class="relation">Прадед</div>
+                <div class="name">Павел Ковалёв</div>
+                <div class="place">Омск ~ Тара<br>(Омская обл.)</div>
+              </div>
+              <div class="person maternal">
+                <div class="relation">Прабабушка</div>
+                <div class="name">Мария Ковалёва</div>
+                <div class="place">жена Павла</div>
+                <div class="note">фамилия девичья уточнить</div>
+              </div>
+            </div>
+            <div class="v-line"></div>
           </div>
         </div>
       </div>
 
       <div class="v-line"></div>
 
-      <!-- Уровень IV -->
-      <div class="subfam">
-        <div class="subfam-couple">
-          <div class="person maternal">
-            <div class="relation">Прадед</div>
-            <div class="name">Филипп Васильевич Гирля</div>
-            <div class="dates">1906 — 05.02.1944 ✝</div>
-            <div class="place">с. Новокуровка,<br>Кур-Урмийский р-н, Хаб. кр.</div>
-            <div class="note">Отец — Василий Гирля (по отчеству). Грек или молдаванин (по семейному преданию, точно неизвестно). Погиб на фронте ВОВ</div>
-          </div>
-          <div class="person maternal">
-            <div class="relation">Прабабушка</div>
-            <div class="name">Надежда Маркеловна Лученко (1905)</div>
-            <div class="name-extra">девичья: Пацало</div>
-            <div class="place">с. Скаковка, Волынская губ.<br>→ ДВ 1908–11</div>
-            <div class="note">«Крестьянка из Украины, по реформе Столыпина поехала на ДВ». 1-й муж — Лученко: сыновья Толя и Владимир. 2-й — Гирля.</div>
-          </div>
-        </div>
-        <div class="v-line"></div>
-      </div>
-
-      <div class="subfam">
-        <div class="subfam-couple">
-          <div class="person maternal">
-            <div class="relation">Прадед</div>
-            <div class="name">Павел Ковалёв</div>
-            <div class="place">Омск ~ Тара<br>(Омская обл.)</div>
-          </div>
-          <div class="person maternal">
-            <div class="relation">Прабабушка</div>
-            <div class="name">Мария Ковалёва</div>
-            <div class="place">жена Павла</div>
-            <div class="note">фамилия девичья уточнить</div>
-          </div>
-        </div>
-        <div class="v-line"></div>
-      </div>
-
-      <!-- Уровень III: дед и бабушка -->
+      <!-- Уровень III: супружеская пара, от которой идут мать и дядя -->
       <div class="level">
         <div class="subfam">
           <div class="subfam-couple wide-link">
@@ -642,6 +724,7 @@
               <div class="note">С Ниной познакомились на танцах во время его службы в армии</div>
             </div>
           </div>
+          <div class="branch-note">Общая пара показана ниже двух отдельных родительских веток, чтобы линия Гирля/Пацало не смешивалась с линией Ковалёвых.</div>
           <div class="v-line"></div>
         </div>
       </div>
@@ -784,50 +867,38 @@
           <strong>Официальная дата смерти:</strong> 26 ноября 2014
         </div>
 
-        <div>
-          <p>По свидетельству соседки, в декабре 2014 года двое мужчин вывели Дмитрия из подъезда и посадили в такси — больше его никто не видел. Жил один, без родственников рядом.</p>
-        </div>
+        <p>По свидетельству соседки, в декабре 2014 года двое мужчин вывели Дмитрия из подъезда и посадили в такси — больше его никто не видел. Жил один, без родственников рядом.</p>
+        <p>Позднее обнаружилась попытка перерегистрации его квартиры. Следствие установило преступный умысел — перепродажа жилья. К делу предположительно причастны люди из Хабаровского края.</p>
 
-        <div>
-          <p>Позднее обнаружилась попытка перерегистрации его квартиры. Следствие установило преступный умысел — перепродажа жилья. К делу предположительно причастны люди из Хабаровского края.</p>
-        </div>
-
-        <div style="background: rgba(74,107,138,0.05); border: 1px solid rgba(74,107,138,0.25); padding: 10px 14px; border-radius: 6px; font-size: 0.87rem;">
+        <div style="background: rgba(255,255,255,0.55); padding: 12px 16px; border-radius: 6px; font-size: 0.86rem;">
           <strong>Наследственное дело:</strong> №2028775-22/2016<br>
           <strong>Нотариус:</strong> Романенко Елена Викторовна<br>
-          <span style="color: #786a55; font-size: 0.82rem;">Уссурийск, ул. Фрунзе 42 · +7 (4234) 32-88-32</span>
+          Уссурийск, ул. Фрунзе 42 · +7 (4234) 32-88-32
         </div>
 
-        <div style="background: rgba(255,255,255,0.8); border: 1px solid #d4c4a8; padding: 10px 14px; border-radius: 6px; font-size: 0.82rem; color: #786a55;">
-          Заявка на поиск подана соседкой через программу «Жди меня» · 24 июня 2015 года.<br>
-          <a href="https://poisk.vid.ru/?p=letters&id=2477709" target="_blank" rel="noopener" style="color: var(--pat);">↗ Заявка на poisk.vid.ru</a>
-        </div>
-
+        <p style="font-size: 0.82rem; color: #786a55; font-style: italic;">Заявка на поиск подана соседкой через программу «Жди меня» · 24 июня 2015 года.</p>
+        <p><a href="https://poisk.vid.ru/application/?id=2696289" target="_blank" style="color: var(--pat);">↗ Заявка на poisk.vid.ru</a></p>
       </div>
     </div>
   </div>
 
-  <!-- ============ ЛЕГЕНДА ============ -->
   <div class="legend">
-    <div class="legend-item">
-      <div class="legend-color" style="background: var(--pat);"></div>
-      <span>отцовская линия — Поздняк, Жуковы, Красильниковы</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-color" style="background: var(--mat);"></div>
-      <span>материнская линия — Ковалёвы, Гирля, Пацало</span>
-    </div>
-    <div class="legend-item">
-      <div class="legend-color" style="background: #f8f5ef; border: 1px dashed var(--unknown);"></div>
-      <span>требует уточнения</span>
-    </div>
+    <div class="legend-item"><span class="legend-color" style="background: var(--pat);"></span>отцовская линия — Поздняк, Жуковы, Красильниковы</div>
+    <div class="legend-item"><span class="legend-color" style="background: var(--mat);"></span>материнская линия — Ковалёвы, Гирля, Пацало</div>
+    <div class="legend-item"><span class="legend-color" style="background: var(--unknown); opacity: .5;"></span>требует уточнения</div>
   </div>
 
-  <div class="footer">
-    Древо · 2026 · по мере находок будет дополняться
-  </div>
+  <div class="footer">Древо · 2026 · по мере находок будет дополняться</div>
 
 </div>
-
+<script>
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      document.querySelectorAll('.modal.open').forEach(function(modal) {
+        modal.classList.remove('open');
+      });
+    }
+  });
+</script>
 </body>
 </html>
