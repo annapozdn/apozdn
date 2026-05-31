@@ -509,20 +509,39 @@ td.total.price { color: var(--green) }
   <div class="mood-slider" id="moodSlider">
 
     <figure class="mood-slide">
-      <img src="/photos/balcony-concept.png" alt="Вариант 1: Светлая лоджия" loading="lazy">
-      <figcaption>Вариант 1 · Светлая и прохладная лоджия</figcaption>
+      <img src="/photos/balcony-concept.png" alt="Светлая лоджия" loading="lazy">
+      <figcaption>Светлая и прохладная лоджия</figcaption>
     </figure>
 
-    <!-- Добавь следующие варианты сюда:
     <figure class="mood-slide">
-      <img src="/photos/mood-2.jpg" alt="Вариант 2: Балкон-кафе">
-      <figcaption>Вариант 2 · Балкон-кафе</figcaption>
+      <img src="/photos/mood-1.jpg" alt="Japandi: скамья и фикус" loading="lazy">
+      <figcaption>Japandi · скамья, фикус, тёплая подсветка</figcaption>
     </figure>
+
     <figure class="mood-slide">
-      <img src="/photos/mood-3.jpg" alt="Вариант 3: Хранение + отдых">
-      <figcaption>Вариант 3 · Хранение + место посидеть</figcaption>
+      <img src="/photos/mood-2.jpg" alt="Кафе: столик и гирлянда" loading="lazy">
+      <figcaption>Кафе · складной столик, табуреты, гирлянда</figcaption>
     </figure>
-    -->
+
+    <figure class="mood-slide">
+      <img src="/photos/mood-3.jpg" alt="Вечернее кафе" loading="lazy">
+      <figcaption>Вечернее кафе · мраморный столик, бра, потос</figcaption>
+    </figure>
+
+    <figure class="mood-slide">
+      <img src="/photos/mood-4.jpg" alt="Барная стойка у окна" loading="lazy">
+      <figcaption>Барная стойка · стул у окна, подсветка снизу</figcaption>
+    </figure>
+
+    <figure class="mood-slide">
+      <img src="/photos/mood-5.jpg" alt="Дейбед с лампой" loading="lazy">
+      <figcaption>Кушетка · узкая, с лампой-грибом и пледом</figcaption>
+    </figure>
+
+    <figure class="mood-slide">
+      <img src="/photos/mood-6.jpg" alt="Тахта с пледом" loading="lazy">
+      <figcaption>Тахта · высокая кушетка, бра, подушки</figcaption>
+    </figure>
 
   </div>
   <button class="gal-btn next" aria-label="Вперёд" onclick="moodSlide(1)">›</button>
@@ -530,6 +549,12 @@ td.total.price { color: var(--green) }
 
 <div class="mood-dots" id="moodDots">
   <span class="mood-dot active" onclick="moodTo(0)"></span>
+  <span class="mood-dot" onclick="moodTo(1)"></span>
+  <span class="mood-dot" onclick="moodTo(2)"></span>
+  <span class="mood-dot" onclick="moodTo(3)"></span>
+  <span class="mood-dot" onclick="moodTo(4)"></span>
+  <span class="mood-dot" onclick="moodTo(5)"></span>
+  <span class="mood-dot" onclick="moodTo(6)"></span>
 </div>
 
 <div class="mood-text">
