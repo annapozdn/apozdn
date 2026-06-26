@@ -19,8 +19,9 @@ import textwrap
 import time
 
 
+QWEN_TTS_VERSION = "0.1.1"
+
 REQUIRED = {
-    "qwen-tts": "0.1.1",
     "transformers": "4.55.4",
     "huggingface_hub": "0.34.4",
     "gradio": "5.50.0",
@@ -47,6 +48,10 @@ def _install_if_needed() -> None:
         for package, version in REQUIRED.items()
         if _version(package) != version
     }
+    qwen_current = _version("qwen-tts")
+    if qwen_current != QWEN_TTS_VERSION:
+        wrong["qwen-tts"] = (qwen_current, QWEN_TTS_VERSION)
+
     if not wrong:
         return
 
@@ -66,6 +71,19 @@ def _install_if_needed() -> None:
             "--force-reinstall",
             *pins,
             *EXTRA_PACKAGES,
+        ]
+    )
+    subprocess.check_call(
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "-q",
+            "--upgrade",
+            "--force-reinstall",
+            "--no-deps",
+            f"qwen-tts=={QWEN_TTS_VERSION}",
         ]
     )
 
