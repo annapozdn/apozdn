@@ -368,6 +368,119 @@
     .joiner-down { height: 20px; }
     .v-line.grow { flex: 0; min-height: 26px; height: 26px; }
   }
+
+/* 2026: адаптивная архивная экспозиция */
+html {scroll-behavior:smooth;}
+body {background:radial-gradient(circle at 12% 5%,#fffefa,transparent 38%),linear-gradient(135deg,#f7f3e9,#efe5d6);padding:32px clamp(14px,2.4vw,48px) 64px;line-height:1.5;}
+.container{max-width:1860px;}
+h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wrap:balance;}
+.subtitle{margin-bottom:12px;}
+.reading-guide{max-width:760px;color:#71634f;text-align:center;margin:0 auto 28px;font-size:.95rem;}
+.me gatree{}
+.megatree{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch;}
+.half{min-width:0;width:100%;padding:24px 18px 34px;background:#fffcf7e8;border:1px solid #dccfb9;border-radius:20px;box-shadow:0 12px 36px #56422d14;}
+.half.paternal{border-top:5px solid var(--pat);}
+.half.maternal{border-top:5px solid var(--mat);}
+.half-title{font-size:.93rem;letter-spacing:.16em;background:transparent;border:0;border-radius:0;padding:6px 12px 14px;border-bottom:1px solid #d1c3ad;max-width:100%;text-align:center;white-space:normal;}
+.level{gap:12px;min-width:0;max-width:100%;align-items:flex-start;}
+.subfam{min-width:0;max-width:100%;}
+.subfam-couple{gap:9px;min-width:0;}
+.person{width:170px;max-width:100%;min-width:0;padding:13px 12px;border-radius:10px;overflow-wrap:anywhere;box-shadow:0 3px 9px #30291b12;}
+.person .name{font-size:.92rem;line-height:1.34;}
+.person .note{font-size:.71rem;line-height:1.5;}
+.person:focus-visible,.sibling:focus-visible,.branch-tab:focus-visible{outline:3px solid #bd9859;outline-offset:3px;}
+.person.clickable,.person.detail-clickable{cursor:pointer;}
+.person.detail-clickable:hover{transform:translateY(-3px);box-shadow:0 7px 18px #2b251a24;}
+.person.detail-clickable .relation:after{content:" · открыть";font-size:.58rem;color:#775f44;letter-spacing:0;text-transform:none;}
+.person.paternal,.person.maternal{background-clip:padding-box;}
+.person.unknown{border-style:dashed;}
+.sibling{background:#fffcf7;padding:9px 13px;border:1px solid #e4d8c5;}
+.modal-content{padding:clamp(22px,4vw,42px);width:min(660px,94vw);max-width:94vw;max-height:88dvh;border:1px solid #e7dcc7;}
+.modal-body a,.note a,.source-directory a{color:#345b78;text-underline-offset:3px;overflow-wrap:anywhere;}
+.modal-body a:hover,.note a:hover{text-decoration-thickness:2px;}
+.archive-timeline{border-top:1px solid #d9ccb7;padding-top:14px;margin-top:8px;}
+.archive-timeline h3{font-size:1.05rem;color:#463c30;margin-bottom:10px;}
+.archive-timeline ol{display:flex;flex-direction:column;gap:10px;padding-left:22px;}
+.archive-timeline li{line-height:1.55;}
+.archive-timeline time{font-weight:700;color:#705e44;}
+.archive-disclaimer,.source-caveat{font-size:.78rem;color:#756852;font-style:italic;}
+.archive-provenance{font-size:.78rem;color:#756852;line-height:1.55;margin:14px 0 0;}
+.research-section{margin:54px auto 18px;max-width:1540px;}
+.research-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px;}
+.research-intro h2{font-weight:normal;font-size:clamp(1.6rem,2.4vw,2.3rem);margin-top:3px;color:#3b332a;}
+.research-intro>p{max-width:500px;font-size:.9rem;color:#73634f;}
+.research-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:#8c7759;}
+.research-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;}
+.research-card{background:#fffcf7;border:1px solid #dfd4c1;border-radius:12px;padding:22px 20px;display:flex;flex-direction:column;gap:12px;box-shadow:0 6px 20px #51402a0e;}
+.research-card h3{font-size:1.12rem;line-height:1.3;}
+.research-card p{font-size:.87rem;line-height:1.6;color:#5a4f40;}
+.research-card>a{font-size:.8rem;margin-top:auto;padding-top:4px;color:#375b79;}
+.research-status{color:#4e674a;font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;}
+.research-status.secondary{color:#856343;}
+.research-status.hypothesis{color:#99596a;}
+.source-directory{padding:16px 0;display:flex;gap:12px 20px;flex-wrap:wrap;font-size:.8rem;color:#655744;}
+.source-directory a{text-decoration:underline;}
+.branch-tabs{display:none;}
+.branch-panel{width:100%;}
+@media(max-width:1800px){
+ .megatree{grid-template-columns:minmax(0,1fr);gap:24px;max-width:970px;margin-inline:auto;}
+ .half{padding:28px 24px 32px;}
+ .person{width:190px;}
+ .level{gap:24px;}
+}
+@media(max-width:1120px){
+ .research-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:760px){
+ body{padding:22px 12px 45px;}
+ .ornament{font-size:.82rem;}
+ h1{font-size:1.8rem;}
+ .subtitle{font-size:.9rem;}
+ .reading-guide{font-size:.84rem;max-width:420px;}
+ .branch-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 auto 17px;max-width:600px;padding:5px;background:#e8dfd1;border:1px solid #d1c2ad;border-radius:12px;}
+ .branch-tab{border:0;border-radius:9px;background:transparent;color:#645645;padding:12px 8px;font:700 .83rem Georgia,serif;cursor:pointer;}
+ .branch-tab[aria-selected="true"]{background:#fffdf9;color:#3d3329;box-shadow:0 2px 10px #46332020;}
+ .megatree{display:block;width:100%;max-width:620px;}
+ .half{padding:17px 9px 28px;border-radius:13px;}
+ .half[hidden]{display:none!important;}
+ .half-title{font-size:.81rem;margin-bottom:20px;letter-spacing:.13em;}
+ .level{gap:7px;}
+ .subfam-couple{gap:6px;}
+ .person{width:clamp(126px,38vw,190px);padding:11px 9px;}
+ .person .name{font-size:.83rem;}
+ .person .relation{font-size:.62rem;letter-spacing:.06em;}
+ .person .place{font-size:.7rem;}
+ .person .note{font-size:.68rem;}
+ .person.center{width:230px;max-width:80vw;}
+ .subfam-couple.wide-link::before{width:calc(100% - 22px);}
+ .siblings{gap:8px;}
+ .sibling{font-size:.75rem;text-align:center;}
+ .research-intro{display:block;}
+ .research-intro>p{margin-top:12px;}
+ .research-grid{grid-template-columns:1fr;gap:10px;}
+ .research-card{padding:19px 16px;}
+ .modal-content{padding:22px 16px;width:94vw;max-height:91dvh;}
+ .modal-h{font-size:1.28rem;letter-spacing:.04em;}
+ .modal-body{font-size:.86rem;}
+ .legend{margin-top:35px;padding:18px;gap:16px;justify-content:flex-start;}
+}
+@media(max-width:430px){
+ .level{gap:5px;}
+ .subfam-couple{gap:5px;}
+ .person{width:clamp(110px,41vw,164px);padding:10px 8px;}
+ .person .name{font-size:.79rem;}
+ .person .place{font-size:.68rem;}
+ .subfam-couple:not(.no-link)::before{width:15px;}
+ .source-directory{display:block;}
+ .source-directory a{display:inline-block;margin:6px 12px 0 0;}
+}
+/* Prevent horizontally clipped card layout at ultra narrow widths */
+@media(max-width:355px){
+ .level{flex-wrap:wrap;}
+ .subfam-couple{justify-content:center;}
+ .person{width:44vw;}
+}
+
 </style>
 </head>
 <body>
@@ -378,10 +491,14 @@
   <p class="subtitle">Анна Поздняк · предки, родственные ветви и архивные находки</p>
   <p class="reading-guide">Выберите ветвь семьи и нажимайте на карточки: внутри — истории, документы, источники и вопросы, которые ещё предстоит исследовать.</p>
 
+<nav class="branch-tabs" aria-label="Выбор семейной линии">
+  <button type="button" class="branch-tab" id="branch-pat" aria-controls="family-pat" aria-selected="true">Отцовская линия</button>
+  <button type="button" class="branch-tab" id="branch-mat" aria-controls="family-mat" aria-selected="false">Материнская линия</button>
+</nav>
   <div class="megatree">
 
     <!-- ═══════════════ ОТЦОВСКАЯ ПОЛОВИНА ═══════════════ -->
-    <div class="half paternal">
+    <div class="half paternal" id="family-pat">
       <div class="half-title">отцовская линия</div>
 
       <!-- Уровень V: прапрадеды -->
@@ -500,7 +617,7 @@
 
 
     <!-- ═══════════════ МАТЕРИНСКАЯ ПОЛОВИНА ═══════════════ -->
-    <div class="half maternal">
+    <div class="half maternal" id="family-mat">
       <div class="half-title">материнская линия</div>
 
       <!-- Уровень V: предки прабабушек/прадедов -->
@@ -960,5 +1077,65 @@
   <div class="footer">Древо · 2026 · семейные воспоминания, метрические книги и архивные ответы. Неподтверждённые версии отмечены отдельно.</div>
 
 </div>
+
+<script>
+(function(){
+"use strict";
+const tabs=[document.getElementById('branch-pat'),document.getElementById('branch-mat')];
+const branches=[document.getElementById('family-pat'),document.getElementById('family-mat')];
+let active=0;
+function mobile(){return window.matchMedia('(max-width:760px)').matches;}
+function updateBranches(){
+  branches.forEach((el,i)=>{el.hidden=mobile()&&i!==active;tabs[i].setAttribute('aria-selected',String(active===i));});
+}
+tabs.forEach((tab,i)=>tab.addEventListener('click',()=>{active=i;updateBranches();}));
+window.addEventListener('resize',updateBranches);
+updateBranches();
+const modalHost=document.querySelector('body > .container');
+let created=0;
+document.querySelectorAll('.person').forEach(person=>{
+  if(person.classList.contains('clickable')||person.classList.contains('center'))return;
+  const name=person.querySelector('.name');
+  if(!name||person.closest('#auto-person-modal'))return;
+  created+=1;
+  const title=name.textContent.trim();
+  const relation=person.querySelector('.relation')?.textContent.trim()||'Семейное древо';
+  const dates=person.querySelector('.dates')?.textContent.trim()||'';
+  const place=person.querySelector('.place')?.textContent.trim()||'';
+  const extra=person.querySelector('.name-extra')?.textContent.trim()||'';
+  const note=person.querySelector('.note')?.innerHTML||'';
+  const modal=document.createElement('div');
+  modal.className='modal';modal.id='auto-person-modal-'+created;
+  modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');
+  const safeTitle=document.createElement('h2');safeTitle.className='modal-h';safeTitle.textContent=title;
+  const safeSub=document.createElement('p');safeSub.className='modal-sub';safeSub.textContent=[relation,dates,extra].filter(Boolean).join(' · ');
+  const detail=document.createElement('div');detail.className='modal-body';
+  const block=document.createElement('div');block.className=person.classList.contains('maternal')?'modal-block-mat':'modal-block-pat';
+  const p=document.createElement('p');p.textContent=place||'Место проживания или рождения пока не установлено';block.append(p);detail.append(block);
+  if(note){const n=document.createElement('p');n.innerHTML=note;detail.append(n);}
+  const caveat=document.createElement('p');caveat.className='archive-disclaimer';
+  caveat.textContent='В карточке представлены сведения из семейного древа. Дополнительные документальные подтверждения могут требовать проверки.';
+  detail.append(caveat);
+  modal.innerHTML='<div class="modal-overlay"></div><div class="modal-content"><button type="button" class="modal-close" aria-label="Закрыть карточку">×</button></div>';
+  const content=modal.querySelector('.modal-content');content.append(safeTitle,safeSub,detail);
+  modalHost.append(modal);
+  const open=()=>{modal.classList.add('open');modal.querySelector('button').focus();};
+  person.classList.add('detail-clickable');person.setAttribute('role','button');person.setAttribute('tabindex','0');
+  person.setAttribute('aria-label','Подробнее: '+title);
+  person.addEventListener('click',event=>{if(event.target.closest('a'))return;open();});
+  person.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open();}});
+});
+document.querySelectorAll('.modal').forEach(modal=>{
+  const close=()=>{modal.classList.remove('open');};
+  modal.querySelector('.modal-overlay')?.addEventListener('click',close);
+  modal.querySelector('.modal-close')?.addEventListener('click',close);
+});
+document.querySelectorAll('.sibling.clickable').forEach(el=>{
+ el.setAttribute('role','button');el.setAttribute('tabindex','0');
+ el.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();el.click();}});
+});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));}});
+})();
+</script>
 </body>
 </html>
