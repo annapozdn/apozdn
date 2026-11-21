@@ -1283,6 +1283,18 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.qu
 
 const scrollRoot=document.getElementById('tree-scroller');
 const scrollStep=()=>Math.max(400,Math.min(820,scrollRoot?.clientWidth*.78||550));
+// On desktop start at the central person, with both branches visible to either side.
+let initialTreeCentered=false;
+function centerTreeOnFirstOpen(){
+ if(initialTreeCentered || !scrollRoot || window.matchMedia('(max-width:760px)').matches)return;
+ if(scrollRoot.scrollWidth>scrollRoot.clientWidth){
+  scrollRoot.scrollLeft=(scrollRoot.scrollWidth-scrollRoot.clientWidth)/2;
+  initialTreeCentered=true;
+ }
+}
+centerTreeOnFirstOpen();
+window.addEventListener('load',centerTreeOnFirstOpen);
+window.addEventListener('resize',centerTreeOnFirstOpen);
 document.getElementById('tree-left')?.addEventListener('click',()=>scrollRoot.scrollBy({left:-scrollStep(),behavior:'smooth'}));
 document.getElementById('tree-right')?.addEventListener('click',()=>scrollRoot.scrollBy({left:scrollStep(),behavior:'smooth'}));
 const generationLabels=['Родители, тёти и дяди','Бабушки и дедушки','Прабабушки и прадедушки','Более ранние предки'];
