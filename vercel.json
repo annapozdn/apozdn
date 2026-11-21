@@ -1,3 +1,21 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/family-tree/docs",
+      "destination": "/family-tree/docs.html"
+    },
+    {
+      "source": "/family-tree/docs/",
+      "destination": "/family-tree/docs.html"
+    },
+    {
+      "source": "/family-tree/archive",
+      "destination": "/family-tree/docs.html"
+    },
+    {
+      "source": "/family-tree/archive/",
+      "destination": "/family-tree/docs.html"
+    }
+  ]
 }
