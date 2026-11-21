@@ -491,20 +491,93 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
  .person{width:44vw;}
 }
 
+
+/* Wide family-tree restoration 2026 */
+.family-nav{display:flex;justify-content:center;gap:7px;margin:0 auto 24px;padding:5px;width:max-content;max-width:100%;border-radius:12px;background:#fffefa;border:1px solid #ddceb9}
+.family-nav a{display:inline-block;padding:10px 16px;font:600 .82rem system-ui,sans-serif;text-decoration:none;color:#62523f;border-radius:8px;white-space:nowrap}
+.family-nav a[aria-current=page],.family-nav a:hover{color:white;background:#405c53}
+.tree-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:24px 0 10px;font:600 .82rem system-ui,sans-serif;color:#71604a}
+.tree-toolbar>div{display:flex;align-items:center;gap:10px}.tree-toolbar small{font-size:.72rem;font-weight:500}
+.tree-toolbar button{cursor:pointer;border:1px solid #cdbda6;background:#fffefa;border-radius:9px;min-width:46px;min-height:44px;padding:7px 12px;color:#5f4d35;font-size:1.25rem;line-height:1}
+.tree-toolbar button:hover{background:#efe3d1}
+.tree-scroller{width:100%;overflow-x:auto;overflow-y:visible;background:#f7f2e8;border:1px solid #d9ccb6;border-radius:17px;scrollbar-color:#ad9676 #e9dec8;scrollbar-width:auto;scroll-behavior:smooth;overscroll-behavior-x:contain}
+.tree-scroller::-webkit-scrollbar{height:15px}.tree-scroller::-webkit-scrollbar-track{background:#e9dec8;border-radius:15px}.tree-scroller::-webkit-scrollbar-thumb{background:#b5a07d;border:3px solid #e9dec8;border-radius:12px}
+.tree-scroller:focus-visible,.tree-toolbar button:focus-visible{outline:3px solid #a98a57;outline-offset:2px}
+.tree-board{width:2180px;min-width:2180px;padding:28px 30px 36px}
+.tree-board .megatree{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:64px!important;max-width:none!important;width:100%!important;align-items:stretch!important;margin:0 0 28px!important}
+.tree-board .half{width:100%!important;min-width:0!important;max-width:none!important;padding:27px 28px 36px!important}
+.tree-board .level{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:30px!important;justify-content:center!important;align-items:flex-start!important}
+.tree-board .subfam{min-width:0!important;flex:0 0 auto}
+.tree-board .subfam-couple{display:flex!important;flex-direction:row!important;gap:12px!important;align-items:stretch}
+.tree-board .person{width:190px!important;min-width:190px!important;max-width:none!important;flex:0 0 190px!important;padding:14px 13px;overflow-wrap:break-word;word-break:normal}
+.tree-board .person.center{width:250px!important;min-width:250px!important;flex:0 0 auto!important}
+.tree-board .level .name{font-size:.92rem}
+.tree-board .half-title{font:700 .92rem system-ui,sans-serif;letter-spacing:.12em}
+.tree-board .joiner-bar{display:block!important}
+.tree-board .person.clickable,.tree-board .person.detail-clickable{cursor:pointer;border-top:2px solid #b49665}
+.tree-board .person.clickable:hover,.tree-board .person.detail-clickable:hover{box-shadow:0 8px 25px #46331d26;transform:translateY(-3px)}
+.tree-board .person.clickable .relation:after,.tree-board .person.detail-clickable .relation:after{content:" · нажмите";font:600 .62rem system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#7f6d4c}
+.tree-board .siblings{max-width:1600px}
+.docs-teaser{max-width:820px;margin:42px auto 18px;padding:30px 28px;border-radius:15px;border:1px solid #dfd0bb;background:#fffdfa;text-align:center;box-shadow:0 5px 20px #4b3f2b13}
+.docs-kicker{font:700 .7rem system-ui,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#8d735d}
+.docs-teaser h2{margin:10px 0;font:normal clamp(1.5rem,2.5vw,2.1rem) Georgia,serif;color:#3d3226}
+.docs-teaser p{max-width:640px;margin:0 auto 20px;color:#706553;font-size:.9rem;line-height:1.65}
+.docs-teaser a{display:inline-block;padding:11px 19px;border-radius:10px;background:#405c53;color:white;text-decoration:none;font:600 .89rem system-ui,sans-serif}
+.docs-teaser a:hover{background:#2e4b40}
+.mobile-ancestry{display:none}
+@media(max-width:760px){
+  .family-nav a{font-size:.73rem;padding:9px 10px}
+  .tree-toolbar,.tree-scroller{display:none!important}
+  .mobile-ancestry{display:block;max-width:620px;margin:12px auto}
+  .mobile-person-self{display:flex;flex-direction:column;gap:3px;align-items:center;padding:16px 12px;background:linear-gradient(140deg,#fffaf0,#f0e2c7);border:2px solid #b79c6c;border-radius:13px}
+  .mobile-person-self small{text-transform:uppercase;letter-spacing:.08em;font:700 .65rem system-ui,sans-serif;color:#806f51}
+  .mobile-person-self strong{font:normal 1.24rem Georgia,serif;color:#41392c}
+  .mobile-person-self span{color:#746a56;font-size:.73rem}
+  .mobile-help{margin:13px auto 17px;text-align:center;font-size:.82rem;color:#73654e;line-height:1.5}
+  .branch-tabs{display:grid!important;grid-template-columns:1fr 1fr;gap:6px;padding:5px;max-width:620px;margin:15px auto;border:1px solid #cabba5;border-radius:12px;background:#e9dfd0}
+  .branch-tab{font:700 .81rem system-ui,sans-serif;min-height:44px}
+  .mobile-branch[hidden]{display:none!important}
+  .mobile-generation{border:1px solid #ddcfba;background:#fffdfa;border-radius:12px;margin:10px 0;overflow:hidden}
+  .mobile-generation summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;padding:14px 16px;font:700 .92rem system-ui,sans-serif;color:#483d2c}
+  .mobile-generation summary::-webkit-details-marker{display:none}
+  .mobile-generation summary:after{content:"+";font-size:1.25rem;font-weight:500}
+  .mobile-generation[open] summary:after{content:"−"}
+  .mobile-generation-list{display:grid;gap:7px;padding:0 12px 12px}
+  .mobile-generation-person{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:67px;padding:10px 13px;background:white;border:1px solid #e7dccb;border-left:4px solid var(--pat);border-radius:8px;cursor:pointer;text-align:left}
+  .mobile-branch[data-line="m"] .mobile-generation-person{border-left-color:var(--mat)}
+  .mobile-generation-person:hover,.mobile-generation-person:focus-visible{background:#fff8e9}
+  .mobile-generation-person span{display:flex;flex-direction:column;gap:2px}
+  .mobile-generation-person small{font:700 .63rem system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#947d60}
+  .mobile-generation-person strong{font:.91rem Georgia,serif;color:#392f24}
+  .mobile-generation-person em{font:normal .73rem system-ui,sans-serif;color:#796f60}
+  .mobile-generation-person:after{content:"↗";color:#886e49;font:700 1rem system-ui,sans-serif}
+  .docs-teaser{padding:20px 17px;margin:29px auto}
+}
+@media(prefers-reduced-motion:reduce){.tree-scroller{scroll-behavior:auto}}
+
 </style>
 </head>
 <body>
 <div class="container">
-
+<nav class="family-nav" aria-label="Разделы семейного сайта">
+  <a href="/family-tree/" aria-current="page">Родословное древо</a>
+  <a href="/family-tree/docs/">Документы и находки</a>
+</nav>
   <div class="ornament">❦ ❦ ❦</div>
   <h1>Родословное древо</h1>
   <p class="subtitle">Анна Поздняк · предки, родственные ветви и архивные находки</p>
-  <p class="reading-guide">Выберите ветвь семьи и нажимайте на карточки: внутри — истории, документы, источники и вопросы, которые ещё предстоит исследовать.</p>
+  <p class="reading-guide">На компьютере прокручивайте большое древо влево и вправо. Нажимайте на карточки: за каждой — сведения о человеке. На телефоне выберите семейную ветвь и раскрывайте поколения.</p>
 
 <nav class="branch-tabs" aria-label="Выбор семейной линии">
   <button type="button" class="branch-tab" id="branch-pat" aria-controls="family-pat" aria-selected="true">Отцовская линия</button>
   <button type="button" class="branch-tab" id="branch-mat" aria-controls="family-mat" aria-selected="false">Материнская линия</button>
 </nav>
+<div class="tree-toolbar">
+  <span>Две линии семьи · от Анны вверх к предкам</span>
+  <div><button type="button" id="tree-left" aria-label="Прокрутить влево">←</button><small>листайте древо</small><button type="button" id="tree-right" aria-label="Прокрутить вправо">→</button></div>
+</div>
+<div class="tree-scroller" id="tree-scroller" tabindex="0" aria-label="Большое родословное древо — прокручивается по горизонтали">
+ <div class="tree-board">
   <div class="megatree">
 
     <!-- ═══════════════ ОТЦОВСКАЯ ПОЛОВИНА ═══════════════ -->
@@ -762,6 +835,15 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     </div>
   </div>
 
+
+</div><!-- tree-board -->
+</div><!-- tree-scroller -->
+<div class="mobile-ancestry" aria-label="Мобильное древо по поколениям">
+  <div class="mobile-person-self"><small>От кого строим древо</small><strong>Анна Поздняк</strong><span>1998 · Набережные Челны</span></div>
+  <p class="mobile-help">выберите отцовскую или материнскую линию и раскройте интересующее поколение. все имена открываются по нажатию.</p>
+  <div class="mobile-branch" id="mobile-paternal"></div>
+  <div class="mobile-branch" id="mobile-maternal" hidden></div>
+</div>
 
   <!-- ══════════════════════════════════════════
        МОДАЛЬНЫЕ ОКНА
@@ -1108,53 +1190,14 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 
   <!-- ══════ ЛЕГЕНДА ══════ -->
 
-  <section class="research-section" aria-labelledby="research-heading">
-    <div class="research-intro"><div><p class="research-eyebrow">Семейный архив · находки 2026 года</p><h2 id="research-heading">Что удалось найти</h2></div>
-      <p>Документальные свидетельства отделены от воспоминаний и гипотез. Для каждой находки указан источник или место дальнейшего поиска.</p>
-    </div>
-    <div class="research-grid">
-      <article class="research-card research-card-featured">
-        <span class="research-status">Впервые подтверждено документом</span><h3>Владислав Поздняк · 13 апреля 1942 года</h3>
-        <p>ГАРФ обнаружил поимённый список угнанных на работы в Германию. Владислав записан в нём как «Поздняков», 1925 года рождения, житель деревни Ромашенки. Указан день угона — <strong>13 апреля 1942 года</strong>.</p>
-        <p class="source-caveat">ГАРФ, Р-7021, опись 93, дело 115, лист 524. Ответ № 5781-Т от 02.07.2026 (скан в семейном архиве).</p>
-        <a href="https://statearchive.ru/" target="_blank" rel="noopener noreferrer">Официальный сайт ГАРФ ↗</a>
-      </article>
-      <article class="research-card">
-        <span class="research-status">Архивная запись</span><h3>Филипп Васильевич Гирля</h3>
-        <p>Служил в 932-м стрелковом полку; военный документ фиксирует гибель 5 февраля 1944 года и захоронение в селе Вязовок. Место рождения пока точно не установлено, даже если в одном из документов указана Новокуровка — это мог быть адрес семьи.</p>
-        <a href="https://obd-memorial.ru/html/search.htm?n=%D0%93%D0%B8%D1%80%D0%BB%D1%8F&np=%D0%A4%D0%B8%D0%BB%D0%B8%D0%BF%D0%BF&pbeg=0" target="_blank" rel="noopener noreferrer">Найти запись в ОБД «Мемориал» ↗</a>
-      </article>
-      <article class="research-card">
-        <span class="research-status">Метрическая книга</span><h3>Савва Маркелович Пацало</h3>
-        <p>Родственник Надежды: в книге 1910–1913 годов Савва упоминается как крёстный отец в деревне Димитровка Хабаровского уезда. Это важный документ о присутствии семьи Пацало на Дальнем Востоке.</p>
-        <a href="https://ya.ru/archive/catalog/84053140-0bd0-4558-a560-5306f23f9b2c/20" target="_blank" rel="noopener noreferrer">Открыть метрическую запись ↗</a>
-      </article>
-      <article class="research-card">
-        <span class="research-status secondary">Семейные сведения</span><h3>Ольга Пацало и семья Яновки</h3>
-        <p>Ольга Маркеловна Пацало (1896–1953) — сестра Надежды, супруга Андрея Яновки. В семейной родословной Евгения Яновки сохранились сведения об этой ветви и переселении на Дальний Восток в 1908–1911 годах.</p>
-        <p class="source-caveat">Онлайн-ссылка на первичный документ этой ветви пока не найдена.</p>
-      </article>
-      <article class="research-card">
-        <span class="research-status hypothesis">Родство не установлено</span><h3>Позняки из Ромашенок</h3>
-        <p>В метриках Зилупского прихода обнаружены записи о Станиславе, Эмилии, Висентии и других Позняках. Они жили в тех же местах, что и семья Аркадия. Пока это возможная боковая ветвь, а не подтверждённые родственники.</p>
-        <a href="https://raduraksti.arhivi.lv/" target="_blank" rel="noopener noreferrer">Поискать метрические книги в цифровом архиве Латвии ↗</a>
-      </article>
-      <article class="research-card">
-        <span class="research-status hypothesis">Вероятный однофамилец · проверить родство</span><h3>Павел Ковалёв в книгах 1943–1946 годов</h3>
-        <p>Архив Омской области обнаружил Павла Ковалёва с семьёй в селе Фирстово (1943–1945) и деревне Чаунино (1946). Точного состава семьи в письме нет, поэтому связь с прадедом ещё не установлена.</p>
-        <p class="source-caveat">Ответ Исторического архива Омской области № 01-40/Т-15806 от 25.06.2026. Для уточнения нужны копии похозяйственных книг.</p>
-        <a href="https://iaoo.ru/" target="_blank" rel="noopener noreferrer">Архив Омской области ↗</a>
-      </article>
-    </div>
-<div class="family-source-warning"><strong>Требует проверки:</strong> рукописная автобиография Леонида называет местом происхождения его матери село Ильинка, а прежние семейные записи — Тамбовку. Девичья фамилия тоже написана с исправлениями. До появления актовой записи оба варианта остаются в примечании, без подмены одной версии другой.</div>    <div class="source-directory"><strong>Где проверять документы:</strong>
-      <a href="https://www.uzvardi.lv/region/latgale" target="_blank" rel="noopener noreferrer">Справочник латышских фамилий</a>
-      <a href="https://raduraksti.arhivi.lv/" target="_blank" rel="noopener noreferrer">Латвийские метрические книги</a>
-      <a href="https://www.tm.gov.lv/lv/pasvaldibu-dzimtsarakstu-nodalas" target="_blank" rel="noopener noreferrer">ЗАГСы Латвии</a>
-      <a href="https://arolsen-archives.org/en/archive/online-search/" target="_blank" rel="noopener noreferrer">Архив Арользен</a>
-    </div>
-  </section>
+<section class="docs-teaser">
+  <div class="docs-kicker">Семейный архив · документы и находки</div>
+  <h2>Что удалось найти</h2>
+  <p>Документы, ответы архивов, семейные воспоминания и вопросы для дальнейшего поиска — в отдельном разделе. Там же таблица с источниками, чтобы родственники могли продолжить исследование.</p>
+  <a href="/family-tree/docs/">Открыть архив находок →</a>
+</section>
 
-  <div class="legend">
+    <div class="legend">
     <div class="legend-item">
       <div class="legend-color" style="background:var(--pat);"></div>
       <span>отцовская линия — Поздняк, Жуковы, Красильниковы</span>
@@ -1237,6 +1280,35 @@ document.querySelectorAll('.sibling.clickable').forEach(el=>{
  el.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();el.click();}});
 });
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));}});
+
+const scrollRoot=document.getElementById('tree-scroller');
+const scrollStep=()=>Math.max(400,Math.min(820,scrollRoot?.clientWidth*.78||550));
+document.getElementById('tree-left')?.addEventListener('click',()=>scrollRoot.scrollBy({left:-scrollStep(),behavior:'smooth'}));
+document.getElementById('tree-right')?.addEventListener('click',()=>scrollRoot.scrollBy({left:scrollStep(),behavior:'smooth'}));
+const generationLabels=['Родители, тёти и дяди','Бабушки и дедушки','Прабабушки и прадедушки','Более ранние предки'];
+branches.forEach((branch,index)=>{
+ const mobilePanel=document.getElementById(index===0?'mobile-paternal':'mobile-maternal');
+ mobilePanel.dataset.line=index===0?'p':'m';
+ const units=[...branch.children].filter(e=>e.classList.contains('level')||e.classList.contains('subfam')).reverse();
+ units.forEach((unit,levelIndex)=>{
+  const persons=[...unit.querySelectorAll('.person')];if(!persons.length)return;
+  const details=document.createElement('details');details.className='mobile-generation';details.open=levelIndex<2;
+  const summary=document.createElement('summary');summary.textContent=generationLabels[levelIndex]||'Дальние предки';
+  const list=document.createElement('div');list.className='mobile-generation-list';
+  persons.forEach(person=>{
+   const btn=document.createElement('button');btn.type='button';btn.className='mobile-generation-person';
+   const inner=document.createElement('span');const rel=document.createElement('small');rel.textContent=person.querySelector('.relation')?.textContent.trim()||'Родственник';
+   const name=document.createElement('strong');name.textContent=person.querySelector('.name')?.textContent.trim()||'Имя неизвестно';
+   const info=document.createElement('em');info.textContent=person.querySelector('.dates')?.textContent.trim()||person.querySelector('.place')?.textContent.trim()||'Сведения об этом человеке';
+   inner.append(rel,name,info);btn.append(inner);btn.addEventListener('click',()=>person.click());list.append(btn);
+  });
+  details.append(summary,list);mobilePanel.append(details);
+ });
+});
+function syncMobile(){document.querySelectorAll('.mobile-branch').forEach((el,i)=>{el.hidden=i!==active;});}
+tabs.forEach(t=>t.addEventListener('click',syncMobile));
+syncMobile();
+
 })();
 </script>
 </body>
