@@ -620,6 +620,14 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .mobile-generation-person.pacalo-mobile-feature small,.mobile-generation-person.pacalo-mobile-feature strong,.mobile-generation-person.pacalo-mobile-feature em{color:#fff7ec!important}
 .mobile-generation-person.pacalo-mobile-feature:after{color:#fff7ec!important}
 
+
+.mobile-feature-pacalo{display:flex;align-items:center;gap:12px;width:100%;background:linear-gradient(120deg,#a6536c,#814357);border:2px solid #e0b58b;border-radius:12px;padding:15px 16px;color:white;text-align:left;cursor:pointer;margin:4px 0 13px;box-shadow:0 7px 19px #85445c25}
+.mobile-feature-pacalo .feature-eight{font:700 2.2rem Georgia,serif;line-height:1;flex-shrink:0}
+.mobile-feature-pacalo .feature-eight small{display:block;font:700 .69rem system-ui,sans-serif;text-transform:uppercase}
+.mobile-feature-pacalo strong{display:block;font:700 .95rem Georgia,serif;line-height:1.4}
+.mobile-feature-pacalo small{display:block;font:.72rem system-ui,sans-serif;line-height:1.4;color:#fff1e5}
+.mobile-feature-pacalo:focus-visible{outline:3px solid #b7905e;outline-offset:3px}
+@media(min-width:761px){.mobile-feature-pacalo{display:none}}
 </style>
 </head>
 <body>
@@ -668,7 +676,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
               <div class="relation">Прапрабабушка</div>
               <div class="name">Мария</div>
               <div class="dates">10 детей</div>
-              <div class="note">по линии Любови Красильниковой</div>
+              <div class="note">по линии Любови Фёдоровны (Красильщиковой)</div>
             </div>
           </div>
         </div>
@@ -701,9 +709,9 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
           <div class="subfam-couple no-link">
             <div class="person paternal">
               <div class="relation">Прадед</div>
-              <div class="name">Фёдор Красильников</div>
-              <div class="place">Тамбовская губ. → дер. Тамбовка Амурской обл.</div>
-              <div class="note">отчество уточняется</div>
+              <div class="name">Фёдор Красильщиков</div>
+              <div class="place">семья: с. Ильинка, Тамбовский район Амурской области</div>
+              <div class="note">отчество пока неизвестно; Тамбовка упоминалась в старых архивных запросах</div>
             </div>
             <div class="person paternal unknown">
               <div class="relation">Прабабушка</div>
@@ -911,7 +919,12 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   <div class="mobile-person-self"><small>От кого строим древо</small><strong>Анна Поздняк</strong><span>1998 · Набережные Челны</span></div>
   <p class="mobile-help">выберите отцовскую или материнскую линию и раскройте интересующее поколение. все имена открываются по нажатию.</p>
   <div class="mobile-branch" id="mobile-paternal"></div>
-  <div class="mobile-branch" id="mobile-maternal" hidden></div>
+  <div class="mobile-branch" id="mobile-maternal" hidden>
+  <button type="button" class="mobile-feature-pacalo" onclick="document.getElementById('pacalo-modal').classList.add('open')" aria-label="Открыть ещё восемь поколений ветви Пацало">
+    <span class="feature-eight">8 <small>поколений</small></span>
+    <span><strong>Большая ветвь Пацало</strong><small>от 1765 года — откройте всех предков</small></span><span aria-hidden="true">↗</span>
+  </button>
+</div>
 </div>
 
   <!-- ══════════════════════════════════════════
@@ -1269,7 +1282,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="legend">
     <div class="legend-item">
       <div class="legend-color" style="background:var(--pat);"></div>
-      <span>отцовская линия — Поздняк, Жуковы, Красильниковы</span>
+      <span>отцовская линия — Поздняки, Жуковы, Красильщиковы</span>
     </div>
     <div class="legend-item">
       <div class="legend-color" style="background:var(--mat);"></div>
