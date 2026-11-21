@@ -29,6 +29,29 @@
 .table-box tr:hover{background:#fafbf8}
 .site-nav a.active{border-bottom:2px solid var(--teal);padding-bottom:4px}
 @media(max-width:700px){.hero:before{opacity:.13}.site-nav a{font-size:.73rem}}
+
+/* Self-directed genealogy research, 21 November 2026 */
+.online-research{margin:36px 0 52px;padding:clamp(18px,3vw,32px);background:#edf0ea;border:1px solid #d1d8cc;border-radius:18px;}
+.online-research .research-topline{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font:700 .7rem/1.5 system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:#607b66;margin-bottom:13px}
+.online-research h2{font:normal clamp(1.55rem,3vw,2.3rem)/1.22 Georgia,serif;color:#304138;max-width:680px;margin:0 0 12px}
+.online-research .research-lead{max-width:920px;color:#52665b;font-size:.93rem;margin:0 0 22px}
+.online-research-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.online-lead{padding:20px;background:#fffefa;border:1px solid #d9ded6;border-radius:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.online-lead.featured{border-left:5px solid #b6834f;background:#fffdf7}
+.online-lead h3{font:normal 1.24rem/1.28 Georgia,serif;margin:0;color:#304139}
+.online-lead p{font-size:.835rem;line-height:1.65;color:#435449;margin:0}
+.online-lead a{font-size:.83rem;font-weight:650;color:#315e55;overflow-wrap:anywhere}
+.online-lead a:last-child{margin-top:auto}
+.online-lead .online-next{border-top:1px solid #e6e9e2;padding-top:9px;color:#5d685d}
+.online-tag{display:inline-block;align-self:start;padding:4px 9px;border-radius:20px;font:700 .66rem/1.3 system-ui,sans-serif;background:#e9eef0;color:#42646c}
+.online-tag.confirmed{background:#e7f1e7;color:#40664b}
+.online-tag.comparison{background:#f5ebdc;color:#86623c}
+.online-tag.hypothesis{background:#f8e9e9;color:#8a5960}
+.research-discrepancies{margin:16px 0 10px;padding:18px 20px;border:1px solid #dfcfbb;border-left:4px solid #ae885d;border-radius:8px;background:#fbf7ed;font-size:.835rem;line-height:1.6}
+.research-discrepancies ul{margin:9px 0 0;padding-left:18px}
+.research-discrepancies li{margin:6px 0}
+.research-conclusion{font-size:.86rem;color:#41594c;line-height:1.65;margin:14px 0 0}
+@media(max-width:760px){.online-research{padding:16px 13px;border-radius:14px;margin:24px 0 36px}.online-research-grid{grid-template-columns:1fr}.online-lead{padding:17px}.online-research .research-topline{display:block}.online-research .research-topline span{display:block;margin:3px 0}}
 </style></head>
 <body>
 <header class="site-header"><div class="header-inner"><a class="brand" href="/family-tree/">семейный архив<span aria-hidden="true"> · </span>Поздняк</a>
@@ -42,6 +65,68 @@
 <div class="info"><strong>Нужна проверка</strong><p>Сведения из письма, справочника или семейной истории ещё не доказывают родство.</p></div>
 <div class="info"><strong>Запрос не завершён</strong><p>Архив просил уточнения, письмо не доставлено либо ответ пока не получен.</p></div>
 </section>
+
+<section id="online-research" class="online-research" aria-labelledby="online-research-title">
+<div class="research-topline"><span>Самостоятельный поиск · 21 ноября 2026 года</span><span>Открытые архивы, указатели и генеалогические форумы</span></div>
+<h2 id="online-research-title">Новые источники для продолжения родословной</h2>
+<p class="research-lead">Выполнен поиск по разным написаниям фамилий и прежним административным названиям. На этой странице отличаем <strong>найденного человека</strong> от <strong>найденного архивного дела</strong>: сам факт существования метрической книги не доказывает, что в ней упомянут родственник. Оригинальные сканы фондов, требующие регистрации, не выдаём за просмотренные.</p>
+<div class="online-research-grid">
+<article class="online-lead featured"><span class="online-tag confirmed">Совпадение человека в новом источнике</span><h3>Филипп Васильевич Гирля</h3>
+<p>На сайте администрации Новокуровки опубликована книга памяти. В ней назван Филипп Васильевич Гирля, <strong>1906 года рождения, житель Новокуровки</strong>. По ФИО, году и месту это вероятнее всего тот же человек. Но <strong>дата гибели отличается</strong>: муниципальный список приводит 3 февраля 1944 года, а в прежней семейной выписке — 5 февраля. Различаются и формулировки места захоронения: Вязовое / Вязовок.</p>
+<p class="online-next"><strong>Что дальше:</strong> получить изображение первичного донесения с номером записи ОБД «Мемориал» 1152545303 и установить, откуда составители книги памяти взяли свою дату. Пока обе версии сохраняются.</p>
+<a href="https://novokurovka.ru/naseleniju/kniga-pamyati/1490-kniga-pamyati-06-02-2025.html" target="_blank" rel="noopener noreferrer">Книга памяти Новокуровки ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag source">Найдено точное архивное дело</span><h3>Аркадий Поздняк, Юзефа Жукова и старшая ветвь</h3>
+<p>В <strong>Raduraksti</strong> (цифровой архив Латвии) определено дело <strong>фонд 7085, опись 6, дело 523</strong> — книга смертей католического Пасиенского прихода <strong>1897–1915 годов</strong>. Также есть предбрачные записи 1888–1896 годов (ф. 7085, оп. 6, д. 128). Возможно, там удастся проследить родителей и родственников Аркадия или Юзефы.</p>
+<p class="online-next"><strong>Что дальше:</strong> зарегистрироваться в Raduraksti и изучить изображения постранично. Описания дел доступны открыто, но сами снимки требуют входа; имена родственников в этих делах пока не обнаружены.</p>
+<a href="https://raduraksti.arhivi.lv/objects/1%3A4%3A1%3A4%3A15%3A2054%3A2283%3A31716" target="_blank" rel="noopener noreferrer">Книга смертей Пасиене, 1897–1915 ↗</a>
+<a href="https://raduraksti.arhivi.lv/objects/1%3A4%3A15%3A2054%3A2283%3A15377" target="_blank" rel="noopener noreferrer">Предбрачные документы, 1888–1896 ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag comparison">Проверка разных источников</span><h3>Фамилия Поздняк в Залесской волости</h3>
+<p>Словарь <strong>Латвийского языкового агентства</strong> показывает для вариантов Поздняк (Pozdņaks), Поздняков (Pozdņakovs), Позднеков (Pozdņekovs) число <strong>33</strong> в Залесской волости по данным переписи <strong>1935 года</strong>. В ранее полученных семейных материалах фигурировали 42 записи. Вероятно, использовались разные способы подсчёта, но без просмотра фото выписки это не установить.</p>
+<p class="online-next"><strong>Что дальше:</strong> сравнить полную страницу присланного справочника со словарём и посмотреть поимённые листы переписи. 33 и 42 нельзя считать одним числом без проверки методики.</p>
+<a href="https://uzvardi.lv/parish/29" target="_blank" rel="noopener noreferrer">Словарь: Залесская волость ↗</a>
+<a href="https://uzvardi.lv/ka-lietot-datubazi/" target="_blank" rel="noopener noreferrer">Как считаются показатели ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag source">Найдены церковные книги</span><h3>Фёдор и Мария Красильщиковы — Ильиновка</h3>
+<p>В указателе ГААО есть <strong>фонд И-29, опись 3, дело 1064</strong> — метрическая книга Ильинской Казанской церкви на реке Дим за <strong>1915–1920 годы</strong> (243 листа); <strong>дело 1258</strong> — браки Ильинской церкви за 1918–1919 годы. Есть и более ранние дела, включая 1904–1905 годы. Существование книг подтверждено, но пока нет прочитанных записей о родителях Любови.</p>
+<p class="online-next"><strong>Что дальше:</strong> установить точный приход села Ильиновка в разные годы, проверить рождение других детей семьи и возможную запись о браке Фёдора Ивановича с Марией Алексеевной. Совпадение названия прихода с деревней ещё надо подтвердить.</p>
+<a href="https://inv.velikie.org/archive/gaao-amur/i-29/3/page2.htm" target="_blank" rel="noopener noreferrer">Опись ГААО, дела 1064 и 1258 ↗</a>
+<a href="https://chronolog.online/view?document=39738" target="_blank" rel="noopener noreferrer">Карточка дела 1064 (снимков пока нет) ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag source">Найдены конкретные книги</span><h3>Пацало — Скаковка, Волынская губерния</h3>
+<p>Для села Скаковка найдена <strong>церковь Иоанна Богослова</strong> и перечень её метрических книг. Особенно интересны <strong>ГАЖО: фонд 1, опись 76, дела 15 и 551 (1803–1810), 28, 32, 552 и 570 (1816–1820), 34 (1822–1825)</strong>. В этих временных интервалах могут быть сведения о семье Осипа Демьяновича Пацалука и его потомках.</p>
+<p class="online-next"><strong>Что дальше:</strong> искать смерти, браки, рождения детей и восприемников (крёстных). В указателе перечислены дела, но содержание самих сканов ещё не проверено.</p>
+<a href="https://inv.velikie.org/doc/did903/page20.htm" target="_blank" rel="noopener noreferrer">Указатель метрических книг ГАЖО ↗</a>
+<a href="https://rodovidarchive.com/coverage/skakivka-berdychivskyi/" target="_blank" rel="noopener noreferrer">Обзор сохранности книг прихода ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag hypothesis">Фамильные совпадения, родство не установлено</span><h3>Преверенда, Щербинюк и Карчевские</h3>
+<p>На генеалогическом форуме ВГД исследователь под именем <strong>EVGENY</strong> ещё в 2004 году перечислил Осипа Демьянова Пацалука (1765–1822), Ефросинью Семёнову и соседние фамилии <strong>Преверенда, Щербинюк, Карчевские</strong>. Первые два имени совпадают с вашим деревом, но связь перечисленных соседних семей с прямой родословной не доказана.</p>
+<p class="online-next"><strong>Что дальше:</strong> сопоставить форумные имена с метриками Скаковки. Нельзя добавлять людей в прямые предки только по одному посту.</p>
+<a href="https://forum.vgd.ru/?t=278" target="_blank" rel="noopener noreferrer">Семейная тема исследователя на ВГД ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag source">Историческая подсказка</span><h3>Павел Ковалёв — Фирстово и Чаунино</h3>
+<p>Омский архив ранее нашёл в похозяйственных книгах человека с именем Павел Ковалёв в Фирстове (1943–1945) и Чаунине (1946). Теперь в краеведческих генеалогических обсуждениях найден <strong>Фирстовский Христорождественский приход</strong> дореволюционного Тарского уезда: это направление для более ранних метрических записей.</p>
+<p class="online-next"><strong>Что дальше:</strong> сначала получить копии похозяйственных книг, чтобы узнать состав семьи Павла, и только затем искать его рождение или брак в метрических книгах подходящего прихода. Родство с вашим Павлом пока не установлено.</p>
+<a href="https://forum.vgd.ru/post/1494/127707/p4463191.htm" target="_blank" rel="noopener noreferrer">Указатель церквей и метрических дел Тарского уезда ↗</a>
+<a href="https://iaoo.ru/" target="_blank" rel="noopener noreferrer">Исторический архив Омской области ↗</a>
+</article>
+<article class="online-lead"><span class="online-tag source">Направление поиска</span><h3>Жуковы — Брижский, Райпольский приходы</h3>
+<p>Отец Виталий ранее сообщал, что Жуковы встречались в Брижском и Райпольском приходах. Подтверждено, что электронный архив Латвии содержит и эти приходы в составе <strong>Шайпуслудзенского деканата</strong> (историческая церковная административная единица).</p>
+<p class="online-next"><strong>Что дальше:</strong> проверить оригиналы метрических записей вокруг 1902 года по Антону Жукову, отдельно выяснить, действительно ли названный в документе Юлий Давид связан с Юлианом Жуковым. Сходство имён не доказательство.</p>
+<a href="https://raduraksti.arhivi.lv/collections/1%3A4%3A15%3A2053%3A2266" target="_blank" rel="noopener noreferrer">Каталог приходов Шайпуслудзенского деканата ↗</a>
+</article>
+</div>
+<div class="research-discrepancies"><strong>Расхождения, которые важно не потерять:</strong>
+<ul>
+<li>Филипп Гирля: 3 или 5 февраля 1944 года; Вязовое или Вязовок — нужен первичный документ.</li>
+<li>Поздняк в Залесской волости: 33 человека в переписи 1935 года и 42 записи из более ранней выписки — пока разные показатели.</li>
+<li>Пацало: даты из пользовательских генеалогических баз и форумов подлежат сверке с метрическими книгами. Копирование родства без документов недопустимо.</li>
+</ul>
+</div>
+<p class="research-conclusion">По итогам этого этапа найдено новое независимое упоминание Филиппа Гирли и ряд точных архивных фондов и дел. <strong>Ни одна новая родственная связь между поколениями пока не считается документально доказанной.</strong> Закрытые сканы и платные архивные поиски не заказывались.</p>
+</section>
+
 <section id="research-table" aria-labelledby="table-title">
 <div class="section-heading"><div><div class="eyebrow">Письма, архивы и семейные свидетельства</div><h2 id="table-title">Хронология поисков</h2></div><p>Каждая строка — отдельная находка или архивное обращение. Можно искать по фамилии, месту, фонду и фильтровать по статусу.</p></div>
 <div class="filters"><label class="search"><span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);">Поиск по таблице</span><input id="search" type="search" placeholder="Фамилия, дата, архив, населённый пункт..." aria-label="Поиск по таблице"></label>
