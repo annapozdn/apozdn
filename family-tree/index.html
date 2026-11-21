@@ -376,7 +376,7 @@ body {background:radial-gradient(circle at 12% 5%,#fffefa,transparent 38%),linea
 h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wrap:balance;}
 .subtitle{margin-bottom:12px;}
 .reading-guide{max-width:760px;color:#71634f;text-align:center;margin:0 auto 28px;font-size:.95rem;}
-.me gatree{}
+.
 .megatree{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch;}
 .half{min-width:0;width:100%;padding:24px 18px 34px;background:#fffcf7e8;border:1px solid #dccfb9;border-radius:20px;box-shadow:0 12px 36px #56422d14;}
 .half.paternal{border-top:5px solid var(--pat);}
@@ -444,15 +444,16 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
  .half{padding:17px 9px 28px;border-radius:13px;}
  .half[hidden]{display:none!important;}
  .half-title{font-size:.81rem;margin-bottom:20px;letter-spacing:.13em;}
- .level{gap:7px;}
- .subfam-couple{gap:6px;}
+ .level{flex-direction:column;align-items:center;gap:17px;}
+ .subfam-couple{flex-direction:row;gap:6px;align-items:stretch;}
  .person{width:clamp(126px,38vw,190px);padding:11px 9px;}
  .person .name{font-size:.83rem;}
  .person .relation{font-size:.62rem;letter-spacing:.06em;}
  .person .place{font-size:.7rem;}
  .person .note{font-size:.68rem;}
  .person.center{width:230px;max-width:80vw;}
- .subfam-couple.wide-link::before{width:calc(100% - 22px);}
+ .subfam-couple.wide-link::before{display:block;width:calc(100% - 22px);}
+ .subfam-couple:not(.no-link)::before{display:block;width:18px;}
  .siblings{gap:8px;}
  .sibling{font-size:.75rem;text-align:center;}
  .research-intro{display:block;}
@@ -578,7 +579,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
           <div class="person paternal clickable" onclick="document.getElementById('vladislav-modal').classList.add('open')">
             <div class="relation">Дед</div>
             <div class="name">Владислав Аркадьевич Поздняк</div>
-            <div class="dates">1925 — нач. 1960-х</div>
+            <div class="dates">1925 — 1964 (по записи сына)</div>
             <div class="place">д. Ромашенки, Посинская вол.,<br>Лудзенский у., Латвия</div>
             <div class="note">«Назвал себя белорусом». Угнан в Германию в 1942. <strong>Подробнее →</strong></div>
           </div>
@@ -599,7 +600,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <div class="person paternal clickable" onclick="document.getElementById('leonid-modal').classList.add('open')">
           <div class="relation">Отец</div>
           <div class="name">Леонид Владиславович Поздняк</div>
-          <div class="dates">1957 — 2006</div>
+          <div class="dates">25.03.1957 — 2006</div>
           <div class="place">род. г. Рига</div>
           <div class="note">Был женат трижды; сын Павел — отец троих детей. <strong>Подробнее →</strong></div>
         </div>
@@ -837,7 +838,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('vladislav-modal').classList.remove('open')">×</button>
       <h2 class="modal-h" style="color:var(--pat);">Владислав Аркадьевич Поздняк</h2>
-      <p class="modal-sub">1925 — нач. 1960-х · дед по отцовской линии</p>
+      <p class="modal-sub">1925 — предположительно 1964 · дед по отцовской линии</p>
       <div class="modal-body">
         <div class="modal-block-pat">
           <strong>Рождение:</strong> деревня Ромашенки, Посинская волость, Люцинский (ныне Лудзенский) уезд. Сегодня — Лудзенский край (Ludzas novads), Латвия
@@ -847,7 +848,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <div class="modal-block-pat">
           <strong>Брак:</strong> около 1955–57, Рига. Жена — Любовь Фёдоровна Красильникова (1922).<br>
           <strong>Дети:</strong> Леонид (1957), Елена (1958).<br>
-          <strong>Смерть:</strong> Рига, нач. 1960-х — вскоре после рождения Леонида.
+          <strong>Смерть:</strong> вероятно 1964 год (так указано в автобиографии сына Леонида, лист 8). Актовая запись о смерти пока не приложена.
         </div>
         <div class="modal-fact">
           <strong>Архивные запросы:</strong> отправлены в Латвийский национальный архив (ЛНА) и в Зилупский приход (отец Виталий, witalius2@inbox.lv). ЛНА (3 июня 2026 года): для более поздних актовых записей рекомендован ЗАГС Лудзенского края (Ludzas novads). <a href="https://www.tm.gov.lv/lv/pasvaldibu-dzimtsarakstu-nodalas" target="_blank" rel="noopener noreferrer">Официальный список ЗАГСов Латвии ↗</a> Для поиска по Аркадию и Юзефе нужны год, приход и конфессия. Отец Виталий прислал сканы метрических книг Зилупского прихода с упоминаниями Поздняков (Pozdņaks) и Жуковых (Žukovs) из Посинского (Pasienes) и Брижского (Brīžu) приходов. Родство не всех найденных людей доказано.
@@ -905,7 +906,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('leonid-modal').classList.remove('open')">×</button>
       <h2 class="modal-h" style="color:var(--pat);">Леонид Владиславович Поздняк</h2>
-      <p class="modal-sub">1957 — 2006 · отец</p>
+      <p class="modal-sub">25 марта 1957 — 2006 · отец</p>
       <div class="modal-body">
         <div class="modal-block-pat">
           <strong>Рождение:</strong> г. Рига, 1957. <strong>Смерть:</strong> 2006.
@@ -1094,7 +1095,7 @@ updateBranches();
 const modalHost=document.querySelector('body > .container');
 let created=0;
 document.querySelectorAll('.person').forEach(person=>{
-  if(person.classList.contains('clickable')||person.classList.contains('center'))return;
+  if(person.classList.contains('clickable'))return;
   const name=person.querySelector('.name');
   if(!name||person.closest('#auto-person-modal'))return;
   created+=1;
@@ -1124,6 +1125,13 @@ document.querySelectorAll('.person').forEach(person=>{
   person.setAttribute('aria-label','Подробнее: '+title);
   person.addEventListener('click',event=>{if(event.target.closest('a'))return;open();});
   person.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open();}});
+});
+document.querySelectorAll('.person.clickable').forEach(person=>{
+  person.setAttribute('role','button');
+  person.setAttribute('tabindex','0');
+  person.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){event.preventDefault();person.click();}
+  });
 });
 document.querySelectorAll('.modal').forEach(modal=>{
   const close=()=>{modal.classList.remove('open');};
