@@ -555,6 +555,71 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 }
 @media(prefers-reduced-motion:reduce){.tree-scroller{scroll-behavior:auto}}
 
+
+/* Aligned parents at the foot of both ancestor wings */
+.tree-board .half{display:flex!important;flex-direction:column!important}
+.tree-board .half > .ancestor-gap{
+  display:block!important;
+  flex:1 1 auto!important;
+  min-height:30px!important;
+  width:2px!important;
+  margin:0 auto!important;
+}
+.tree-board .half > .parents-level{
+  flex:0 0 auto!important;
+  width:100%!important;
+  min-height:226px!important;
+  margin-top:0!important;
+  align-items:stretch!important;
+}
+.tree-board .half > .parents-level > .person{min-height:226px!important;height:226px!important}
+.tree-board #family-pat > .parents-level{
+  flex-direction:row-reverse!important;
+  justify-content:flex-start!important;
+  gap:16px!important;
+}
+.tree-board #family-mat > .parents-level{
+  flex-direction:row!important;
+  justify-content:flex-start!important;
+  gap:16px!important;
+}
+.tree-board .half > .parent-drop{
+  display:block!important;
+  width:2px!important;
+  height:30px!important;
+  flex:0 0 30px!important;
+  min-height:30px!important;
+}
+.tree-board #family-pat > .parent-drop{align-self:flex-end!important;margin-right:94px!important}
+.tree-board #family-mat > .parent-drop{align-self:flex-start!important;margin-left:94px!important}
+.tree-board > .joiner > .joiner-bar{width:310px!important;max-width:none!important}
+.tree-board > .joiner > .joiner-down{height:28px!important}
+/* Highlight the eight-generation expandable family line */
+.tree-board .person.pacalo-feature{
+ background:linear-gradient(155deg,#a64f65 0%,#814354 100%)!important;
+ border:2px solid #c99875!important;
+ border-left:5px solid #e2ba8a!important;
+ color:#fff9f4!important;
+ box-shadow:0 8px 26px rgba(108,39,61,.24)!important;
+ padding:14px 13px 15px!important;
+ position:relative;z-index:3
+}
+.tree-board .person.pacalo-feature:hover,.tree-board .person.pacalo-feature:focus-visible{
+ background:linear-gradient(155deg,#ba5971,#864353)!important;
+ transform:translateY(-4px) scale(1.02)!important;
+ box-shadow:0 12px 30px rgba(108,39,61,.38)!important;
+}
+.tree-board .pacalo-feature .relation{color:#ffe8cf!important;font-size:.63rem;letter-spacing:.07em}
+.tree-board .pacalo-feature .relation:after{display:none!important}
+.pacalo-feature .pacalo-number{display:flex;gap:7px;align-items:baseline;color:#fff8ef;font:bold 3rem Georgia,serif;line-height:1.05;padding:4px 0}
+.pacalo-feature .pacalo-number span{font:bold .87rem system-ui,sans-serif}
+.tree-board .pacalo-feature .name{color:white!important;font:700 1.12rem Georgia,serif!important;line-height:1.2!important}
+.tree-board .pacalo-feature .place{color:#f7e5db!important;font-style:normal;font-size:.72rem;line-height:1.4}
+.pacalo-feature .pacalo-cta{margin-top:13px;border-radius:8px;background:#fff9eb;color:#763d52;font:750 .78rem system-ui,sans-serif;padding:10px 6px;text-align:center}
+.mobile-generation-person.pacalo-mobile-feature{background:#925065!important;border-left:5px solid #dfb37f!important;color:white!important}
+.mobile-generation-person.pacalo-mobile-feature small,.mobile-generation-person.pacalo-mobile-feature strong,.mobile-generation-person.pacalo-mobile-feature em{color:#fff7ec!important}
+.mobile-generation-person.pacalo-mobile-feature:after{color:#fff7ec!important}
+
 </style>
 </head>
 <body>
@@ -677,8 +742,9 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <div class="v-line"></div>
       </div>
 
-      <!-- Уровень II: отец + тётя -->
-      <div class="level">
+      <!-- Уровень II: отец + тётя — выровнены с материнской линией -->
+      <div class="v-line grow ancestor-gap"></div>
+      <div class="level parents-level">
         <div class="person paternal clickable" onclick="document.getElementById('leonid-modal').classList.add('open')">
           <div class="relation">Отец</div>
           <div class="name">Леонид Владиславович Поздняк</div>
@@ -695,7 +761,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         </div>
       </div>
 
-      <div class="v-line grow"></div>
+      <div class="v-line parent-drop"></div>
     </div>
 
 
@@ -707,10 +773,12 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <div class="level" style="margin-bottom: 0;">
         <div class="subfam">
           <div class="subfam-couple no-link">
-            <div class="person maternal clickable" onclick="document.getElementById('pacalo-modal').classList.add('open')">
-              <div class="relation">8 поколений ↑</div>
-              <div class="name">Линия Пацало<br>(с. Скаковка, Волынская губ.)</div>
-              <div class="note">От Осипа Пацалука (1765) — до Надежды. <strong>Раскрыть →</strong></div>
+            <div class="person maternal clickable pacalo-feature" role="button" tabindex="0" aria-label="Открыть ещё восемь поколений семьи Пацало от 1765 года" onclick="document.getElementById('pacalo-modal').classList.add('open')">
+              <div class="relation">Отдельная большая ветвь</div>
+              <div class="pacalo-number">8 <span>поколений</span></div>
+              <div class="name">Семья Пацало</div>
+              <div class="place">От Осипа Пацалука (1765) до Надежды Маркеловны</div>
+              <div class="pacalo-cta">Открыть ветвь →</div>
             </div>
           </div>
         </div>
@@ -794,8 +862,9 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <div class="v-line"></div>
       </div>
 
-      <!-- Уровень II: мать + дядя -->
-      <div class="level">
+      <!-- Уровень II: мать + дядя — выровнены с отцовской линией -->
+      <div class="v-line grow ancestor-gap"></div>
+      <div class="level parents-level">
         <div class="person maternal">
           <div class="relation">Мать</div>
           <div class="name">Елена Васильевна Поздняк</div>
@@ -811,7 +880,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         </div>
       </div>
 
-      <div class="v-line grow"></div>
+      <div class="v-line parent-drop"></div>
     </div>
 
   </div><!-- /megatree -->
@@ -992,10 +1061,10 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <p>По семейной биографии училась в Иркутском государственном университете ориентировочно в 1939–1944 годах (предположительно биологический факультет), затем преподавала биологию в Приморском крае. Архив университета пока не подтвердил наличие личного дела — запросил дополнительные исходные сведения.</p>
         <p>Первый муж — моряк (имя и фамилия неизвестны). Второй муж — Владислав Поздняк, познакомились и поженились в Риге около 1955–57 гг.</p>
 <section class="archive-timeline">
-  <h3>Сведения из автобиографии сына</h3>
-  <p>Леонид называет мать Любовью Фёдоровной Поздняк, 1922 года рождения. Запись о девичьей фамилии исправлена: в ней читается «Красильщикова», рядом указано иное, пока не разобранное уверенно написание. Основной вариант девичьей фамилии в древе — «Красильщикова» по семейной автобиографии. «Красильникова» остаётся только вариантом для поиска в старых документах.</p>
+  <h3>Сведения из собственной автобиографии Любови Фёдоровны</h3>
+  <p>В собственной автобиографии Любовь Фёдоровна указывает 1922 год рождения и свою прежнюю фамилию — «Красильщикова». В рукописи есть исправления, поэтому альтернативные формы фамилии сохранены только для архивного поиска. Основной вариант девичьей фамилии в древе — «Красильщикова» по семейной автобиографии. «Красильникова» остаётся только вариантом для поиска в старых документах.</p>
   <p>В автобиографии указано <strong>село Ильинка Тамбовского района Амурской области</strong>. Это основное место происхождения в семейном древе. Тамбовка встречалась в прежней переписке с архивами и сохранена лишь в истории исследований.</p>
-  <p class="archive-disclaimer">Источник: «Автобиография Поздняк Леонида Владиславовича», лист 8 PDF «Документы Поздняк». Названия и фамилии перенесены с учётом помарок рукописи.</p>
+  <p class="archive-disclaimer">Источник: собственноручная автобиография Любови Фёдоровны в семейном комплекте «Документы Поздняк». Её сведения имеют приоритет перед прежними поисковыми предположениями.</p>
 </section>
         <div class="modal-fact"><strong>Что ищем:</strong> личное дело Любови Фёдоровны в архиве Иркутского университета. 5 июня архивариус спросил факультет, а 14 июля — фамилию на момент поступления и выпуска (или отчисления), период обучения и факультет. Пока эти данные не подтверждены, поиск не завершён. <a href="https://isu.ru/" target="_blank" rel="noopener noreferrer">Иркутский государственный университет ↗</a></div>
 
@@ -1311,7 +1380,7 @@ branches.forEach((branch,index)=>{
    const btn=document.createElement('button');btn.type='button';btn.className='mobile-generation-person';
    const inner=document.createElement('span');const rel=document.createElement('small');rel.textContent=person.querySelector('.relation')?.textContent.trim()||'Родственник';
    const name=document.createElement('strong');name.textContent=person.querySelector('.name')?.textContent.trim()||'Имя неизвестно';
-   const info=document.createElement('em');info.textContent=person.querySelector('.dates')?.textContent.trim()||person.querySelector('.place')?.textContent.trim()||'Сведения об этом человеке';
+   const info=document.createElement('em');info.textContent=person.classList.contains('pacalo-feature')?'Нажмите: откроется ветвь из восьми поколений':person.querySelector('.dates')?.textContent.trim()||person.querySelector('.place')?.textContent.trim()||'Сведения об этом человеке'; if(person.classList.contains('pacalo-feature'))btn.classList.add('pacalo-mobile-feature');
    inner.append(rel,name,info);btn.append(inner);btn.addEventListener('click',()=>person.click());list.append(btn);
   });
   details.append(summary,list);mobilePanel.append(details);
