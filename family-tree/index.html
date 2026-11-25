@@ -722,19 +722,23 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
             <div class="person paternal" id="arkadiy-poznak">
               <div class="relation">Прадед</div>
               <div class="name">Аркадий Константинович Поздняк</div>
-              <div class="name-extra">в метрике — Позняк; в указателе переписи — Arkadijs Pozņaks</div>
-              <div class="dates">20.10.1895 (08.10 по старому стилю)</div>
-              <div class="place">д. Ромашенки, Посинская волость, Люцинский уезд, Витебская губерния</div>
-              <div class="note">Сын Константина и Катаржины Фадеевны Позняков. Крещён 24 октября 1895 года в Посинском римско-католическом костёле. В переписи 1935 года указан на одном листе с сыновьями Брониславом и Владиславом. <a href="/family-tree/docs/#arkadiy-poznak-1895">Метрика и перепись ↗</a></div>
+              <div class="dates">20.10.1895</div>
+              <template class="person-details">
+                <div class="modal-block-pat">Родился 20 октября 1895 года (8 октября по старому стилю) в деревне Ромашенки, Посинская волость, Люцинский уезд Витебской губернии.</div>
+                <p>Сын Константина и Катаржины Фадеевны Позняков. Крещён 24 октября 1895 года в Посинском римско-католическом костёле.</p>
+                <p>В метрике фамилия записана как Позняк, в указателе переписи — Arkadijs Pozņaks. В переписи 1935 года он записан на одном листе с сыновьями Брониславом и Владиславом. <a href="/family-tree/docs/#arkadiy-poznak-1895">Метрика и перепись ↗</a></p>
+              </template>
             </div>
             <div class="person paternal" id="juzefa-gajevska">
               <div class="relation">Прабабушка</div>
               <div class="name">Юзефа Поздняк</div>
               <div class="dates">1893 · по семейным сведениям</div>
-              <div class="name-extra">в <a href="/family-tree/docs/#ludza-2026">ответе ЗАГСа о записях двух сыновей</a> — Gajevska (Гаевская); в семейных материалах — Жукова, отчество Юлиановна</div>
-              <div class="note"><a href="/family-tree/docs/#juzefa-gadzenok">По семейным сведениям</a>, её родители — Едуард и Анна Гадзенок, а брак с Аркадием был вторым. Метрическая запись о рождении пока не сверена.</div>
-              <div class="place">Связь с деревней Рутки Брижской волости проверяется.</div>
-              <div class="note">В автобиографии Леонида Антон Юлианович Жуков назван братом в рассказе о Владиславе. Возможно, Антон был сыном Юзефы от первого брака, и тогда они были братьями по матери. Имя матери Антона пока не подтверждено документами. В <a href="/family-tree/docs/#zilupe-1942">записи Зилупского костёла</a> есть Антон Жуков из Руток, родившийся 22 июля 1909 года. Связь двух упоминаний ещё проверяется. Жуков (Žukovs — латышская форма записи фамилии) встречается в окрестностях Лудзы, особенно в деревнях Бриги (Brigos) и Рутки (Rutki). <a href="https://www.uzvardi.lv/region/latgale" target="_blank" rel="noopener noreferrer">Справочник фамилий ↗</a></div>
+              <template class="person-details">
+                <div class="modal-block-pat"><a href="/family-tree/docs/#juzefa-gadzenok">По семейным сведениям</a>, родители Юзефы — Едуард и Анна Гадзенок, а брак с Аркадием был вторым. Метрическая запись о её рождении пока не сверена.</div>
+                <p>В <a href="/family-tree/docs/#ludza-2026">ответе ЗАГСа о записях двух сыновей</a> указана фамилия Gajevska (Гаевская). В семейных материалах встречается фамилия Жукова. Отчество по метрическим записям пока не установлено. Связь с деревней Рутки Брижской волости проверяется.</p>
+                <p>В автобиографии Леонида Антон Юлианович Жуков назван братом в рассказе о Владиславе. Возможно, Антон был сыном Юзефы от первого брака, и тогда они были братьями по матери. Имя матери Антона пока не подтверждено документами.</p>
+                <p>В <a href="/family-tree/docs/#zilupe-1942">записи Зилупского костёла</a> есть Антон Жуков из Руток, родившийся 22 июля 1909 года. Связь двух упоминаний ещё проверяется. Фамилия Жуков (Žukovs) встречается в окрестностях Лудзы, в том числе в Бригах и Рутках. <a href="https://www.uzvardi.lv/region/latgale" target="_blank" rel="noopener noreferrer">Справочник фамилий ↗</a></p>
+              </template>
             </div>
           </div>
           <div class="v-line"></div>
@@ -1378,9 +1382,14 @@ document.querySelectorAll('.person').forEach(person=>{
   const safeTitle=document.createElement('h2');safeTitle.className='modal-h';safeTitle.textContent=title;
   const safeSub=document.createElement('p');safeSub.className='modal-sub';safeSub.textContent=[relation,dates,extra].filter(Boolean).join(' · ');
   const detail=document.createElement('div');detail.className='modal-body';
-  const block=document.createElement('div');block.className=person.classList.contains('maternal')?'modal-block-mat':'modal-block-pat';
-  const p=document.createElement('p');p.textContent=place||'Место проживания или рождения пока не установлено';block.append(p);detail.append(block);
-  if(note){const n=document.createElement('p');n.innerHTML=note;detail.append(n);}
+  const detailsTemplate=person.querySelector('template.person-details');
+  if(detailsTemplate){
+    detail.append(detailsTemplate.content.cloneNode(true));
+  }else{
+    const block=document.createElement('div');block.className=person.classList.contains('maternal')?'modal-block-mat':'modal-block-pat';
+    const p=document.createElement('p');p.textContent=place||'Место проживания или рождения пока не установлено';block.append(p);detail.append(block);
+    if(note){const n=document.createElement('p');n.innerHTML=note;detail.append(n);}
+  }
   const caveat=document.createElement('p');caveat.className='archive-disclaimer';
   caveat.textContent='В карточке представлены сведения из семейного древа. Дополнительные документальные подтверждения могут требовать проверки.';
   detail.append(caveat);
