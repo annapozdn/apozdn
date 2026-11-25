@@ -557,6 +557,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   .mobile-generation-person strong{font:.91rem Georgia,serif;color:#392f24}
   .mobile-generation-person em{font:normal .73rem system-ui,sans-serif;color:#796f60}
   .mobile-generation-person:after{content:"↗";color:#886e49;font:700 1rem system-ui,sans-serif}
+  .mobile-private-relative{cursor:default}.mobile-private-relative:after{content:none}
   .docs-teaser{padding:20px 17px;margin:29px auto}
 }
 @media(prefers-reduced-motion:reduce){.tree-scroller{scroll-behavior:auto}}
@@ -568,9 +569,18 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   display:block!important;
   flex:1 1 auto!important;
   min-height:30px!important;
-  width:2px!important;
+  position:relative;
+  width:100%!important;
   margin:0 auto!important;
+  background:none;
 }
+.tree-board .ancestor-gap::before,.tree-board .ancestor-gap::after{content:"";position:absolute}
+.tree-board .ancestor-gap::before{top:0;height:50%;border-bottom:2px solid var(--line)}
+.tree-board .ancestor-gap::after{top:50%;bottom:0;width:2px;background:var(--line)}
+.tree-board #family-pat > .ancestor-gap::before{left:calc(50% - 1px);right:94px;border-left:2px solid var(--line)}
+.tree-board #family-pat > .ancestor-gap::after{right:94px}
+.tree-board #family-mat > .ancestor-gap::before{left:94px;right:calc(50% - 1px);border-right:2px solid var(--line)}
+.tree-board #family-mat > .ancestor-gap::after{left:94px}
 .tree-board .half > .parents-level{
   flex:0 0 auto!important;
   width:100%!important;
@@ -591,14 +601,16 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 }
 .tree-board .half > .parent-drop{
   display:block!important;
+  position:relative;
   width:2px!important;
   height:30px!important;
   flex:0 0 30px!important;
   min-height:30px!important;
 }
+.tree-board .half > .parent-drop::after{content:"";position:absolute;top:100%;left:0;width:100%;height:63px;background:inherit}
 .tree-board #family-pat > .parent-drop{align-self:flex-end!important;margin-right:94px!important}
 .tree-board #family-mat > .parent-drop{align-self:flex-start!important;margin-left:94px!important}
-.tree-board > .joiner > .joiner-bar{width:310px!important;max-width:none!important}
+.tree-board > .joiner > .joiner-bar{width:312px!important;max-width:none!important}
 .tree-board > .joiner > .joiner-down{height:28px!important}
 /* Highlight the eight-generation expandable family line */
 .tree-board .person.pacalo-feature{
@@ -884,6 +896,9 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <!-- Уровень II: мать + дядя — выровнены с отцовской линией -->
       <div class="v-line grow ancestor-gap"></div>
       <div class="level parents-level">
+        <div class="person maternal private-relative" id="private-mother">
+          <div class="name">Мать</div>
+        </div>
         <div class="person maternal">
           <div class="relation">Дядя (брат матери)</div>
           <div class="name">Олег Васильевич Ковалёв</div>
@@ -1300,7 +1315,7 @@ updateBranches();
 const modalHost=document.querySelector('body > .container');
 let created=0;
 document.querySelectorAll('.person').forEach(person=>{
-  if(person.classList.contains('clickable'))return;
+  if(person.classList.contains('clickable')||person.classList.contains('private-relative'))return;
   const name=person.querySelector('.name');
   if(!name||person.closest('#auto-person-modal'))return;
   created+=1;
@@ -1376,6 +1391,10 @@ branches.forEach((branch,index)=>{
   const summary=document.createElement('summary');summary.textContent=generationLabels[levelIndex]||'Дальние предки';
   const list=document.createElement('div');list.className='mobile-generation-list';
   persons.forEach(person=>{
+   if(person.classList.contains('private-relative')){
+    const label=document.createElement('span');label.textContent=person.querySelector('.name').textContent;
+    label.className='mobile-generation-person mobile-private-relative';list.append(label);return;
+   }
    const btn=document.createElement('button');btn.type='button';btn.className='mobile-generation-person';
    const inner=document.createElement('span');const rel=document.createElement('small');rel.textContent=person.querySelector('.relation')?.textContent.trim()||'Родственник';
    const name=document.createElement('strong');name.textContent=person.querySelector('.name')?.textContent.trim()||'Имя неизвестно';
