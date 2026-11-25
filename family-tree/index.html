@@ -514,11 +514,6 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .tree-board .ancestor-parent-row > .subfam{flex-basis:calc(2 * var(--card-width) + var(--couple-gap))}
 .ancestor-parent-row .subfam-couple{flex:1 1 auto}
 .ancestor-parent-row .subfam-couple::after{content:"";position:absolute;top:50%;bottom:0;left:50%;width:2px;background:var(--line);transform:translateX(-50%)}
-.elder-parents{margin-bottom:32px}
-.elder-parents .subfam-couple::after{content:"";position:absolute;top:50%;left:calc(50% - 1px);height:calc(50% + 16px);width:var(--offset);border-left:2px solid var(--line);border-bottom:2px solid var(--line);box-sizing:border-box}
-.elder-parents .subfam{position:relative;--offset:calc((var(--card-width) + var(--couple-gap)) / 2)}
-.elder-parents .subfam:first-child{--offset:calc(1.5 * var(--card-width) + .5 * var(--couple-gap) + var(--level-gap))}
-.elder-parents .subfam::after{content:"";position:absolute;top:calc(100% + 14px);left:calc(50% + var(--offset) - 1px);width:2px;height:18px;background:var(--line)}
 .arkadiy-parents{--child-line-left:calc(var(--card-width) / 2 - 1px)}
 .juzefa-parents{--child-line-left:calc(0px - var(--card-width) / 2 - var(--level-gap) - 1px)}
 .parent-connector{position:relative;align-self:stretch;height:34px}
@@ -654,6 +649,16 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .mobile-feature-pacalo small{display:block;font:.72rem system-ui,sans-serif;line-height:1.4;color:#fff1e5}
 .mobile-feature-pacalo:focus-visible{outline:3px solid #b7905e;outline-offset:3px}
 @media(min-width:761px){.mobile-feature-pacalo{display:none}}
+
+@media(min-width:761px){
+ .tree-board{width:3540px;min-width:3540px}
+ #family-pat{position:relative}
+ .tree-board #family-pat>.pat-generation{display:grid!important;grid-template-columns:repeat(16,1fr);gap:0!important;align-items:stretch!important;width:100%;margin:0 0 42px!important}
+ #family-pat .pat-generation .subfam,#family-pat .pat-generation .subfam-couple{display:contents!important}
+ #family-pat .pat-generation .person{grid-row:1;grid-column:var(--column)/span 2;justify-self:center;z-index:1}
+ #family-pat .pat-generation .subfam::after,#family-pat .pat-generation .subfam-couple::before,#family-pat .pat-generation .subfam-couple::after,#family-pat .pat-generation .subfam>.place,#family-pat .pat-generation .parent-connector,#family-pat .pat-generation .v-line,#family-pat>.joiner,#family-pat>.ancestor-gap::before,#family-pat>.ancestor-gap::after{display:none!important}
+}
+.family-connections{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;fill:none;stroke:var(--line);stroke-width:2}
 </style>
 </head>
 <body>
@@ -683,21 +688,21 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="half paternal" id="family-pat">
       <div class="half-title">отцовская линия</div>
 
-<div class="level elder-parents">
+<div class="level pat-generation elder-parents">
 <div class="subfam"><div class="place">Родители Эдварда Гадзенка</div><div class="subfam-couple">
-<div class="person paternal" id="antoniy-gadzenok"><div class="relation">Отец Эдварда Гадзенка</div><div class="name">Антоний Гадзенок</div><template class="person-details"><p>Отец Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>.</p></template></div>
-<div class="person paternal" id="anna-mother-edvard"><div class="relation">Мать Эдварда Гадзенка</div><div class="name">Анна</div><template class="person-details"><p>Мать Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. Девичья фамилия неизвестна.</p></template></div>
+<div style="--column:5" class="person paternal" id="antoniy-gadzenok"><div class="relation">Отец Эдварда Гадзенка</div><div class="name">Антоний Гадзенок</div><template class="person-details"><p>Отец Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>.</p></template></div>
+<div style="--column:7" class="person paternal" id="anna-mother-edvard"><div class="relation">Мать Эдварда Гадзенка</div><div class="name">Анна</div><template class="person-details"><p>Мать Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. Девичья фамилия неизвестна.</p></template></div>
 </div></div>
 <div class="subfam"><div class="place">Родители Анны Киселенок</div><div class="subfam-couple">
-<div class="person paternal" id="kundziy-kiselenok"><div class="relation">Отец Анны Киселенок</div><div class="name">Кундзий Киселенок</div><template class="person-details"><p>Отец Анны Киселенок по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. В предбрачном опросе имя читается как Гундзий.</p></template></div>
-<div class="person paternal" id="viktoria-kiselenok"><div class="relation">Мать Анны Киселенок</div><div class="name">Виктория</div><template class="person-details"><p>Мать Анны Киселенок по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. Девичья фамилия неизвестна.</p></template></div>
+<div style="--column:9" class="person paternal" id="kundziy-kiselenok"><div class="relation">Отец Анны Киселенок</div><div class="name">Кундзий Киселенок</div><template class="person-details"><p>Отец Анны Киселенок по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. В предбрачном опросе имя читается как Гундзий.</p></template></div>
+<div style="--column:11" class="person paternal" id="viktoria-kiselenok"><div class="relation">Мать Анны Киселенок</div><div class="name">Виктория</div><template class="person-details"><p>Мать Анны Киселенок по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. Девичья фамилия неизвестна.</p></template></div>
 </div></div>
 </div>
       <!-- Уровень V: прапрадеды -->
-      <div class="level ancestor-parent-row" style="margin-bottom: 0;">
+      <div class="level pat-generation ancestor-parent-row" style="margin-bottom: 0;">
         <div class="subfam arkadiy-parents" aria-label="Родители Аркадия Поздняка">
           <div class="subfam-couple">
-            <div class="person paternal" id="konstantin-poznak">
+            <div style="--column:1" class="person paternal" id="konstantin-poznak">
               <div class="relation">Прапрадед</div>
               <div class="name">Константин Позняк</div>
               <div class="place">Ромашенки, Посинская волость</div>
@@ -706,7 +711,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
                 <p>Отец Аркадия. Имя подтверждено <a href="/family-tree/docs/#arkadiy-poznak-1895">записью о рождении сына</a>. <a href="/family-tree/docs/#new-konstantin-poznak">Константин Степанович Позняк из Ромашенок</a> — возможное совпадение.</p>
               </template>
             </div>
-            <div class="person paternal" id="katarzhina-poznak">
+            <div style="--column:3" class="person paternal" id="katarzhina-poznak">
               <div class="relation">Прапрабабушка</div>
               <div class="name">Катаржина Фадеевна Позняк</div>
               <div class="note">В списке 1920 года — Екатерина Познякова.</div>
@@ -721,7 +726,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         </div>
         <div class="subfam juzefa-parents" aria-label="Родители Юзефы Поздняк">
           <div class="subfam-couple">
-            <div class="person paternal" id="eduard-gadzenok">
+            <div style="--column:6" class="person paternal" id="eduard-gadzenok">
               <div class="relation">Прапрадед</div>
               <div class="name">Эдвард Гадзенок</div>
               <div class="dates">род. около 1867 · по возрасту при венчании</div>
@@ -733,7 +738,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
                 <p><a href="/family-tree/docs/#gadzenok-1887">Запись о венчании</a> · <a href="/family-tree/docs/#gadzenok-children">Метрики детей</a></p>
               </template>
             </div>
-            <div class="person paternal" id="anna-gadzenok">
+            <div style="--column:10" class="person paternal" id="anna-gadzenok">
               <div class="relation">Прапрабабушка</div>
               <div class="name">Анна Киселенок</div>
               <div class="dates">род. около 1865 · по возрасту при венчании</div>
@@ -751,10 +756,10 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       </div>
 
       <!-- Уровень IV: прадеды — два столбика рядом -->
-      <div class="level">
+      <div class="level pat-generation">
         <div class="subfam">
           <div class="subfam-couple">
-            <div class="person paternal" id="arkadiy-poznak">
+            <div style="--column:2" class="person paternal" id="arkadiy-poznak">
               <div class="relation">Прадед</div>
               <div class="name">Аркадий Константинович Поздняк</div>
               <div class="dates">20.10.1895</div>
@@ -765,7 +770,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
                 <p>В метрике фамилия записана как Позняк, в указателе переписи — Arkadijs Pozņaks. В переписи 1935 года он записан на одном листе с сыновьями Брониславом и Владиславом. <a href="/family-tree/docs/#arkadiy-poznak-1895">Метрика и перепись ↗</a></p>
               </template>
             </div>
-            <div class="person paternal" id="juzefa-gajevska">
+            <div style="--column:8" class="person paternal" id="juzefa-gajevska">
               <div class="relation">Прабабушка</div>
               <div class="name">Юзефа Эдуардовна Поздняк</div>
               <div class="dates">30.03.1893 — 16.01.1969</div>
@@ -786,7 +791,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         </div>
         <div class="subfam">
           <div class="subfam-couple no-link">
-            <div class="person paternal">
+            <div style="--column:13" class="person paternal">
               <div class="relation">Прадед</div>
               <div class="name">Фёдор Иванович Красильников</div>
               <div class="dates">ум. 1951</div>
@@ -796,7 +801,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
                 <p>Отец Любови Фёдоровны. Отчество подтверждено её свидетельством о рождении. Родители Фёдора пока не установлены.</p>
               </template>
             </div>
-            <div class="person paternal">
+            <div style="--column:15" class="person paternal">
               <div class="relation">Прабабушка</div>
               <div class="name">Мария Алексеевна Красильникова</div>
               <div class="note">В 1953 году жила на станции Угольная.</div>
@@ -817,15 +822,15 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       </div>
 
       <!-- Уровень III: дед и бабушка -->
-      <div class="subfam">
+      <div class="subfam pat-generation">
         <div class="subfam-couple wide-link">
-          <div class="person paternal clickable" onclick="document.getElementById('vladislav-modal').classList.add('open')">
+          <div style="--column:5" class="person paternal clickable" onclick="document.getElementById('vladislav-modal').classList.add('open')">
             <div class="relation">Дед</div>
             <div class="name">Владислав Аркадьевич Поздняк</div>
             <div class="dates">14.05.1925 — 23.10.1964</div>
             <div class="note">В 1942 году угнан на принудительные работы в Германию.</div>
           </div>
-          <div class="person paternal clickable" onclick="document.getElementById('lubov-modal').classList.add('open')">
+          <div style="--column:14" class="person paternal clickable" onclick="document.getElementById('lubov-modal').classList.add('open')">
             <div class="relation">Бабушка</div>
             <div class="name">Любовь Фёдоровна Поздняк</div>
             <div class="dates">24.09.1922 — 1992</div>
@@ -1478,6 +1483,42 @@ const scrollRoot=document.getElementById('tree-scroller');
 const scrollStep=()=>Math.max(400,Math.min(820,scrollRoot?.clientWidth*.78||550));
 // On desktop start at the central person, with both branches visible to either side.
 let initialTreeCentered=false;
+const paternalWing=document.getElementById('family-pat');
+const generationCards=[...paternalWing.querySelectorAll(':scope > .pat-generation,:scope > .parents-level')].map(row=>[...row.querySelectorAll('.person')]);
+const svgNamespace='http://www.w3.org/2000/svg';
+const connections=document.createElementNS(svgNamespace,'svg');
+connections.setAttribute('class','family-connections');
+connections.setAttribute('aria-hidden','true');
+paternalWing.prepend(connections);
+function drawParentage(){
+ connections.replaceChildren();
+ const origin=paternalWing.getBoundingClientRect();
+ if(!origin.width)return;
+ function link(path){
+  const line=document.createElementNS(svgNamespace,'path');
+  line.setAttribute('d',path);
+  connections.append(line);
+ }
+ function family(row,index,children){
+  const [first,second]=generationCards[row].slice(index,index+2).map(card=>card.getBoundingClientRect());
+  const left=first.right-origin.left,right=second.left-origin.left;
+  const x=(left+right)/2,y=(first.top+first.bottom)/2-origin.top;
+  link(`M ${left} ${y} H ${right}`);
+  const kids=children.map(i=>generationCards[row+1][i].getBoundingClientRect());
+  const top=Math.min(...kids.map(k=>k.top))-origin.top;
+  const joint=(Math.max(first.bottom,second.bottom)-origin.top+top)/2;
+  link(`M ${x} ${y} V ${joint}`);
+  for(const kid of kids)link(`M ${x} ${joint} H ${(kid.left+kid.right)/2-origin.left} V ${kid.top-origin.top}`);
+ }
+ family(0,0,[2]);family(0,2,[3]);
+ family(1,0,[0]);family(1,2,[1]);
+ family(2,0,[0]);family(2,2,[1]);
+ family(3,0,[0,1]);
+}
+const familyObserver=new ResizeObserver(drawParentage);
+familyObserver.observe(paternalWing);
+generationCards.flat().forEach(card=>familyObserver.observe(card));
+drawParentage();
 function centerTreeOnFirstOpen(){
  if(initialTreeCentered || !scrollRoot || window.matchMedia('(max-width:760px)').matches)return;
  if(scrollRoot.scrollWidth>scrollRoot.clientWidth){
@@ -1505,6 +1546,8 @@ branches.forEach((branch,index)=>{
    const inner=document.createElement('span');const rel=document.createElement('small');rel.textContent=person.querySelector('.relation')?.textContent.trim()||'Родственник';
    const name=document.createElement('strong');name.textContent=person.querySelector('.name')?.textContent.trim()||'Имя неизвестно';
    const info=document.createElement('em');info.textContent=person.classList.contains('pacalo-feature')?'Нажмите: откроется ветвь из восьми поколений':person.querySelector('.dates')?.textContent.trim()||person.querySelector('.place')?.textContent.trim()||'Сведения об этом человеке'; if(person.classList.contains('pacalo-feature'))btn.classList.add('pacalo-mobile-feature');
+   if(index===0 && levelIndex===2)rel.textContent=persons.indexOf(person)<2?'Родители Владислава Поздняка':'Родители Любови Красильниковой';
+   if(index===0 && levelIndex===3)rel.textContent=persons.indexOf(person)<2?'Родители Аркадия Поздняка':'Родители Юзефы Гадзионок';
    inner.append(rel,name,info);btn.append(inner);btn.addEventListener('click',()=>person.click());list.append(btn);
   });
   details.append(summary,list);mobilePanel.append(details);
