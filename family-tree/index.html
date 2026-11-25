@@ -503,19 +503,23 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .tree-scroller{width:100%;overflow-x:auto;overflow-y:visible;background:#f7f2e8;border:1px solid #d9ccb6;border-radius:17px;scrollbar-color:#ad9676 #e9dec8;scrollbar-width:auto;scroll-behavior:smooth;overscroll-behavior-x:contain}
 .tree-scroller::-webkit-scrollbar{height:15px}.tree-scroller::-webkit-scrollbar-track{background:#e9dec8;border-radius:15px}.tree-scroller::-webkit-scrollbar-thumb{background:#b5a07d;border:3px solid #e9dec8;border-radius:12px}
 .tree-scroller:focus-visible,.tree-toolbar button:focus-visible{outline:3px solid #a98a57;outline-offset:2px}
-.tree-board{width:2180px;min-width:2180px;padding:28px 30px 36px}
+.tree-board{width:2180px;min-width:2180px;padding:28px 30px 36px;--card-width:190px;--couple-gap:12px;--level-gap:30px}
 .tree-board .megatree{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:64px!important;max-width:none!important;width:100%!important;align-items:stretch!important;margin:0 0 28px!important}
 .tree-board .half{width:100%!important;min-width:0!important;max-width:none!important;padding:27px 28px 36px!important}
-.tree-board .level{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:30px!important;justify-content:center!important;align-items:flex-start!important}
+.tree-board .level{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:var(--level-gap)!important;justify-content:center!important;align-items:flex-start!important}
 .tree-board .subfam{min-width:0!important;flex:0 0 auto}
-.tree-board .subfam-couple{display:flex!important;flex-direction:row!important;gap:12px!important;align-items:stretch}
-.tree-board .person{width:190px!important;min-width:190px!important;max-width:none!important;flex:0 0 190px!important;padding:14px 13px;overflow-wrap:break-word;word-break:normal}
-.tree-board .arkadiy-parent-row > .subfam{flex-basis:392px}
-.arkadiy-parents > .subfam-couple::after{content:"";position:absolute;top:50%;bottom:0;left:50%;width:2px;background:var(--line);transform:translateX(-50%)}
-.arkadiy-connector{position:relative;align-self:stretch;height:34px}
-.arkadiy-connector::before,.arkadiy-connector::after{content:"";position:absolute;left:94px}
-.arkadiy-connector::before{top:0;right:calc(50% - 1px);height:50%;border-right:2px solid var(--line);border-bottom:2px solid var(--line)}
-.arkadiy-connector::after{top:50%;bottom:0;width:2px;background:var(--line)}
+.tree-board .subfam-couple{display:flex!important;flex-direction:row!important;gap:var(--couple-gap)!important;align-items:stretch}
+.tree-board .person{width:var(--card-width)!important;min-width:var(--card-width)!important;max-width:none!important;flex:0 0 var(--card-width)!important;padding:14px 13px;overflow-wrap:break-word;word-break:normal}
+.tree-board .ancestor-parent-row{align-items:stretch!important}
+.tree-board .ancestor-parent-row > .subfam{flex-basis:calc(2 * var(--card-width) + var(--couple-gap))}
+.ancestor-parent-row .subfam-couple{flex:1 1 auto}
+.ancestor-parent-row .subfam-couple::after{content:"";position:absolute;top:50%;bottom:0;left:50%;width:2px;background:var(--line);transform:translateX(-50%)}
+.arkadiy-parents{--child-line-left:calc(var(--card-width) / 2 - 1px)}
+.juzefa-parents{--child-line-left:calc(0px - var(--card-width) / 2 - var(--level-gap) - 1px)}
+.parent-connector{position:relative;align-self:stretch;height:34px}
+.parent-connector::before,.parent-connector::after{content:"";position:absolute;left:var(--child-line-left)}
+.parent-connector::before{top:0;right:calc(50% - 1px);height:50%;border-right:2px solid var(--line);border-bottom:2px solid var(--line)}
+.parent-connector::after{top:50%;bottom:0;width:2px;background:var(--line)}
 .tree-board .person.center{width:250px!important;min-width:250px!important;flex:0 0 auto!important}
 .tree-board .level .name{font-size:.92rem}
 .tree-board .half-title{font:700 .92rem system-ui,sans-serif;letter-spacing:.12em}
@@ -587,7 +591,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   margin-top:0!important;
   align-items:stretch!important;
 }
-.tree-board .half > .parents-level > .person{min-height:226px!important;height:226px!important}
+.tree-board .half > .parents-level > .person{min-height:226px!important}
 .tree-board #family-pat > .parents-level{
   flex-direction:row-reverse!important;
   justify-content:flex-start!important;
@@ -675,7 +679,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <div class="half-title">отцовская линия</div>
 
       <!-- Уровень V: прапрадеды -->
-      <div class="level arkadiy-parent-row" style="margin-bottom: 0;">
+      <div class="level ancestor-parent-row" style="margin-bottom: 0;">
         <div class="subfam arkadiy-parents" aria-label="Родители Аркадия Поздняка">
           <div class="subfam-couple">
             <div class="person paternal" id="konstantin-poznak">
@@ -692,16 +696,22 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
               <div class="note">Мать Аркадия. Отчество указано в <a href="/family-tree/docs/#poznak-romashenki-1920">списке жителей Ромашенок за 1920 год</a>. Девичья фамилия неизвестна.</div>
             </div>
           </div>
-          <div class="arkadiy-connector" aria-hidden="true"></div>
+          <div class="parent-connector" aria-hidden="true"></div>
         </div>
-        <div class="subfam">
-          <div class="subfam-couple no-link">
-            <div class="person paternal">
-              <div class="relation">Дальние предки</div>
-              <div class="name">Семья Красильниковых</div>
-              <div class="note">родители Фёдора и Марии пока не установлены</div>
+        <div class="subfam juzefa-parents" aria-label="Родители Юзефы Поздняк">
+          <div class="subfam-couple">
+            <div class="person paternal" id="eduard-gadzenok">
+              <div class="relation">Прапрадед</div>
+              <div class="name">Едуард Гадзенок</div>
+              <div class="note">Отец Юзефы <a href="/family-tree/docs/#juzefa-gadzenok">по семейным сведениям</a>. Метрическая запись пока не сверена.</div>
+            </div>
+            <div class="person paternal" id="anna-gadzenok">
+              <div class="relation">Прапрабабушка</div>
+              <div class="name">Анна Гадзенок</div>
+              <div class="note">Мать Юзефы <a href="/family-tree/docs/#juzefa-gadzenok">по семейным сведениям</a>. Девичья фамилия пока неизвестна.</div>
             </div>
           </div>
+          <div class="parent-connector" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -736,13 +746,13 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
               <div class="name">Фёдор Иванович Красильников</div>
               <div class="dates">ум. 1951</div>
               <div class="place">семья: с. Ильиновка, Тамбовский район Амурской области (по семейным сведениям; сейчас — Октябрьский муниципальный округ)</div>
-              <div class="note">отец Любови Фёдоровны. Отчество подтверждено её свидетельством о рождении</div>
+              <div class="note">Отец Любови Фёдоровны. Отчество подтверждено её свидетельством о рождении. Родители Фёдора пока не установлены.</div>
             </div>
             <div class="person paternal">
               <div class="relation">Прабабушка</div>
               <div class="name">Мария Алексеевна Красильникова</div>
               <div class="place">в 1953 году жила на ст. Угольная, Приморский край</div>
-              <div class="note">мать Любови; имя и отчество — из свидетельства о рождении дочери</div>
+              <div class="note">Мать Любови. Имя и отчество указаны в свидетельстве о рождении дочери. Родители Марии пока не установлены.</div>
             </div>
           </div>
           <div class="v-line"></div>
