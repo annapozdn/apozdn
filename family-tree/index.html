@@ -514,6 +514,11 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .tree-board .ancestor-parent-row > .subfam{flex-basis:calc(2 * var(--card-width) + var(--couple-gap))}
 .ancestor-parent-row .subfam-couple{flex:1 1 auto}
 .ancestor-parent-row .subfam-couple::after{content:"";position:absolute;top:50%;bottom:0;left:50%;width:2px;background:var(--line);transform:translateX(-50%)}
+.elder-parents{margin-bottom:32px}
+.elder-parents .subfam-couple::after{content:"";position:absolute;top:50%;left:calc(50% - 1px);height:calc(50% + 16px);width:var(--offset);border-left:2px solid var(--line);border-bottom:2px solid var(--line);box-sizing:border-box}
+.elder-parents .subfam{position:relative;--offset:calc((var(--card-width) + var(--couple-gap)) / 2)}
+.elder-parents .subfam:first-child{--offset:calc(1.5 * var(--card-width) + .5 * var(--couple-gap) + var(--level-gap))}
+.elder-parents .subfam::after{content:"";position:absolute;top:calc(100% + 14px);left:calc(50% + var(--offset) - 1px);width:2px;height:18px;background:var(--line)}
 .arkadiy-parents{--child-line-left:calc(var(--card-width) / 2 - 1px)}
 .juzefa-parents{--child-line-left:calc(0px - var(--card-width) / 2 - var(--level-gap) - 1px)}
 .parent-connector{position:relative;align-self:stretch;height:34px}
@@ -678,7 +683,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="half paternal" id="family-pat">
       <div class="half-title">отцовская линия</div>
 
-<div class="level" style="margin-bottom:24px">
+<div class="level elder-parents">
 <div class="subfam"><div class="place">Родители Эдварда Гадзенка</div><div class="subfam-couple">
 <div class="person paternal" id="antoniy-gadzenok"><div class="relation">Отец Эдварда Гадзенка</div><div class="name">Антоний Гадзенок</div><template class="person-details"><p>Отец Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>.</p></template></div>
 <div class="person paternal" id="anna-mother-edvard"><div class="relation">Мать Эдварда Гадзенка</div><div class="name">Анна</div><template class="person-details"><p>Мать Эдварда Гадзенка по <a href="/family-tree/docs/#gadzenok-1887">записи о венчании 1887 года</a>. Девичья фамилия неизвестна.</p></template></div>
