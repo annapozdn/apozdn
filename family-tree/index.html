@@ -557,7 +557,6 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   .mobile-generation-person strong{font:.91rem Georgia,serif;color:#392f24}
   .mobile-generation-person em{font:normal .73rem system-ui,sans-serif;color:#796f60}
   .mobile-generation-person:after{content:"↗";color:#886e49;font:700 1rem system-ui,sans-serif}
-  .mobile-private-relative{cursor:default}.mobile-private-relative:after{content:none}
   .docs-teaser{padding:20px 17px;margin:29px auto}
 }
 @media(prefers-reduced-motion:reduce){.tree-scroller{scroll-behavior:auto}}
@@ -786,7 +785,14 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
           <div class="name">Леонид Владиславович Поздняк</div>
           <div class="dates">25.03.1957 — 2006</div>
           <div class="place">род. г. Рига</div>
-          <div class="note">Сведения из автобиографии. <strong>Подробнее →</strong></div>
+          <div class="note">Был женат трижды; сын Павел — отец троих детей. <strong>Подробнее →</strong></div>
+        </div>
+        <div class="person paternal">
+          <div class="relation">Тётя (сестра отца)</div>
+          <div class="name">Елена Владиславовна Желтикова</div>
+          <div class="name-extra">девичья: Поздняк</div>
+          <div class="dates">род. 1958</div>
+          <div class="note">Сыновья: Никита (1986) и Игнат (1991) Желтиковы — двоюродные братья Анны</div>
         </div>
       </div>
 
@@ -896,8 +902,13 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <!-- Уровень II: мать + дядя — выровнены с отцовской линией -->
       <div class="v-line grow ancestor-gap"></div>
       <div class="level parents-level">
-        <div class="person maternal private-relative" id="private-mother">
-          <div class="name">Мать</div>
+        <div class="person maternal" id="mother">
+          <div class="relation">Мать</div>
+          <div class="name">Елена Васильевна Поздняк</div>
+          <div class="name-extra">девичья: Ковалёва</div>
+          <div class="dates">род. 1966</div>
+          <div class="place">с. Красный Октябрь,<br>Черлакский р-н, Омская обл.</div>
+          <div class="note">~1972 семья переехала в Наб. Челны строить КамАЗ. С Леонидом познакомились в Ленске.</div>
         </div>
         <div class="person maternal">
           <div class="relation">Дядя (брат матери)</div>
@@ -918,10 +929,15 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
     <div class="person center">
       <div class="relation">Это я</div>
       <div class="name" style="font-size:1.15rem;">Анна Поздняк</div>
+      <div class="dates">род. 1998</div>
+      <div class="place">Санкт-Петербург<br>(род. Наб. Челны)</div>
     </div>
 
     <div class="siblings">
+      <div class="sibling">Родной брат: Евгений Поздняк (1992, Наб. Челны)</div>
       <div class="sibling clickable" role="button" tabindex="0" onclick="document.getElementById('dmitry-modal').classList.add('open')">Сводный брат: Дмитрий Леонидович Поздняк (умер в 2014 году) ↗</div>
+      <div class="sibling clickable" role="button" tabindex="0" aria-label="Павел — сын Леонида, трое детей" onclick="document.getElementById('pavel-modal').classList.add('open')">Сводный брат: Павел · Новая Зеландия · трое детей ↗</div>
+      <div class="sibling">Сводный брат: имя? ✝ (от 2-го)</div>
     </div>
   </div>
 
@@ -929,7 +945,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 </div><!-- tree-board -->
 </div><!-- tree-scroller -->
 <div class="mobile-ancestry" aria-label="Мобильное древо по поколениям">
-  <div class="mobile-person-self"><small>От кого строим древо</small><strong>Анна Поздняк</strong></div>
+  <div class="mobile-person-self"><small>От кого строим древо</small><strong>Анна Поздняк</strong><span>1998 · Набережные Челны</span></div>
   <p class="mobile-help">выберите отцовскую или материнскую линию и раскройте интересующее поколение. все имена открываются по нажатию.</p>
   <div class="mobile-branch" id="mobile-paternal"></div>
   <div class="mobile-branch" id="mobile-maternal" hidden>
@@ -1128,6 +1144,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <div class="modal-block-pat">
           <strong>Рождение:</strong> г. Рига, 1957. <strong>Смерть:</strong> 2006.
         </div>
+        <p>Был женат трижды. Третий брак — с Еленой Ковалёвой, познакомились в Ленске (Якутия).</p>
 <section class="archive-timeline">
   <h3>Сведения из автобиографии</h3>
   <p>В рукописной автобиографии Леонид назвал точную дату рождения: <strong>25 марта 1957 года</strong>, Рига, Латвийская ССР.</p>
@@ -1135,7 +1152,13 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
   <p>В той же рукописи есть запись, что отец, Владислав Аркадьевич, <strong>умер в 1964 году</strong>. Это семейное документальное свидетельство, но актовую запись о смерти ещё нужно найти.</p>
   <p class="archive-disclaimer">Источник: «Автобиография Поздняк Леонида Владиславовича», рукописные листы 1, 6–8 из семейного PDF «Документы Поздняк». В документе встречаются зачёркивания; спорные даты не считаются подтверждёнными без иных источников.</p>
 </section>
-        <p>Сын — Дмитрий Леонидович Поздняк (умер в 2014 году).</p>
+        <div class="modal-block-pat">
+          <strong>Дети:</strong><br>
+          · от 1-го брака: Дмитрий (умер в 2014 году)<br>
+          · от 2-го брака: Павел (по семейным сведениям, живёт в Новой Зеландии и у него трое детей) и ещё один сын (умер, имя неизвестно)<br>
+          · от 3-го брака: Евгений (1992) и Анна (1998)
+        </div>
+        <p>Сестра — Елена Владиславовна Желтикова (1958), двоюродные братья Анны — Никита (1986) и Игнат (1991) Желтиковы.</p>
       </div>
     </div>
   </div>
@@ -1195,7 +1218,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         <p>Училась в Биробиджане (Еврейская АО). Там познакомилась с Василием Ковалёвым — он проходил военную службу в тех краях, познакомились на танцах.</p>
         <div class="modal-block-mat">
           <strong>Жили:</strong> Омская область, затем около 1972 года переехали в Набережные Челны — строить КамАЗ.<br>
-          <strong>Дети:</strong> Олег Ковалёв (1963–2016).
+          <strong>Дети:</strong> Олег Ковалёв (1963–2016) и Елена Ковалёва (1966) — мать Анны.
         </div>
       </div>
     </div>
@@ -1247,9 +1270,23 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <p class="modal-sub">1939 — 2016 · дед по материнской линии</p>
       <div class="modal-body">
         <p>По семейным сведениям, происходил из Омской области. Вспоминал, что в годы войны семья плохо питалась и ему приходилось есть лебеду. Это личное воспоминание, а не вывод о достатке из похозяйственной книги. Во время службы в армии встретил Нину Филипповну Гирля в Биробиджане. Позже семья жила в Омской области, а около 1972 года переехала в Набережные Челны.</p>
-        <div class="modal-block-mat"><strong>Родители:</strong> Павел Григорьевич Ковалёв (1913) и Мария Сергеевна Ковалёва (год рождения 1911 или 1914 по разным записям); девичья фамилия Марии пока неизвестна.<br><strong>Дети:</strong> Олег Васильевич (1963–2016).</div>
+        <div class="modal-block-mat"><strong>Родители:</strong> Павел Григорьевич Ковалёв (1913) и Мария Сергеевна Ковалёва (год рождения 1911 или 1914 по разным записям); девичья фамилия Марии пока неизвестна.<br><strong>Дети:</strong> Олег Васильевич (1963–2016), Елена Васильевна (род. 1966).</div>
         <p>Поиск записи о рождении Василия за 1939 год продолжен в Омской области. В ответе от 25 июня 2026 года архив указал, что конкретных сведений о Василии в электронных описях не найдено, но обнаружил возможные следы семьи его отца — Павла Ковалёва. <strong>Совпадение состава семьи Павла в похозяйственной записи подтверждено потомком; для независимого документального подтверждения отцовства следует найти актовую запись о рождении Василия.</strong></p>
         <p class="archive-disclaimer">См. биографию Павла Ковалёва и письмо Исторического архива Омской области № 01-40/Т-15806 от 25 июня 2026 года.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПАВЕЛ, СЫН ЛЕОНИДА ОТ ВТОРОГО БРАКА -->
+  <div id="pavel-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="pavel-modal-title">
+    <div class="modal-overlay" onclick="this.parentElement.classList.remove('open')"></div>
+    <div class="modal-content">
+      <button type="button" class="modal-close" aria-label="Закрыть" onclick="document.getElementById('pavel-modal').classList.remove('open')">×</button>
+      <h2 class="modal-h" id="pavel-modal-title" style="color:var(--pat);">Павел</h2>
+      <p class="modal-sub">сын Леонида Владиславовича Поздняка от второго брака · сводный брат Анны</p>
+      <div class="modal-body">
+        <div class="modal-block-pat"><strong>Живёт:</strong> по семейным сведениям, в Новой Зеландии.<br><strong>Дети:</strong> трое, их имена и даты рождения не указаны.</div>
+        <p>Павел — сын Леонида, брат по отцу Анны, Евгения и Дмитрия. Эти сведения добавлены со слов семьи; подтверждающие документы пока не прикреплены.</p>
       </div>
     </div>
   </div>
@@ -1315,7 +1352,7 @@ updateBranches();
 const modalHost=document.querySelector('body > .container');
 let created=0;
 document.querySelectorAll('.person').forEach(person=>{
-  if(person.classList.contains('clickable')||person.classList.contains('private-relative'))return;
+  if(person.classList.contains('clickable'))return;
   const name=person.querySelector('.name');
   if(!name||person.closest('#auto-person-modal'))return;
   created+=1;
@@ -1391,10 +1428,6 @@ branches.forEach((branch,index)=>{
   const summary=document.createElement('summary');summary.textContent=generationLabels[levelIndex]||'Дальние предки';
   const list=document.createElement('div');list.className='mobile-generation-list';
   persons.forEach(person=>{
-   if(person.classList.contains('private-relative')){
-    const label=document.createElement('span');label.textContent=person.querySelector('.name').textContent;
-    label.className='mobile-generation-person mobile-private-relative';list.append(label);return;
-   }
    const btn=document.createElement('button');btn.type='button';btn.className='mobile-generation-person';
    const inner=document.createElement('span');const rel=document.createElement('small');rel.textContent=person.querySelector('.relation')?.textContent.trim()||'Родственник';
    const name=document.createElement('strong');name.textContent=person.querySelector('.name')?.textContent.trim()||'Имя неизвестно';
