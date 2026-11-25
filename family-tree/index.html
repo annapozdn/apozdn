@@ -510,6 +510,12 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
 .tree-board .subfam{min-width:0!important;flex:0 0 auto}
 .tree-board .subfam-couple{display:flex!important;flex-direction:row!important;gap:12px!important;align-items:stretch}
 .tree-board .person{width:190px!important;min-width:190px!important;max-width:none!important;flex:0 0 190px!important;padding:14px 13px;overflow-wrap:break-word;word-break:normal}
+.tree-board .arkadiy-parent-row > .subfam{flex-basis:392px}
+.arkadiy-parents > .subfam-couple::after{content:"";position:absolute;top:50%;bottom:0;left:50%;width:2px;background:var(--line);transform:translateX(-50%)}
+.arkadiy-connector{position:relative;align-self:stretch;height:34px}
+.arkadiy-connector::before,.arkadiy-connector::after{content:"";position:absolute;left:94px}
+.arkadiy-connector::before{top:0;right:calc(50% - 1px);height:50%;border-right:2px solid var(--line);border-bottom:2px solid var(--line)}
+.arkadiy-connector::after{top:50%;bottom:0;width:2px;background:var(--line)}
 .tree-board .person.center{width:250px!important;min-width:250px!important;flex:0 0 auto!important}
 .tree-board .level .name{font-size:.92rem}
 .tree-board .half-title{font:700 .92rem system-ui,sans-serif;letter-spacing:.12em}
@@ -658,8 +664,8 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
       <div class="half-title">отцовская линия</div>
 
       <!-- Уровень V: прапрадеды -->
-      <div class="level" style="margin-bottom: 0;">
-        <div class="subfam" aria-label="Родители Аркадия Поздняка">
+      <div class="level arkadiy-parent-row" style="margin-bottom: 0;">
+        <div class="subfam arkadiy-parents" aria-label="Родители Аркадия Поздняка">
           <div class="subfam-couple">
             <div class="person paternal" id="konstantin-poznak">
               <div class="relation">Прапрадед</div>
@@ -675,6 +681,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
               <div class="note">Мать Аркадия. Отчество указано в <a href="/family-tree/docs/#poznak-romashenki-1920">списке жителей Ромашенок за 1920 год</a>. Девичья фамилия неизвестна.</div>
             </div>
           </div>
+          <div class="arkadiy-connector" aria-hidden="true"></div>
         </div>
         <div class="subfam">
           <div class="subfam-couple no-link">
@@ -686,8 +693,6 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
           </div>
         </div>
       </div>
-
-      <div class="v-line"></div>
 
       <!-- Уровень IV: прадеды — два столбика рядом -->
       <div class="level">
