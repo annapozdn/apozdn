@@ -6,16 +6,28 @@
 <style>
 :root{--paper:#f7f6f2;--white:#fffefa;--ink:#293532;--muted:#69746c;--border:#dedfd7;--teal:#315f55;--accent:#895760;--gold:#af8d58;--shadow:0 10px 28px rgba(34,48,43,.065)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 system-ui,-apple-system,Segoe UI,Arial,sans-serif}a{color:var(--teal);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}button,input,select{font:inherit}
-.site-header{position:sticky;top:0;background:rgba(247,246,242,.96);backdrop-filter:blur(14px);z-index:20;border-bottom:1px solid var(--border)}
-.header-inner{max-width:1180px;margin:auto;min-height:68px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-family:Georgia,serif;font-size:1.13rem;text-decoration:none;color:var(--ink);letter-spacing:.025em}.site-nav{display:flex;align-items:center;gap:22px}.site-nav a{color:#52605a;text-decoration:none;font-size:.86rem}.site-nav a.active{font-weight:700;color:var(--teal)}
-.wrap{max-width:1180px;margin:auto;padding:0 24px}.hero{padding:58px 0 30px}.eyebrow{font-size:.73rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:12px}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:normal;letter-spacing:-.015em}h1{font-size:clamp(2.4rem,5vw,4.3rem);line-height:1.08;margin:0 0 18px;max-width:760px}h1 em{color:var(--teal);font-weight:normal}h2{font-size:clamp(1.6rem,2.7vw,2.1rem);line-height:1.25;margin:0 0 14px}h3{font-size:1.3rem;line-height:1.3;margin:0 0 8px}.lede{max-width:760px;color:#5b6961;font-size:1rem;line-height:1.65;margin:0}.toplinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.toplinks a{display:inline-block;padding:9px 14px;border:1px solid #cbd5ce;border-radius:9px;background:var(--white);font-size:.88rem;text-decoration:none}.toplinks a:first-child{background:var(--teal);color:white;border-color:var(--teal)}
+html{scroll-padding-top:calc(var(--archive-menu-height, 64px) + 12px)}
+.site-header{position:sticky;top:0;background:rgba(247,246,242,.98);backdrop-filter:blur(14px);z-index:20;border-bottom:1px solid var(--border)}
+.archive-nav{max-width:1180px;margin:auto;padding:8px 24px;display:flex;align-items:center;gap:8px}
+.archive-nav a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:6px 12px;border:1px solid #cbd5ce;border-radius:9px;background:var(--white);font-size:.85rem;line-height:1.25;text-align:center;text-decoration:none}
+.archive-nav a:first-child{background:var(--teal);color:white;border-color:var(--teal)}
+.archive-nav a:last-child{margin-inline-start:auto}
+.archive-nav a:hover{text-decoration:underline}
+.archive-nav a:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+@media(max-width:760px){
+  html{scroll-padding-top:calc(var(--archive-menu-height, 104px) + 12px)}
+  .archive-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:5px 12px}
+  .archive-nav a{min-width:0;padding:4px;font-size:.76rem}
+  .archive-nav a:last-child{margin-inline-start:0}
+}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}.hero{padding:58px 0 30px}.eyebrow{font-size:.73rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:12px}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:normal;letter-spacing:-.015em}h1{font-size:clamp(2.4rem,5vw,4.3rem);line-height:1.08;margin:0 0 18px;max-width:760px}h1 em{color:var(--teal);font-weight:normal}h2{font-size:clamp(1.6rem,2.7vw,2.1rem);line-height:1.25;margin:0 0 14px}h3{font-size:1.3rem;line-height:1.3;margin:0 0 8px}.lede{max-width:760px;color:#5b6961;font-size:1rem;line-height:1.65;margin:0}
 .info-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:25px 0 38px}.info{border:1px solid var(--border);border-radius:11px;padding:16px 20px;background:var(--white)}.info strong{display:block;font-size:.8rem;letter-spacing:.02em}.info p{font-size:.82rem;margin:4px 0 0;color:var(--muted)}
 .section-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:17px}.section-heading p{max-width:440px;color:var(--muted);font-size:.86rem;margin:0}.filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 15px}.search{flex:1 1 250px;min-width:0;position:relative}.search input{width:100%;padding:13px 14px 13px 38px;background:white;border:1px solid #cfd6d0;border-radius:11px;color:var(--ink);outline:0}.search input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #315f5522}.search::before{content:"⌕";font-size:1.6rem;color:#82918a;position:absolute;left:14px;top:6px}.filter-select{padding:13px 14px;border:1px solid #cfd6d0;border-radius:11px;background:white;color:var(--ink);width:min(100%,210px)}.results-count{font-size:.83rem;color:var(--muted);margin:4px 0 14px;min-height:20px}
 .table-box{border:1px solid var(--border);border-radius:15px;overflow:hidden;background:white;box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;table-layout:fixed}thead{background:#edf1ed;color:#596961}th{padding:13px 14px;text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}th:nth-child(1){width:19%}th:nth-child(2){width:31%}th:nth-child(3){width:18%}th:nth-child(4){width:14%}th:nth-child(5){width:18%}td{vertical-align:top;border-top:1px solid #e7e9e5;padding:17px 14px;font-size:.83rem;line-height:1.55;overflow-wrap:anywhere}td strong{font-size:.89rem}td small{display:block;color:#718077;font-size:.77rem;line-height:1.55;margin-top:5px}td a{font-weight:600}.when{font-weight:650}.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:.72rem;font-weight:750;line-height:1.3}.status-document{background:#e5f3e9;color:#285f42}.status-candidate,.status-family{background:#fbf0df;color:#825b20}.status-notfound,.status-registered,.status-requires{background:#eaf0f4;color:#395b72}.status-undelivered,.status-rejected{background:#fbe9e9;color:#8b4146}
 .empty{padding:34px;text-align:center;color:var(--muted);display:none}
 .source-detail{margin-top:48px;background:var(--white);border:1px solid var(--border);border-radius:15px;padding:clamp(20px,4vw,36px)}.source-detail .tag{display:inline-block;font-size:.73rem;color:#3b6850;background:#e5f1e7;padding:5px 11px;border-radius:30px;font-weight:700;margin-bottom:12px}.doc-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.doc-meta dt{font-size:.73rem;color:#758178}.doc-meta dd{margin:0;font-weight:600}.source-detail blockquote{border-left:3px solid var(--gold);margin:20px 0;padding:6px 0 6px 20px;font-family:Georgia,serif;font-size:1.2rem;line-height:1.5}.detail-text{max-width:860px;color:#4c5b52}.source-detail p{margin:12px 0}.reading{margin:42px 0 70px}.reading-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.reading-grid article{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px}.reading-grid p{font-size:.85rem;color:#617169;margin:0}.footer{border-top:1px solid var(--border);padding:25px 0 40px;font-size:.8rem;color:#69746c}.footer .wrap{display:flex;justify-content:space-between;gap:16px}
 @media(max-width:1050px){.table-box{border:0;background:transparent;box-shadow:none;overflow:visible}table,thead,tbody,tr,td{display:block}thead{display:none}tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}tr{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow)}td{display:block;border:0;padding:6px 0;font-size:.82rem}td::before{content:attr(data-label);display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;font-weight:750;color:#85918a;margin-bottom:3px}td:first-child{border-bottom:1px solid #e8ebe7;padding-bottom:12px;margin-bottom:7px}td:last-child{margin-top:8px}.status{font-size:.7rem}}
-@media(max-width:700px){.header-inner{padding:0 15px;min-height:59px}.brand{font-size:1rem}.site-nav{gap:12px}.site-nav a{font-size:.8rem}.wrap{padding:0 15px}.hero{padding:35px 0 20px}h1{font-size:2.4rem}.lede{font-size:.93rem}.info-strip{grid-template-columns:1fr;gap:8px;margin:18px 0 30px}.info{padding:13px 15px}.section-heading{display:block}.section-heading p{margin:10px 0}.filter-select{flex:1 1 140px;width:auto}.filters{gap:8px}tbody{grid-template-columns:1fr;gap:10px}tr{padding:15px}.doc-meta{grid-template-columns:1fr}.reading-grid{grid-template-columns:1fr}.source-detail{padding:22px 16px}.footer .wrap{display:block}}
+@media(max-width:700px){.wrap{padding:0 15px}.hero{padding:35px 0 20px}h1{font-size:2.4rem}.lede{font-size:.93rem}.info-strip{grid-template-columns:1fr;gap:8px;margin:18px 0 30px}.info{padding:13px 15px}.section-heading{display:block}.section-heading p{margin:10px 0}.filter-select{flex:1 1 140px;width:auto}.filters{gap:8px}tbody{grid-template-columns:1fr;gap:10px}tr{padding:15px}.doc-meta{grid-template-columns:1fr}.reading-grid{grid-template-columns:1fr}.source-detail{padding:22px 16px}.footer .wrap{display:block}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 /* Documents subpage refinements */
@@ -27,8 +39,7 @@
 .source-detail{box-shadow:0 8px 30px rgba(34,48,43,.04)}
 .table-box{border-color:#d3d9d1}
 .table-box tr:hover{background:#fafbf8}
-.site-nav a.active{border-bottom:2px solid var(--teal);padding-bottom:4px}
-@media(max-width:700px){.hero:before{opacity:.13}.site-nav a{font-size:.73rem}}
+@media(max-width:700px){.hero:before{opacity:.13}}
 
 /* Self-directed genealogy research, 21 November 2026 */
 .online-research{margin:36px 0 52px;padding:clamp(18px,3vw,32px);background:#edf0ea;border:1px solid #d1d8cc;border-radius:18px;}
@@ -53,13 +64,21 @@
 .research-conclusion{font-size:.86rem;color:#41594c;line-height:1.65;margin:14px 0 0}
 @media(max-width:760px){.online-research{padding:16px 13px;border-radius:14px;margin:24px 0 36px}.online-research-grid{grid-template-columns:1fr}.online-lead{padding:17px}.online-research .research-topline{display:block}.online-research .research-topline span{display:block;margin:3px 0}}
 </style></head>
-<body>
-<header class="site-header"><div class="header-inner"><a class="brand" href="/family-tree/">семейный архив<span aria-hidden="true"> · </span>Поздняк</a>
-<nav class="site-nav" aria-label="Разделы"><a href="/family-tree/">Древо</a><a href="/family-tree/docs/" class="active" aria-current="page">Документы и находки</a></nav></div></header>
+<body id="top">
+<header class="site-header">
+  <nav class="archive-nav" aria-label="Навигация по семейному архиву">
+    <a href="/family-tree/">К древу</a>
+    <a href="#research-table">Находки и запросы</a>
+    <a href="#garf-5781t">Угон и побег Владислава</a>
+    <a href="#vladislav-riga-factory">Рижский завод</a>
+    <a href="#girlya-family-origins">Семья Гирля</a>
+    <a href="#top">Наверх ↑</a>
+  </nav>
+</header>
 <main class="wrap">
 <section class="hero"><div class="eyebrow">Семейная история · документы, письма и поиски</div><h1>Документы и <em>находки</em><br>нашей семьи</h1>
 <p class="lede">Здесь собраны записи о наших родственниках, ответы архивов и результаты поисков. Можно посмотреть, какие сведения подтверждены документами, а какие ещё предстоит проверить.</p>
-<div class="toplinks"><a href="/family-tree/">Вернуться к древу</a><a href="#research-table">Все находки и запросы</a><a href="#garf-5781t">Угон и побег Владислава</a><a href="#vladislav-riga-factory">Рижский завод</a><a href="#girlya-family-origins">Происхождение Гирли</a></div></section>
+</section>
 <section class="info-strip" aria-label="Как пользоваться архивом">
 <div class="info"><strong>Документ найден</strong><p>Есть конкретная запись, архивный шифр или официальный ответ.</p></div>
 <div class="info"><strong>Нужна проверка</strong><p>Сведения из письма, справочника или семейной истории ещё не доказывают родство.</p></div>
@@ -416,9 +435,13 @@
 <article><h3>Семейная версия</h3><p>важная память родственников, но она может быть неточной. сохраняем её отдельно, а не заменяем подтверждённые факты.</p></article>
 <article><h3>Следующее действие</h3><p>если документы ещё не найдены, фиксируем конкретный недостающий факт: полное имя, год, приход, копию записи или официальный ответ.</p></article>
 </div></section></main>
-<footer class="footer"><div class="wrap"><span>Семейный архив · обновлено 22 ноября 2026</span><span>для родных · документы и гипотезы разделены</span></div></footer>
+<footer class="footer"><div class="wrap"><span>Семейный архив · обновлено 26 ноября 2026</span><span>для родных · документы и гипотезы разделены</span></div></footer>
 <script>
 (function(){
+const header=document.querySelector('.site-header');
+function measureMenu(){document.documentElement.style.setProperty('--archive-menu-height',Math.ceil(header.getBoundingClientRect().height)+'px');}
+measureMenu();
+if(typeof ResizeObserver==='function')new ResizeObserver(measureMenu).observe(header);
 const rows=[...document.querySelectorAll('#rows tr')], s=document.querySelector('#search'), b=document.querySelector('#branch'), k=document.querySelector('#kind'), c=document.querySelector('#count'), empty=document.querySelector('#empty');
 function apply(){
 const text=s.value.trim().toLocaleLowerCase('ru');
