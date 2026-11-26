@@ -659,6 +659,11 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
  #family-pat .pat-generation .subfam::after,#family-pat .pat-generation .subfam-couple::before,#family-pat .pat-generation .subfam-couple::after,#family-pat .pat-generation .subfam>.place,#family-pat .pat-generation .parent-connector,#family-pat .pat-generation .v-line,#family-pat>.joiner,#family-pat>.ancestor-gap::before,#family-pat>.ancestor-gap::after{display:none!important}
 }
 .family-connections{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;fill:none;stroke:var(--line);stroke-width:2}
+@media(min-width:761px){
+ .tree-board .half > .parent-drop{height:148px!important;flex-basis:148px!important}
+ .tree-board .aunt-sons{position:absolute;top:32px;right:10px;display:flex;gap:12px;z-index:2}
+ .tree-board .aunt-sons .person{height:auto}
+}
 </style>
 </head>
 <body>
@@ -851,7 +856,7 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
           <div class="dates">25.03.1957 — 2006</div>
           <div class="place">Родился в Риге</div>
         </div>
-        <div class="person paternal">
+        <div class="person paternal" id="aunt-elena">
           <div class="relation">Тётя (сестра отца)</div>
           <div class="name">Елена Владиславовна Желтикова</div>
           <div class="dates">род. 1958</div>
@@ -863,7 +868,22 @@ h1{font-size:clamp(2rem,3vw,3rem);letter-spacing:.08em;line-height:1.18;text-wra
         </div>
       </div>
 
-      <div class="v-line parent-drop"></div>
+      <div class="v-line parent-drop">
+        <div class="aunt-sons" aria-label="Сыновья Елены Желтиковой">
+          <div class="person paternal" id="nikita-zheltikov">
+            <div class="relation">Двоюродный брат</div>
+            <div class="name">Никита Желтиков</div>
+            <div class="dates">род. 1986</div>
+            <template class="person-details"><p>Сын Елены Владиславовны Желтиковой, двоюродный брат Анны по отцовской линии.</p></template>
+          </div>
+          <div class="person paternal" id="ignat-zheltikov">
+            <div class="relation">Двоюродный брат</div>
+            <div class="name">Игнат Желтиков</div>
+            <div class="dates">род. 1991</div>
+            <template class="person-details"><p>Сын Елены Владиславовны Желтиковой, двоюродный брат Анны по отцовской линии.</p></template>
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -1487,6 +1507,8 @@ const scrollStep=()=>Math.max(400,Math.min(820,scrollRoot?.clientWidth*.78||550)
 let initialTreeCentered=false;
 const paternalWing=document.getElementById('family-pat');
 const generationCards=[...paternalWing.querySelectorAll(':scope > .pat-generation,:scope > .parents-level')].map(row=>[...row.querySelectorAll('.person')]);
+const auntCard=document.getElementById('aunt-elena');
+const auntSons=[...paternalWing.querySelectorAll('.aunt-sons .person')];
 const svgNamespace='http://www.w3.org/2000/svg';
 const connections=document.createElementNS(svgNamespace,'svg');
 connections.setAttribute('class','family-connections');
@@ -1516,10 +1538,16 @@ function drawParentage(){
  family(1,0,[0]);family(1,2,[1]);
  family(2,0,[0]);family(2,2,[1]);
  family(3,0,[0,1]);
+ const aunt=auntCard.getBoundingClientRect();
+ const children=auntSons.map(card=>card.getBoundingClientRect());
+ const junction=(aunt.bottom+Math.min(...children.map(card=>card.top)))/2-origin.top;
+ const at=(aunt.left+aunt.right)/2-origin.left;
+ link(`M ${at} ${aunt.bottom-origin.top} V ${junction}`);
+ for(const child of children)link(`M ${at} ${junction} H ${(child.left+child.right)/2-origin.left} V ${child.top-origin.top}`);
 }
 const familyObserver=new ResizeObserver(drawParentage);
 familyObserver.observe(paternalWing);
-generationCards.flat().forEach(card=>familyObserver.observe(card));
+[...generationCards.flat(),...auntSons].forEach(card=>familyObserver.observe(card));
 drawParentage();
 function centerTreeOnFirstOpen(){
  if(initialTreeCentered || !scrollRoot || window.matchMedia('(max-width:760px)').matches)return;
@@ -1538,10 +1566,12 @@ branches.forEach((branch,index)=>{
  const mobilePanel=document.getElementById(index===0?'mobile-paternal':'mobile-maternal');
  mobilePanel.dataset.line=index===0?'p':'m';
  const units=[...branch.children].filter(e=>e.classList.contains('level')||e.classList.contains('subfam')).reverse();
+ const cousins=branch.querySelector('.aunt-sons');
+ if(cousins)units.push(cousins);
  units.forEach((unit,levelIndex)=>{
   const persons=[...unit.querySelectorAll('.person')];if(!persons.length)return;
   const details=document.createElement('details');details.className='mobile-generation';details.open=levelIndex<2;
-  const summary=document.createElement('summary');summary.textContent=generationLabels[levelIndex]||'Дальние предки';
+  const summary=document.createElement('summary');summary.textContent=unit===cousins?'Сыновья Елены Желтиковой':generationLabels[levelIndex]||'Дальние предки';
   const list=document.createElement('div');list.className='mobile-generation-list';
   persons.forEach(person=>{
    const btn=document.createElement('button');btn.type='button';btn.className='mobile-generation-person';
